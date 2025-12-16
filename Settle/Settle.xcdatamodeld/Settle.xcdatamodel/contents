@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24G84" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CDExpense" representedClassName="CDExpense" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="category" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="receiptImage" optional="YES" attributeType="Binary"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="group" maxCount="1" deletionRule="Nullify" destinationEntity="CDGroup" inverseName="expenses" inverseEntity="CDGroup"/>
+        <relationship name="paidBy" maxCount="1" deletionRule="Nullify" destinationEntity="CDMember" inverseName="paidExpenses" inverseEntity="CDMember"/>
+        <relationship name="shares" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDExpenseShare" inverseName="expense" inverseEntity="CDExpenseShare"/>
+    </entity>
+    <entity name="CDExpenseShare" representedClassName="CDExpenseShare" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="expense" maxCount="1" deletionRule="Nullify" destinationEntity="CDExpense" inverseName="shares" inverseEntity="CDExpense"/>
+        <relationship name="member" maxCount="1" deletionRule="Nullify" destinationEntity="CDMember" inverseName="shares" inverseEntity="CDMember"/>
+    </entity>
+    <entity name="CDGroup" representedClassName="CDGroup" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDExpense" inverseName="group" inverseEntity="CDExpense"/>
+        <relationship name="members" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDMember" inverseName="group" inverseEntity="CDMember"/>
+        <relationship name="settlements" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDSettlement" inverseName="group" inverseEntity="CDSettlement"/>
+    </entity>
+    <entity name="CDMember" representedClassName="CDMember" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="upiId" optional="YES" attributeType="String"/>
+        <relationship name="group" maxCount="1" deletionRule="Nullify" destinationEntity="CDGroup" inverseName="members" inverseEntity="CDGroup"/>
+        <relationship name="paidExpenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDExpense" inverseName="paidBy" inverseEntity="CDExpense"/>
+        <relationship name="settlementsFrom" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDSettlement" inverseName="from" inverseEntity="CDSettlement"/>
+        <relationship name="settlementsTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDSettlement" inverseName="to" inverseEntity="CDSettlement"/>
+        <relationship name="shares" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDExpenseShare" inverseName="member" inverseEntity="CDExpenseShare"/>
+    </entity>
+    <entity name="CDSettlement" representedClassName="CDSettlement" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="status" attributeType="String"/>
+        <attribute name="upiTransactionId" optional="YES" attributeType="String"/>
+        <relationship name="from" maxCount="1" deletionRule="Nullify" destinationEntity="CDMember" inverseName="settlementsFrom" inverseEntity="CDMember"/>
+        <relationship name="group" maxCount="1" deletionRule="Nullify" destinationEntity="CDGroup" inverseName="settlements" inverseEntity="CDGroup"/>
+        <relationship name="to" maxCount="1" deletionRule="Nullify" destinationEntity="CDMember" inverseName="settlementsTo" inverseEntity="CDMember"/>
+    </entity>
+</model>
