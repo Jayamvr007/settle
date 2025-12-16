@@ -166,7 +166,7 @@ struct AddExpenseView: View {
                 let total = customSplits.values.compactMap { Decimal(string: $0) }.reduce(0, +)
                 let amountValue = Decimal(string: amount) ?? 0
                 if total != amountValue {
-                    Text("Total must equal ₹\(amount.formattedAmount). Current: ₹\(total.formattedAmount)")
+                    Text("Total must equal ₹\((Decimal(string: amount) ?? 0).formattedAmount). Current: ₹\(total.formattedAmount)")
                         .foregroundColor(.red)
                 }
             }

@@ -27,6 +27,7 @@ class AuthenticationManager: ObservableObject {
     @Published var user: User?
     @Published var authenticationState: AuthenticationState = .unauthenticated
     @Published var errorMessage = ""
+    @Published var verificationID: String? = nil
     
     init() {
         registerAuthStateHandler()
@@ -90,6 +91,38 @@ class AuthenticationManager: ObservableObject {
         }
     }
     
+    // MARK: - Phone Number Auth
+    
+    func sendOTP(to phoneNumber: String, completion: @escaping (Bool, String?) -> Void) {
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+                completion(false, nil)
+                return
+            }
+            self.verificationID = verificationID
+            completion(true, verificationID)
+        }
+    }
+
+    func verifyOTP(_ otp: String, completion: @escaping (Bool) -> Void) {
+        guard let verificationID = verificationID else {
+            completion(false)
+            return
+        }
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: otp)
+        Auth.auth().signIn(with: credential) { result, error in
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+                completion(false)
+                return
+            }
+            self.user = result?.user
+            self.authenticationState = .authenticated
+            completion(true)
+        }
+    }
+    
     // MARK: - Sign Out
     
     func signOut() {
@@ -98,6 +131,7 @@ class AuthenticationManager: ObservableObject {
             GIDSignIn.sharedInstance.signOut()
             authenticationState = .unauthenticated
             user = nil
+            verificationID = nil
         } catch {
             print("❌ Sign out error: \(error.localizedDescription)")
             errorMessage = error.localizedDescription

@@ -24,6 +24,14 @@
 				<string>com.googleusercontent.apps.226718047162-nt5q0u14upppaqpi9vk896ba5a7p6o9c</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>app-1-226718047162-ios-a3226310bf9819a9eedb83</string>
+			</array>
+		</dict>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
@@ -34,7 +42,7 @@
 		<string>amazonpay</string>
 		<string>upi</string>
 	</array>
-	<key>NSContactsUsageDescription</key>
-	<string>Settle uses your contacts to quickly add friends to groups.</string>
+	<key>FirebasePhoneAuthUIEnabled</key>
+	<true/>
 </dict>
 </plist>

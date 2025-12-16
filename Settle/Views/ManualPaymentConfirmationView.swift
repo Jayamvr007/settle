@@ -41,7 +41,7 @@ struct ManualPaymentConfirmationView: View {
                     Text("Did you complete the payment of")
                         .foregroundColor(.secondary)
                     
-                    Text("₹\(settlement.amount.formattedAmount))")
+                    Text("₹\(settlement.amount.formattedAmount)")
                         .font(.system(size: 36, weight: .bold))
                         .foregroundColor(.blue)
                     

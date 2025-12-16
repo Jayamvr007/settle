@@ -13,6 +13,7 @@ struct SettleApp: App {
     let dataManager = DataManager.shared
     @StateObject private var groupRepository = GroupRepository()
     @StateObject private var authManager = AuthenticationManager()
+    @State private var showingUPIPrompt = false
     
     init() {
         // Configure Firebase
@@ -28,6 +29,7 @@ struct SettleApp: App {
                 .onOpenURL { url in
                     handleIncomingURL(url)
                 }
+                .environmentObject(authManager)
         }
     }
     

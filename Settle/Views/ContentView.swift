@@ -15,6 +15,12 @@ struct ContentView: View {
     @State private var isSignedIn: Bool = Auth.auth().currentUser != nil
     @State private var isSigningIn = false
     @State private var signInError: String?
+    @State private var showingUPIPrompt = false
+    @EnvironmentObject var authManager: AuthenticationManager
+    
+    @State private var phoneNumber: String = ""
+    @State private var otp: String = ""
+    @State private var showOTPField = false
 
     var body: some View {
         rootView
@@ -22,6 +28,18 @@ struct ContentView: View {
             // Keep local state in sync with Firebase
             Auth.auth().addStateDidChangeListener { _, user in
                             isSignedIn = (user != nil)
+                if user != nil {
+                    let upiId = UserDefaults.standard.string(forKey: "user_upi_id")
+                    if upiId == nil || upiId?.isEmpty == true {
+                        showingUPIPrompt = true
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $showingUPIPrompt) {
+            EnterUPIView { upiId in
+                UserDefaults.standard.set(upiId, forKey: "user_upi_id")
+                showingUPIPrompt = false
             }
         }
     }
@@ -58,7 +76,7 @@ struct ContentView: View {
         }
     }
 
-    // MARK: - Google Sign-In Screen
+    // MARK: - Login Choice Screen
 
     private var googleSignInScreen: some View {
         NavigationStack {
@@ -69,11 +87,11 @@ struct ContentView: View {
                     .font(.system(size: 72))
                     .foregroundColor(.blue)
 
-                Text("Sign in to continue")
+                Text("Sign in to Settle")
                     .font(.title2)
                     .fontWeight(.semibold)
 
-                Text("Use your Google account to keep your profile in sync on this device. Your expense data still stays local on your iPhone.")
+                Text("Choose how you'd like to sign in to continue")
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -87,6 +105,7 @@ struct ContentView: View {
                         .padding(.horizontal)
                 }
 
+                // Google Sign-In Button
                 Button(action: signInWithGoogle) {
                     HStack {
                         Image(systemName: "g.circle.fill")
@@ -102,6 +121,72 @@ struct ContentView: View {
                 }
                 .disabled(isSigningIn)
                 .padding(.horizontal)
+
+                Divider()
+                    .padding(.vertical, 8)
+
+//                Text("OR")
+//                    .font(.caption)
+//                    .foregroundColor(.secondary)
+//
+//                Divider()
+//                    .padding(.vertical, 8)
+//
+//                // Phone Number Auth Section
+//                VStack(spacing: 12) {
+//                    TextField("Enter phone number", text: $phoneNumber)
+//                        .keyboardType(.phonePad)
+//                        .textFieldStyle(.roundedBorder)
+//                        .disabled(showOTPField)
+//                        .padding(.horizontal)
+//
+//                    if showOTPField {
+//                        TextField("Enter OTP", text: $otp)
+//                            .keyboardType(.numberPad)
+//                            .textFieldStyle(.roundedBorder)
+//                            .padding(.horizontal)
+//
+//                        Button("Verify OTP") {
+//                            authManager.verifyOTP(otp) { success in
+//                                if !success {
+//                                    signInError = authManager.errorMessage
+//                                }
+//                            }
+//                        }
+//                        .foregroundColor(.white)
+//                        .padding()
+//                        .frame(maxWidth: .infinity)
+//                        .background(Color.green)
+//                        .cornerRadius(12)
+//                        .padding(.horizontal)
+//
+//                        Button("Back") {
+//                            phoneNumber = ""
+//                            otp = ""
+//                            showOTPField = false
+//                        }
+//                        .foregroundColor(.secondary)
+//                        .padding(.top, 4)
+//                    } else {
+//                        Button("Send OTP") {
+//                            authManager.sendOTP(to: phoneNumber) { success, _ in
+//                                if success {
+//                                    showOTPField = true
+//                                    signInError = nil
+//                                } else {
+//                                    signInError = authManager.errorMessage
+//                                }
+//                            }
+//                        }
+//                        .foregroundColor(.white)
+//                        .padding()
+//                        .frame(maxWidth: .infinity)
+//                        .background(phoneNumber.isEmpty ? Color.gray : Color.green)
+//                        .cornerRadius(12)
+//                        .padding(.horizontal)
+//                        .disabled(phoneNumber.isEmpty)
+//                    }
+//                }
 
                 Button("Continue without sign in") {
                     // Optional: allow skipping sign-in
