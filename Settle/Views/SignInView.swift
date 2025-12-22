@@ -12,7 +12,7 @@
 //
 
 import SwiftUI
-import GoogleSignInSwift
+import GoogleSignIn
 
 struct SignInView: View {
     @EnvironmentObject var authManager: AuthenticationManager
@@ -48,6 +48,7 @@ struct SignInView: View {
             
             // Google Sign-In Button
             VStack(spacing: 16) {
+                // Using our custom wrapper
                 GoogleSignInButton(action: handleSignIn)
                     .frame(height: 50)
                     .padding(.horizontal, 32)
@@ -83,6 +84,36 @@ struct SignInView: View {
             if !success {
                 print("Sign-in failed")
             }
+        }
+    }
+}
+
+// MARK: - Generic GIDSignInButton Wrapper
+struct GoogleSignInButton: UIViewRepresentable {
+    let action: () -> Void
+    
+    func makeUIView(context: Context) -> GIDSignInButton {
+        let button = GIDSignInButton()
+        button.colorScheme = .light
+        button.style = .wide
+        button.addTarget(context.coordinator, action: #selector(Coordinator.buttonTapped), for: .touchUpInside)
+        return button
+    }
+    
+    func updateUIView(_ uiView: GIDSignInButton, context: Context) {}
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(action: action)
+    }
+    
+    class Coordinator: NSObject {
+        let action: () -> Void
+        init(action: @escaping () -> Void) {
+            self.action = action
+        }
+        
+        @objc func buttonTapped() {
+            action()
         }
     }
 }

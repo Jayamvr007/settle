@@ -2,31 +2,31 @@
 //  SettlePaymentView.swift
 //  Settle
 //
-//  Created by Jayam Verma on 14/12/25.
-//
-
-
-//
-//  SettlePaymentView.swift
-//  Settle
+//  Created by Jayam Verma on 18/12/25.
 //
 
 import SwiftUI
 
 struct SettlePaymentView: View {
     @Environment(\.dismiss) private var dismiss
+    @StateObject private var viewModel = PaymentViewModel()
+    @State private var showingManualConfirmation = false
+    
     let settlement: SimplifiedSettlement
     let group: Group
     let onComplete: () -> Void
     
+    // UI State
     @State private var showingUPIOptions = false
     @State private var showingRecordCash = false
-    @State private var transactionId = ""
-    var onDismissParent: (() -> Void)?
+    
+    // For Gateway
+    @State private var presentingController: UIViewController?
     
     var body: some View {
         NavigationStack {
             List {
+                // Header
                 Section {
                     HStack {
                         VStack(alignment: .leading, spacing: 8) {
@@ -36,14 +36,10 @@ struct SettlePaymentView: View {
                             Text(settlement.from.name)
                                 .font(.headline)
                         }
-                        
                         Spacer()
-                        
                         Image(systemName: "arrow.right")
                             .foregroundColor(.blue)
-                        
                         Spacer()
-                        
                         VStack(alignment: .trailing, spacing: 8) {
                             Text("To")
                                 .font(.caption)
@@ -65,39 +61,67 @@ struct SettlePaymentView: View {
                     }
                 }
                 
-                Section("Payment Methods") {
+                // Methods
+                Section("Payment Options") {
+                    // 1. Direct UPI (Robust Intent)
                     if let upiId = settlement.to.upiId, !upiId.isEmpty {
                         Button {
+                            viewModel.preparePayment(settlement: settlement, group: group)
                             showingUPIOptions = true
                         } label: {
                             HStack {
                                 Image(systemName: "indianrupeesign.circle.fill")
                                     .foregroundColor(.blue)
                                     .font(.title2)
-                                
                                 VStack(alignment: .leading, spacing: 4) {
-                                    Text("Pay via UPI")
+                                    Text("Pay via UPI App")
                                         .foregroundColor(.primary)
                                         .fontWeight(.medium)
-                                    
                                     Text(upiId)
                                         .font(.caption)
                                         .foregroundColor(.secondary)
                                 }
-                                
                                 Spacer()
-                                
                                 Image(systemName: "chevron.right")
                                     .foregroundColor(.secondary)
                             }
                         }
                     } else {
-                        Text("No UPI ID available for \(settlement.to.name)")
+                        Text("No UPI ID available")
                             .font(.caption)
                             .foregroundColor(.secondary)
                             .italic()
                     }
                     
+                    // 2. Gateway (Razorpay) - Test Mode
+                    Button {
+                        viewModel.preparePayment(settlement: settlement, group: group)
+                        if let controller = presentingController {
+                             viewModel.initiateRazorpayPayment(presentingController: controller)
+                        }
+                    } label: {
+                        HStack {
+                            Image(systemName: "creditcard.fill")
+                                .foregroundColor(.purple)
+                                .font(.title2)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Pay via Razorpay")
+                                    .foregroundColor(.primary)
+                                    .fontWeight(.medium)
+                                Text(viewModel.isRazorpayAvailable ? "Test Mode" : "SDK Missing")
+                                    .font(.caption)
+                                    .foregroundColor(viewModel.isRazorpayAvailable ? .orange : .red)
+                            }
+                            Spacer()
+                            if viewModel.isRazorpayAvailable {
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
+                    .disabled(!viewModel.isRazorpayAvailable)
+                    
+                    // 3. Manual
                     Button {
                         showingRecordCash = true
                     } label: {
@@ -105,13 +129,10 @@ struct SettlePaymentView: View {
                             Image(systemName: "banknote.fill")
                                 .foregroundColor(.green)
                                 .font(.title2)
-                            
                             Text("Record Cash Payment")
                                 .foregroundColor(.primary)
                                 .fontWeight(.medium)
-                            
                             Spacer()
-                            
                             Image(systemName: "chevron.right")
                                 .foregroundColor(.secondary)
                         }
@@ -119,7 +140,7 @@ struct SettlePaymentView: View {
                 }
                 
                 Section {
-                    Text("Once settled, this will be marked as complete")
+                    Text("Secure payments powered by UPI & Razorpay")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -128,320 +149,180 @@ struct SettlePaymentView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
+                    Button("Cancel") { dismiss() }
                 }
             }
+            // Sheets
             .sheet(isPresented: $showingUPIOptions) {
-                UPIPaymentView(settlement: settlement, group: group, onComplete: onComplete)
-            }
-            .sheet(isPresented: $showingRecordCash) {
-                RecordCashPaymentView(settlement: settlement, group: group, onComplete: {
+                UPIAppSelectionView(viewModel: viewModel, settlement: settlement, group: group, onComplete: {
                     dismiss()
                     onComplete()
                 })
             }
+            .sheet(isPresented: $showingRecordCash) {
+                RecordCashView(viewModel: viewModel, settlement: settlement, group: group, onComplete: {
+                    dismiss()
+                    onComplete()
+                })
+            }
+            .background(ViewControllerResolver { controller in
+                presentingController = controller
+            })
+            // Manual Confirmation Triggered by ViewModel
+            .sheet(isPresented: $viewModel.showingManualConfirmation) {
+                 ManualConfirmationView(
+                    viewModel: viewModel,
+                    settlement: settlement,
+                    group: group,
+                    onComplete: {
+                         dismiss()
+                         onComplete()
+                    }
+                 )
+            }
+            .alert("Payment Error", isPresented: Binding(
+                get: { viewModel.errorMessage != nil },
+                set: { if !$0 { viewModel.errorMessage = nil } }
+            )) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                if let error = viewModel.errorMessage { Text(error) }
+            }
         }
     }
 }
 
-//
-//  UPIPaymentView.swift
-//  Settle
-//
+// MARK: - Helper Views
 
-//
-//  UPIPaymentView.swift
-//  Settle
-//
-
-struct UPIPaymentView: View {
+struct UPIAppSelectionView: View {
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject var viewModel: PaymentViewModel
     let settlement: SimplifiedSettlement
     let group: Group
     let onComplete: () -> Void
-    
-    @State private var installedApps: [UPIManager.UPIApp] = []
-    @State private var isProcessing = false
-    @State private var showingManualConfirmation = false
-    @State private var transactionRef: String = UUID().uuidString
     
     var body: some View {
         NavigationStack {
             List {
-                paymentDetailsSection
-                
-                if installedApps.isEmpty {
-                    noUPIAppsSection
-                } else {
-                    upiAppsSection
+                Section("Amount: ₹\(settlement.amount.formattedAmount)") {
+                    ForEach(viewModel.installedApps, id: \.self) { app in
+                        Button {
+                            viewModel.initiateUPIPayment(using: app)
+                        } label: {
+                            HStack {
+                                Image(systemName: app.iconName)
+                                    .foregroundColor(.blue)
+                                Text(app.displayName)
+                            }
+                        }
+                    }
+                    
+                    if viewModel.installedApps.isEmpty {
+                        Text("No UPI apps found")
+                    }
                 }
                 
-                footerSection
+                Section("Manual Link") {
+                     ShareLink(item: viewModel.getGenericUPIString(settlement: settlement, group: group)) {
+                         Label("Share Payment Link", systemImage: "square.and.arrow.up")
+                     }
+                }
             }
-            .navigationTitle("Pay via UPI")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Choose App")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-            }
-            .onAppear {
-                loadInstalledApps()
-            }
-            .sheet(isPresented: $showingManualConfirmation) {
-                ManualPaymentConfirmationView(
-                    settlement: settlement,
-                    group: group,
-                    onComplete: {
-                        onComplete()
-                        dismiss()
-                    }
-                )
-            }
-        }
-    }
-    
-    private var paymentDetailsSection: some View {
-        Section {
-            HStack {
-                Text("Amount to pay")
-                Spacer()
-                Text("₹\(settlement.amount.formattedAmount)")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.blue)
-            }
-            
-            HStack {
-                Text("To")
-                Spacer()
-                Text(settlement.to.name)
-                    .fontWeight(.medium)
-            }
-            
-            HStack {
-                Text("UPI ID")
-                Spacer()
-                Text(settlement.to.upiId ?? "")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-        }
-    }
-    
-    private var upiAppsSection: some View {
-        Section("Choose UPI App") {
-            ForEach(installedApps, id: \.self) { app in
-                UPIAppRow(app: app) {
-                    initiatePayment(using: app)
-                }
-            }
-        }
-    }
-    
-    private var noUPIAppsSection: some View {
-        Section {
-            ContentUnavailableView(
-                "No UPI Apps Found",
-                systemImage: "exclamationmark.triangle",
-                description: Text("Please install a UPI app like Google Pay, PhonePe, or Paytm")
-            )
-        }
-    }
-    
-    private var footerSection: some View {
-        Section {
-            VStack(alignment: .leading, spacing: 8) {
-                Text("After completing payment in the UPI app:")
-                    .font(.caption)
-                    .fontWeight(.medium)
-                
-                Text("1. Complete the payment")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                
-                Text("2. Return to Settle app")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                
-                Text("3. Confirm payment completion")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-        }
-    }
-    
-    private func loadInstalledApps() {
-        installedApps = UPIManager.shared.getInstalledUPIApps()
-    }
-    
-    private func initiatePayment(using app: UPIManager.UPIApp) {
-        guard let upiId = settlement.to.upiId else { return }
-        
-        UPIManager.shared.initiatePayment(
-            app: app,
-            upiId: upiId,
-            name: settlement.to.name,
-            amount: settlement.amount,
-            transactionNote: "Settlement - \(group.name)",
-            transactionRef: transactionRef
-        ) { success in
-            if success {
-                // Wait a moment for the UPI app to open
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    // Show manual confirmation when user returns
-                    showingManualConfirmation = true
-                }
+                 Button("Close") { dismiss() }
             }
         }
     }
 }
 
-struct UPIAppRow: View {
-    let app: UPIManager.UPIApp
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            HStack(spacing: 12) {
-                Image(systemName: app.iconName)
-                    .font(.title2)
-                    .foregroundColor(colorForApp(app))
-                    .frame(width: 32)
-                
-                Text(app.displayName)
-                    .foregroundColor(.primary)
-                
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-            }
-        }
-    }
-    
-    private func colorForApp(_ app: UPIManager.UPIApp) -> Color {
-        switch app.color {
-        case "blue": return .blue
-        case "purple": return .purple
-        case "cyan": return .cyan
-        case "orange": return .orange
-        case "yellow": return .yellow
-        default: return .blue
-        }
-    }
-}
-
-
-struct RecordCashPaymentView: View {
+struct RecordCashView: View {
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject var viewModel: PaymentViewModel
     let settlement: SimplifiedSettlement
     let group: Group
     let onComplete: () -> Void
-    
     @State private var notes = ""
-    @State private var showingConfirmation = false
     
     var body: some View {
         NavigationStack {
             Form {
-                Section {
-                    HStack {
-                        Text("Amount")
-                        Spacer()
-                        Text("₹\(settlement.amount.formattedAmount)")
-                            .font(.headline)
-                    }
-                    
-                    HStack {
-                        Text("From")
-                        Spacer()
-                        Text(settlement.from.name)
-                    }
-                    
-                    HStack {
-                        Text("To")
-                        Spacer()
-                        Text(settlement.to.name)
-                    }
+                Section("Amount: ₹\(settlement.amount.formattedAmount)") {
+                    TextField("Notes", text: $notes)
                 }
-                
-                Section("Notes (Optional)") {
-                    TextField("Add notes...", text: $notes, axis: .vertical)
-                        .lineLimit(3...6)
-                }
-                
-                Section {
-                    Button {
-                        showingConfirmation = true
-                    } label: {
-                        Text("Mark as Paid")
-                            .frame(maxWidth: .infinity)
-                            .fontWeight(.semibold)
-                    }
-                } footer: {
-                    Text("This will record that the payment was made in cash")
-                        .font(.caption)
+                Button("Mark as Paid") {
+                    viewModel.recordCashPayment(settlement: settlement, group: group, notes: notes)
+                    onComplete()
+                    dismiss()
                 }
             }
-            .navigationTitle("Record Cash Payment")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-            }
-            .alert("Confirm Payment", isPresented: $showingConfirmation) {
-                Button("Cancel", role: .cancel) { }
-                Button("Confirm") {
-                    recordPayment()
-                }
-            } message: {
-                Text("Mark ₹\(settlement.amount.formattedAmount) as paid by \(settlement.from.name) to \(settlement.to.name)?")
-            }
+            .navigationTitle("Record Cash")
         }
+    }
+}
+
+struct ManualConfirmationView: View {
+    @Environment(\.dismiss) private var dismiss
+    @ObservedObject var viewModel: PaymentViewModel
+    let settlement: SimplifiedSettlement
+    let group: Group
+    let onComplete: () -> Void
+    @State private var txnId = ""
+    
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 20) {
+                 Image(systemName: "questionmark.circle.fill")
+                    .font(.system(size: 60))
+                    .foregroundColor(.orange)
+                 Text("Did you complete the payment?")
+                    .font(.title2)
+                
+                 TextField("Enter Transaction ID (Optional)", text: $txnId)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                
+                 HStack {
+                     Button("No") { dismiss() }
+                        .padding()
+                     Button("Yes, Confirmed") {
+                         viewModel.recordCashPayment(settlement: settlement, group: group, notes: "UPI Manual Confirm", transactionId: txnId)
+                         onComplete()
+                         dismiss()
+                     }
+                     .buttonStyle(.borderedProminent)
+                 }
+            }
+            .padding()
+        }
+        .interactiveDismissDisabled()
+    }
+}
+
+
+// MARK: - UIViewController Resolver
+struct ViewControllerResolver: UIViewControllerRepresentable {
+    let onResolve: (UIViewController) -> Void
+    
+    func makeUIViewController(context: Context) -> UIViewController {
+        ParentResolverViewController(onResolve: onResolve)
     }
     
-    private func recordPayment() {
-        let dataManager = DataManager.shared
-        let context = dataManager.context
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+    
+    class ParentResolverViewController: UIViewController {
+        let onResolve: (UIViewController) -> Void
+        init(onResolve: @escaping (UIViewController) -> Void) {
+            self.onResolve = onResolve
+            super.init(nibName: nil, bundle: nil)
+        }
+        required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
         
-        let cdSettlement = CDSettlement(context: context)
-        cdSettlement.id = settlement.id
-        cdSettlement.amount = settlement.amount as NSDecimalNumber
-        cdSettlement.date = Date()
-        cdSettlement.status = SettlementStatus.completed.rawValue
-        
-        // Find group
-        let groupFetch = CDGroup.fetchRequest()
-        groupFetch.predicate = NSPredicate(format: "id == %@", group.id as CVarArg)
-        if let cdGroup = try? context.fetch(groupFetch).first {
-            cdSettlement.group = cdGroup
-            
-            // Find members
-            let fromFetch = CDMember.fetchRequest()
-            fromFetch.predicate = NSPredicate(format: "id == %@ AND group == %@", settlement.from.id as CVarArg, cdGroup)
-            if let cdFrom = try? context.fetch(fromFetch).first {
-                cdSettlement.from = cdFrom  // Changed from fromMember
-            }
-            
-            let toFetch = CDMember.fetchRequest()
-            toFetch.predicate = NSPredicate(format: "id == %@ AND group == %@", settlement.to.id as CVarArg, cdGroup)
-            if let cdTo = try? context.fetch(toFetch).first {
-                cdSettlement.to = cdTo  // Changed from toMember
+        override func didMove(toParent parent: UIViewController?) {
+            super.didMove(toParent: parent)
+            if let parent = parent {
+                onResolve(parent)
             }
         }
-        
-        dataManager.save()
-        onComplete()
-        dismiss()
     }
-
 }

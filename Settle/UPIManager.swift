@@ -212,8 +212,9 @@ class UPIManager: ObservableObject {
         transactionRef: String? = nil,
         completion: @escaping (Bool) -> Void
     ) {
-        // Generate base UPI URL
-        let upiURL = generateUPIURL(
+        // Generate robust URL using URLComponents
+        let finalURLString = generateAppSpecificURL(
+            app: app,
             upiId: upiId,
             name: name,
             amount: amount,
@@ -221,35 +222,8 @@ class UPIManager: ObservableObject {
             transactionRef: transactionRef
         )
         
-        // App-specific URL schemes
-        var finalURL: String
-        
-        switch app {
-        case .googlePay:
-            // Google Pay specific format
-            finalURL = "gpay://upi/pay?pa=\(upiId)&pn=\(name)&am=\(String(format: "%.2f", NSDecimalNumber(decimal: amount).doubleValue))&cu=INR"
-            
-        case .phonePe:
-            // PhonePe specific format
-            finalURL = "phonepe://pay?pa=\(upiId)&pn=\(name)&am=\(String(format: "%.2f", NSDecimalNumber(decimal: amount).doubleValue))&cu=INR"
-            
-        case .paytm:
-            // Paytm - use generic UPI format
-            finalURL = upiURL
-            
-        case .bhim:
-            // BHIM - use generic UPI format
-            finalURL = upiURL
-            
-        case .amazonPay:
-            // Amazon Pay - use generic UPI format
-            finalURL = upiURL
-        }
-        
-        // Encode the URL
-        guard let encodedString = finalURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: encodedString) else {
-            print("❌ Failed to create URL: \(finalURL)")
+        guard let url = URL(string: finalURLString) else {
+            print("❌ Failed to create URL: \(finalURLString)")
             completion(false)
             return
         }
@@ -262,13 +236,14 @@ class UPIManager: ObservableObject {
                 completion(success)
             }
         } else {
-            print("❌ Cannot open URL - app not installed or URL scheme not allowed")
+            print("❌ Cannot open URL - app not installed or URL scheme incorrect")
             
             // Fallback: try generic UPI URL
-            if let genericURL = URL(string: upiURL) {
-                UIApplication.shared.open(genericURL) { success in
-                    completion(success)
-                }
+            if app != .bhim, let genericURL = URL(string: generateUPIURL(upiId: upiId, name: name, amount: amount, transactionNote: transactionNote)) {
+                 print("🔄 Attempting generic fallback...")
+                 UIApplication.shared.open(genericURL) { success in
+                     completion(success)
+                 }
             } else {
                 completion(false)
             }

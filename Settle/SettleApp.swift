@@ -10,7 +10,7 @@ import GoogleSignIn
 
 @main
 struct SettleApp: App {
-    let dataManager = DataManager.shared
+    @StateObject private var dataManager = DataManager.shared
     @StateObject private var groupRepository = GroupRepository()
     @StateObject private var authManager = AuthenticationManager()
     @State private var showingUPIPrompt = false
@@ -22,14 +22,25 @@ struct SettleApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ZStack {
+                if let error = dataManager.loadError {
+                    ContentUnavailableView(
+                        "Database Error",
+                        systemImage: "exclamationmark.triangle.fill",
+                        description: Text("Failed to load application data: \(error.localizedDescription)")
+                    )
+                } else {
+                    ContentView()
                 .environment(\.managedObjectContext, dataManager.context)
                 .environmentObject(groupRepository)
                 .environmentObject(authManager)
-                .onOpenURL { url in
-                    handleIncomingURL(url)
+                        .onOpenURL { url in
+                            handleIncomingURL(url)
+                        }
+                        .environmentObject(authManager)
                 }
-                .environmentObject(authManager)
+            }
+            .environmentObject(authManager)
         }
     }
     

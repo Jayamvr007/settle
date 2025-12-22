@@ -7,20 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A99C98472EF08A40006D16EA /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = A99C98462EF08A40006D16EA /* FirebaseAI */; };
-		A99C98492EF08A40006D16EA /* FirebaseAILogic in Frameworks */ = {isa = PBXBuildFile; productRef = A99C98482EF08A40006D16EA /* FirebaseAILogic */; };
-		A99C984B2EF08A40006D16EA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A99C984A2EF08A40006D16EA /* FirebaseAnalytics */; };
-		A99C984D2EF08A40006D16EA /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = A99C984C2EF08A40006D16EA /* FirebaseAnalyticsCore */; };
-		A99C984F2EF08A40006D16EA /* FirebaseAnalyticsIdentitySupport in Frameworks */ = {isa = PBXBuildFile; productRef = A99C984E2EF08A40006D16EA /* FirebaseAnalyticsIdentitySupport */; };
-		A99C98522EF08AAB006D16EA /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A99C98512EF08AAB006D16EA /* GoogleSignIn */; };
-		A99C98542EF08AAB006D16EA /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A99C98532EF08AAB006D16EA /* GoogleSignInSwift */; };
-		A99C985B2EF08E6F006D16EA /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A99C985A2EF08E6F006D16EA /* FirebaseCore */; };
-		A99C985D2EF08E7A006D16EA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A99C985C2EF08E7A006D16EA /* FirebaseAuth */; };
-		A99C985F2EF08E85006D16EA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A99C985E2EF08E85006D16EA /* FirebaseFirestore */; };
+		A71234B10249E32D2556358D /* Pods_Settle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19F420B566B4DCB9A854136 /* Pods_Settle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A99C97F62EEDE4A8006D16EA /* Settle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Settle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B19F420B566B4DCB9A854136 /* Pods_Settle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Settle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFAAB8142240A1023F9FA4CE /* Pods-Settle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Settle.release.xcconfig"; path = "Target Support Files/Pods-Settle/Pods-Settle.release.xcconfig"; sourceTree = "<group>"; };
+		D9697985B6EB9B475DD49093 /* Pods-Settle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Settle.debug.xcconfig"; path = "Target Support Files/Pods-Settle/Pods-Settle.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -49,28 +43,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A99C98492EF08A40006D16EA /* FirebaseAILogic in Frameworks */,
-				A99C984F2EF08A40006D16EA /* FirebaseAnalyticsIdentitySupport in Frameworks */,
-				A99C98542EF08AAB006D16EA /* GoogleSignInSwift in Frameworks */,
-				A99C985F2EF08E85006D16EA /* FirebaseFirestore in Frameworks */,
-				A99C98472EF08A40006D16EA /* FirebaseAI in Frameworks */,
-				A99C985D2EF08E7A006D16EA /* FirebaseAuth in Frameworks */,
-				A99C984B2EF08A40006D16EA /* FirebaseAnalytics in Frameworks */,
-				A99C984D2EF08A40006D16EA /* FirebaseAnalyticsCore in Frameworks */,
-				A99C985B2EF08E6F006D16EA /* FirebaseCore in Frameworks */,
-				A99C98522EF08AAB006D16EA /* GoogleSignIn in Frameworks */,
+				A71234B10249E32D2556358D /* Pods_Settle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20D7308B59F6785DFEC8BBEA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D9697985B6EB9B475DD49093 /* Pods-Settle.debug.xcconfig */,
+				CFAAB8142240A1023F9FA4CE /* Pods-Settle.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A99C97ED2EEDE4A8006D16EA = {
 			isa = PBXGroup;
 			children = (
 				A99C97F82EEDE4A8006D16EA /* Settle */,
 				A99C98592EF08E6F006D16EA /* Frameworks */,
 				A99C97F72EEDE4A8006D16EA /* Products */,
+				20D7308B59F6785DFEC8BBEA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +80,7 @@
 		A99C98592EF08E6F006D16EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B19F420B566B4DCB9A854136 /* Pods_Settle.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -96,9 +92,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A99C98042EEDE4AA006D16EA /* Build configuration list for PBXNativeTarget "Settle" */;
 			buildPhases = (
+				2C5E45F6339DB715C7D3869D /* [CP] Check Pods Manifest.lock */,
 				A99C97F22EEDE4A8006D16EA /* Sources */,
 				A99C97F32EEDE4A8006D16EA /* Frameworks */,
 				A99C97F42EEDE4A8006D16EA /* Resources */,
+				A31E7840CB182E8F26611269 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -109,16 +107,6 @@
 			);
 			name = Settle;
 			packageProductDependencies = (
-				A99C98462EF08A40006D16EA /* FirebaseAI */,
-				A99C98482EF08A40006D16EA /* FirebaseAILogic */,
-				A99C984A2EF08A40006D16EA /* FirebaseAnalytics */,
-				A99C984C2EF08A40006D16EA /* FirebaseAnalyticsCore */,
-				A99C984E2EF08A40006D16EA /* FirebaseAnalyticsIdentitySupport */,
-				A99C98512EF08AAB006D16EA /* GoogleSignIn */,
-				A99C98532EF08AAB006D16EA /* GoogleSignInSwift */,
-				A99C985A2EF08E6F006D16EA /* FirebaseCore */,
-				A99C985C2EF08E7A006D16EA /* FirebaseAuth */,
-				A99C985E2EF08E85006D16EA /* FirebaseFirestore */,
 			);
 			productName = Settle;
 			productReference = A99C97F62EEDE4A8006D16EA /* Settle.app */;
@@ -149,8 +137,6 @@
 			mainGroup = A99C97ED2EEDE4A8006D16EA;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				A99C98452EF08A40006D16EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				A99C98502EF08AAB006D16EA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A99C97F72EEDE4A8006D16EA /* Products */;
@@ -171,6 +157,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C5E45F6339DB715C7D3869D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Settle-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A31E7840CB182E8F26611269 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Settle/Pods-Settle-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Settle/Pods-Settle-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Settle/Pods-Settle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A99C97F22EEDE4A8006D16EA /* Sources */ = {
@@ -220,7 +248,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -283,7 +311,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -304,6 +332,7 @@
 		};
 		A99C98052EEDE4AA006D16EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9697985B6EB9B475DD49093 /* Pods-Settle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -337,6 +366,7 @@
 		};
 		A99C98062EEDE4AA006D16EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFAAB8142240A1023F9FA4CE /* Pods-Settle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -389,78 +419,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A99C98452EF08A40006D16EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 12.7.0;
-			};
-		};
-		A99C98502EF08AAB006D16EA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A99C98462EF08A40006D16EA /* FirebaseAI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A99C98452EF08A40006D16EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAI;
-		};
-		A99C98482EF08A40006D16EA /* FirebaseAILogic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A99C98452EF08A40006D16EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAILogic;
-		};
-		A99C984A2EF08A40006D16EA /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A99C98452EF08A40006D16EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		A99C984C2EF08A40006D16EA /* FirebaseAnalyticsCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A99C98452EF08A40006D16EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsCore;
-		};
-		A99C984E2EF08A40006D16EA /* FirebaseAnalyticsIdentitySupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A99C98452EF08A40006D16EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsIdentitySupport;
-		};
-		A99C98512EF08AAB006D16EA /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A99C98502EF08AAB006D16EA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
-		A99C98532EF08AAB006D16EA /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A99C98502EF08AAB006D16EA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
-		};
-		A99C985A2EF08E6F006D16EA /* FirebaseCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A99C98452EF08A40006D16EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCore;
-		};
-		A99C985C2EF08E7A006D16EA /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A99C98452EF08A40006D16EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		A99C985E2EF08E85006D16EA /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A99C98452EF08A40006D16EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A99C97EE2EEDE4A8006D16EA /* Project object */;
 }

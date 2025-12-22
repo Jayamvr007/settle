@@ -22,7 +22,7 @@ struct SettlementsView: View {
     
     init(group: Group) {
         self.group = group
-        _viewModel = StateObject(wrappedValue: SettlementsViewModel(group: group))
+        _viewModel = StateObject(wrappedValue: SettlementsViewModel())
     }
     
     var body: some View {
@@ -87,12 +87,16 @@ struct SettlementsView: View {
         .onAppear {
             recalculateSettlements()
         }
+        .onChange(of: group) { newGroup in
+             // React to updates from AddExpenseView
+             recalculateSettlements()
+        }
     }
     
     private func recalculateSettlements() {
         isCalculating = true
         // Calculation is quick and runs on main thread
-        viewModel.calculateSettlements()
+        viewModel.calculateSettlements(for: group)
         refreshID = UUID()
         isCalculating = false
     }
@@ -165,69 +169,63 @@ struct SettlementRowView: View {
 class SettlementsViewModel: ObservableObject {
     @Published var settlements: [SimplifiedSettlement] = []
     
-    private let group: Group
     private let simplifier = DebtSimplifier()
     
     var totalToSettle: Decimal {
         settlements.reduce(0) { $0 + $1.amount }
     }
     
-    init(group: Group) {
-        self.group = group
-        calculateSettlements()
+    func calculateSettlements(for group: Group) {
+        // Filter out completed settlements
+        let completedSettlements = fetchCompletedSettlements(for: group)
+        let allSettlements = simplifier.calculateOptimalSettlements(for: group)
+        
+        // Remove settlements that are already completed
+        settlements = allSettlements.filter { settlement in
+            !completedSettlements.contains(where: { completed in
+                completed.from.id == settlement.from.id &&
+                completed.to.id == settlement.to.id
+            })
+        }
     }
     
-    func calculateSettlements() {  // ✅ Make it public
-            // Filter out completed settlements
-            let completedSettlements = fetchCompletedSettlements()
-            let allSettlements = simplifier.calculateOptimalSettlements(for: group)
-            
-            // Remove settlements that are already completed
-            settlements = allSettlements.filter { settlement in
-                !completedSettlements.contains(where: { completed in
-                    completed.from.id == settlement.from.id &&
-                    completed.to.id == settlement.to.id
-                })
-            }
+    private func fetchCompletedSettlements(for group: Group) -> [SimplifiedSettlement] {
+        let dataManager = DataManager.shared
+        let context = dataManager.context
+        
+        let fetchRequest = CDSettlement.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "group.id == %@ AND status == %@",
+                                            group.id as CVarArg,
+                                            SettlementStatus.completed.rawValue)
+        
+        guard let cdSettlements = try? context.fetch(fetchRequest) else {
+            return []
         }
-    
-    private func fetchCompletedSettlements() -> [SimplifiedSettlement] {
-            let dataManager = DataManager.shared
-            let context = dataManager.context
-            
-            let fetchRequest = CDSettlement.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "group.id == %@ AND status == %@",
-                                                group.id as CVarArg,
-                                                SettlementStatus.completed.rawValue)
-            
-            guard let cdSettlements = try? context.fetch(fetchRequest) else {
-                return []
+        
+        return cdSettlements.compactMap { cdSettlement in
+            guard let fromMember = cdSettlement.from,
+                  let toMember = cdSettlement.to,
+                  let amount = cdSettlement.amount as? Decimal,
+                  let id = cdSettlement.id else {
+                return nil
             }
             
-            return cdSettlements.compactMap { cdSettlement in
-                guard let fromMember = cdSettlement.from,
-                      let toMember = cdSettlement.to,
-                      let amount = cdSettlement.amount as? Decimal,
-                      let id = cdSettlement.id else {
-                    return nil
-                }
-                
-                let from = Member(id: fromMember.id ?? UUID(),
-                                name: fromMember.name ?? "")
-                let to = Member(id: toMember.id ?? UUID(),
-                              name: toMember.name ?? "")
-                
-                return SimplifiedSettlement(id: id,
-                                          from: from,
-                                          to: to,
-                                          amount: amount,
-                                          status: .completed)
-            }
+            let from = Member(id: fromMember.id ?? UUID(),
+                            name: fromMember.name ?? "")
+            let to = Member(id: toMember.id ?? UUID(),
+                          name: toMember.name ?? "")
+            
+            return SimplifiedSettlement(id: id,
+                                      from: from,
+                                      to: to,
+                                      amount: amount,
+                                      status: .completed)
         }
+    }
     
     func markAsSettled(_ settlement: SimplifiedSettlement) {
-            if let index = settlements.firstIndex(where: { $0.id == settlement.id }) {
-                settlements.remove(at: index)
-            }
+        if let index = settlements.firstIndex(where: { $0.id == settlement.id }) {
+            settlements.remove(at: index)
         }
+    }
 }

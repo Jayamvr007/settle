@@ -12,6 +12,7 @@ class DataManager: ObservableObject {
     static let shared = DataManager()
     
     let container: NSPersistentContainer
+    @Published var loadError: Error?
     
     private init() {
         container = NSPersistentContainer(name: "Settle")
@@ -24,9 +25,12 @@ class DataManager: ObservableObject {
         //     containerIdentifier: "iCloud.com.yourname.Settle"
         // )
         
-        container.loadPersistentStores { description, error in
+        container.loadPersistentStores { [weak self] description, error in
             if let error = error {
-                fatalError("Failed to load Core Data: \(error.localizedDescription)")
+                print("❌ Failed to load Core Data: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self?.loadError = error
+                }
             }
         }
         
