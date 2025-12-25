@@ -4,6 +4,7 @@
 ![iOS](https://img.shields.io/badge/iOS-16.0+-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 ![Status](https://img.shields.io/badge/Status-Active%20Development-brightgreen.svg)
+[![Privacy Policy](https://img.shields.io/badge/Privacy-Policy-blueviolet.svg)](PRIVACY_POLICY.md)
 
 A beautifully designed iOS app that simplifies group expense tracking and settlement management. Split bills intelligently, track who owes whom, and settle debts seamlessly using UPI payments.
 

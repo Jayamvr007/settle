@@ -125,10 +125,8 @@ struct AddExpenseView: View {
                     }
                 }
                 
-             
-                
-                
-                
+                // Split options section
+                memberSplitSection
                 
             }
             .navigationTitle("Add Expense")
@@ -184,6 +182,22 @@ struct AddExpenseView: View {
                         }
                     ))
                     
+                    // Percentage input
+                    if splitType == .percentage && selectedMembers.contains(member.id) {
+                        HStack(spacing: 4) {
+                            TextField("0", text: Binding(
+                                get: { customSplits[member.id] ?? "" },
+                                set: { customSplits[member.id] = $0 }
+                            ))
+                            .keyboardType(.decimalPad)
+                            .frame(width: 50)
+                            .multilineTextAlignment(.trailing)
+                            Text("%")
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    
+                    // Custom amount input
                     if splitType == .custom && selectedMembers.contains(member.id) {
                         TextField("₹", text: Binding(
                             get: { customSplits[member.id] ?? "" },
@@ -198,7 +212,13 @@ struct AddExpenseView: View {
         } header: {
             Text("Split Between (\(selectedMembers.count) selected)")
         } footer: {
-            if splitType == .custom {
+            if splitType == .percentage {
+                let totalPercent = customSplits.values.compactMap { Double($0) }.reduce(0, +)
+                if abs(totalPercent - 100) > 0.01 {
+                    Text("Percentages must equal 100%. Current: \(Int(totalPercent))%")
+                        .foregroundColor(.red)
+                }
+            } else if splitType == .custom {
                 let total = customSplits.values.compactMap { Decimal(string: $0) }.reduce(0, +)
                 let amountValue = Decimal(string: amount) ?? 0
                 if total != amountValue {
@@ -227,11 +247,14 @@ struct AddExpenseView: View {
             }
             
         case .percentage:
-            // For simplicity, equal percentage for now
-            // In production, you'd have percentage inputs
-            let shareAmount = amountValue / Decimal(selectedMembersList.count)
-            shares = selectedMembersList.map { member in
-                ExpenseShare(member: member, amount: shareAmount)
+            // Calculate share based on entered percentage
+            shares = selectedMembersList.compactMap { member in
+                guard let percentStr = customSplits[member.id],
+                      let percent = Decimal(string: percentStr) else {
+                    return nil
+                }
+                let shareAmount = (percent / 100) * amountValue
+                return ExpenseShare(member: member, amount: shareAmount)
             }
             
         case .custom:
