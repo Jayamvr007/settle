@@ -33,6 +33,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>FirebasePhoneAuthUIEnabled</key>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>gpay</string>
@@ -42,7 +44,9 @@
 		<string>amazonpay</string>
 		<string>upi</string>
 	</array>
-	<key>FirebasePhoneAuthUIEnabled</key>
-	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

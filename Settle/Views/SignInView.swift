@@ -5,12 +5,6 @@
 //  Created by Jayam Verma on 16/12/25.
 //
 
-
-//
-//  SignInView.swift
-//  Settle
-//
-
 import SwiftUI
 import GoogleSignIn
 
@@ -19,12 +13,12 @@ struct SignInView: View {
     @State private var isSigningIn = false
     
     var body: some View {
-        VStack(spacing: 32) {
+        VStack(spacing: 24) {
             Spacer()
             
             // App Logo/Icon
             Image(systemName: "person.2.circle.fill")
-                .font(.system(size: 100))
+                .font(.system(size: 80))
                 .foregroundStyle(AppTheme.primaryGradient)
             
             // Title
@@ -37,19 +31,19 @@ struct SignInView: View {
                     .foregroundColor(.secondary)
             }
             
-            Spacer()
-            
-            // Google Sign-In Button
+            // Google Sign-In (Google's official button)
             VStack(spacing: 16) {
-                // Using our custom wrapper
-                GoogleSignInButton(action: handleSignIn)
+                GoogleSignInButton(action: handleGoogleSignIn)
                     .frame(height: 50)
                     .padding(.horizontal, 32)
-                
-                if isSigningIn {
-                    ProgressView("Signing in...")
-                        .tint(AppTheme.primary)
-                }
+                    .opacity(isSigningIn ? 0.5 : 1.0)
+                    .disabled(isSigningIn)
+                    .overlay {
+                        if isSigningIn {
+                            ProgressView()
+                                .tint(AppTheme.primary)
+                        }
+                    }
                 
                 if !authManager.errorMessage.isEmpty {
                     Text(authManager.errorMessage)
@@ -59,17 +53,20 @@ struct SignInView: View {
                         .padding(.horizontal)
                 }
             }
+            .padding(.top, 40)
+            
+            Spacer()
             
             // Privacy note
             Text("Your data stays private and secure")
                 .font(.caption)
                 .foregroundColor(.secondary)
-                .padding(.bottom, 32)
+                .padding(.bottom, 16)
         }
         .padding()
     }
     
-    private func handleSignIn() {
+    private func handleGoogleSignIn() {
         isSigningIn = true
         Task {
             let success = await authManager.signInWithGoogle()
@@ -81,7 +78,7 @@ struct SignInView: View {
     }
 }
 
-// MARK: - Generic GIDSignInButton Wrapper
+// MARK: - Google Sign-In Button Wrapper
 struct GoogleSignInButton: UIViewRepresentable {
     let action: () -> Void
     
@@ -104,10 +101,7 @@ struct GoogleSignInButton: UIViewRepresentable {
         init(action: @escaping () -> Void) {
             self.action = action
         }
-        
-        @objc func buttonTapped() {
-            action()
-        }
+        @objc func buttonTapped() { action() }
     }
 }
 

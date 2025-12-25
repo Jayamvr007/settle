@@ -17,10 +17,12 @@ import Contacts
 struct AddGroupView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var repository: GroupRepository
+    @EnvironmentObject var authManager: AuthenticationManager
     
     @State private var groupName = ""
     @State private var members: [Member] = []
     @State private var showingAddMember = false
+    @State private var hasAddedCurrentUser = false
     
     var isValid: Bool {
         !groupName.trimmingCharacters(in: .whitespaces).isEmpty && members.count >= 2
@@ -37,11 +39,12 @@ struct AddGroupView: View {
                 Section {
                     ForEach(members) { member in
                         HStack {
-                            Image(systemName: "person.circle.fill")
-                                .foregroundColor(AppTheme.primary)
+                            Image(systemName: member.name.contains("(Me)") ? "person.crop.circle.badge.checkmark" : "person.circle.fill")
+                                .foregroundColor(member.name.contains("(Me)") ? AppTheme.getsBack : AppTheme.primary)
                             VStack(alignment: .leading) {
                                 Text(member.name)
                                     .font(.body)
+                                    .fontWeight(member.name.contains("(Me)") ? .semibold : .regular)
                                 if let phone = member.phoneNumber {
                                     Text(phone)
                                         .font(.caption)
@@ -49,8 +52,18 @@ struct AddGroupView: View {
                                 }
                             }
                             Spacer()
+                            if member.name.contains("(Me)") {
+                                Text("You")
+                                    .font(.caption)
+                                    .foregroundColor(AppTheme.getsBack)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 2)
+                                    .background(AppTheme.getsBack.opacity(0.15))
+                                    .cornerRadius(4)
+                            }
                         }
                     }
+                    .onDelete(perform: deleteMember)
                     
                     Button(action: { showingAddMember = true }) {
                         Label("Add Member", systemImage: "person.badge.plus")
@@ -86,7 +99,38 @@ struct AddGroupView: View {
                     members.append(member)
                 })
             }
+            .onAppear {
+                addCurrentUserIfNeeded()
+            }
         }
+    }
+    
+    private func addCurrentUserIfNeeded() {
+        guard !hasAddedCurrentUser else { return }
+        
+        // Get current user info from AuthenticationManager
+        if authManager.authenticationState == .authenticated {
+            let userName = authManager.userName
+            let userPhone = authManager.user?.phoneNumber
+            
+            // Create "Me" member
+            let currentUser = Member(
+                name: "\(userName) (Me)",
+                phoneNumber: userPhone,
+                upiId: nil
+            )
+            
+            members.insert(currentUser, at: 0)
+            hasAddedCurrentUser = true
+        }
+    }
+    
+    private func deleteMember(at offsets: IndexSet) {
+        // Prevent deleting the current user (first member marked as "Me")
+        let indicesToDelete = offsets.filter { index in
+            !members[index].name.contains("(Me)")
+        }
+        members.remove(atOffsets: IndexSet(indicesToDelete))
     }
     
     private func createGroup() {

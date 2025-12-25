@@ -259,49 +259,8 @@ struct AddExpenseView: View {
     }
     
     private func saveExpense(_ expense: Expense, to group: Group) {
-        let dataManager = DataManager.shared
-        let context = dataManager.context
-        
-        // Fetch the CDGroup
-        let fetchRequest = CDGroup.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", group.id as CVarArg)
-        
-        guard let cdGroup = try? context.fetch(fetchRequest).first else { return }
-        
-        // Create CDExpense
-        let cdExpense = CDExpense(context: context)
-        cdExpense.id = expense.id
-        cdExpense.title = expense.title
-        cdExpense.amount = expense.amount as NSDecimalNumber
-        cdExpense.date = expense.date
-        cdExpense.category = expense.category.rawValue
-        cdExpense.notes = expense.notes
-        cdExpense.createdAt = Date()
-        cdExpense.group = cdGroup
-        
-        // Find and set payer
-        let payerFetch = CDMember.fetchRequest()
-        payerFetch.predicate = NSPredicate(format: "id == %@ AND group == %@", expense.paidBy.id as CVarArg, cdGroup)
-        if let cdPayer = try? context.fetch(payerFetch).first {
-            cdExpense.paidBy = cdPayer
-        }
-        
-        // Create shares
-        for share in expense.shares {
-            let memberFetch = CDMember.fetchRequest()
-            memberFetch.predicate = NSPredicate(format: "id == %@ AND group == %@", share.member.id as CVarArg, cdGroup)
-            
-            if let cdMember = try? context.fetch(memberFetch).first {
-                let cdShare = CDExpenseShare(context: context)
-                cdShare.id = share.id
-                cdShare.amount = share.amount as NSDecimalNumber
-                cdShare.expense = cdExpense
-                cdShare.member = cdMember
-            }
-        }
-        
-        dataManager.save()
-        repository.fetchGroups() // Refresh - this triggers onChange in SettlementsView
+        // Save to Firestore via repository
+        repository.addExpense(expense, to: group)
     }
     
     private func validateAmount() {

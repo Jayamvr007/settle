@@ -12,90 +12,127 @@
 //
 
 import Foundation
-import CoreData
+import FirebaseAuth
 
 class GroupRepository: ObservableObject {
     static let shared = GroupRepository()
     
-    private let dataManager = DataManager.shared
+    private let firestoreService = FirestoreService.shared
     
     @Published var groups: [Group] = []
+    @Published var isLoading = false
+    @Published var errorMessage: String?
     
     init() {
-        fetchGroups()
+        // Listen for auth state changes to refresh data
+        Auth.auth().addStateDidChangeListener { [weak self] _, user in
+            if user != nil {
+                self?.fetchGroups()
+            } else {
+                self?.groups = []
+            }
+        }
     }
     
-    // MARK: - Fetch
+    // MARK: - Fetch from Firestore
     
     func fetchGroups() {
-        let request: NSFetchRequest<CDGroup> = CDGroup.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \CDGroup.createdAt, ascending: false)]
+        guard Auth.auth().currentUser != nil else {
+            groups = []
+            return
+        }
         
-        do {
-            let cdGroups = try dataManager.context.fetch(request)
-            groups = cdGroups.map { $0.toSwiftModel() }
-        } catch {
-            print("Failed to fetch groups: \(error)")
+        isLoading = true
+        errorMessage = nil
+        
+        Task { @MainActor in
+            do {
+                groups = try await firestoreService.fetchGroups()
+                isLoading = false
+            } catch {
+                print("❌ Failed to fetch groups: \(error)")
+                errorMessage = error.localizedDescription
+                isLoading = false
+            }
         }
     }
     
-    // MARK: - Create
+    // MARK: - Create Group in Firestore
     
     func createGroup(name: String, members: [Member]) {
-        let cdGroup = CDGroup(context: dataManager.context)
-        cdGroup.id = UUID()
-        cdGroup.name = name
-        cdGroup.createdAt = Date()
-        cdGroup.updatedAt = Date()
+        isLoading = true
         
-        // Add members
-        for member in members {
-            let cdMember = CDMember(context: dataManager.context)
-            cdMember.id = member.id
-            cdMember.name = member.name
-            cdMember.phoneNumber = member.phoneNumber
-            cdMember.upiId = member.upiId
-            cdMember.group = cdGroup
-        }
-        
-        dataManager.save()
-        fetchGroups()
-    }
-    
-    // MARK: - Update
-    
-    func updateGroup(_ group: Group) {
-        let request: NSFetchRequest<CDGroup> = CDGroup.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", group.id as CVarArg)
-        
-        do {
-            let results = try dataManager.context.fetch(request)
-            if let cdGroup = results.first {
-                cdGroup.name = group.name
-                cdGroup.updatedAt = Date()
-                dataManager.save()
-                fetchGroups()
+        Task { @MainActor in
+            do {
+                print("📝 Creating group: \(name) with \(members.count) members")
+                let newGroup = try await firestoreService.createGroup(name: name, members: members)
+                print("✅ Group created successfully: \(newGroup.id)")
+                
+                // Explicitly trigger UI update
+                self.objectWillChange.send()
+                groups.insert(newGroup, at: 0)
+                isLoading = false
+            } catch {
+                print("❌ Failed to create group: \(error)")
+                errorMessage = error.localizedDescription
+                isLoading = false
             }
-        } catch {
-            print("Failed to update group: \(error)")
         }
     }
     
-    // MARK: - Delete
+    // MARK: - Delete Group from Firestore
     
     func deleteGroup(_ group: Group) {
-        let request: NSFetchRequest<CDGroup> = CDGroup.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", group.id as CVarArg)
-        
-        do {
-            let results = try dataManager.context.fetch(request)
-            if let cdGroup = results.first {
-                dataManager.context.delete(cdGroup)
-                dataManager.save()
-                fetchGroups()
+        Task { @MainActor in
+            do {
+                try await firestoreService.deleteGroup(group)
+                groups.removeAll { $0.id == group.id }
+            } catch {
+                print("❌ Failed to delete group: \(error)")
+                errorMessage = error.localizedDescription
             }
-        } catch {
-            print("Failed to delete group: \(error)")
+        }
+    }
+    
+    // MARK: - Add Expense to Firestore
+    
+    func addExpense(_ expense: Expense, to group: Group) {
+        Task { @MainActor in
+            do {
+                try await firestoreService.addExpense(expense, to: group)
+                fetchGroups() // Refresh to get updated data
+            } catch {
+                print("❌ Failed to add expense: \(error)")
+                errorMessage = error.localizedDescription
+            }
+        }
+    }
+    
+    // MARK: - Add Member to Existing Group
+    
+    func addMember(_ member: Member, to group: Group) {
+        Task { @MainActor in
+            do {
+                try await firestoreService.addMember(member, to: group)
+                fetchGroups()
+            } catch {
+                print("❌ Failed to add member: \(error)")
+                errorMessage = error.localizedDescription
+            }
+        }
+    }
+    
+    // MARK: - Update Member
+    
+    func updateMember(_ member: Member, in group: Group) {
+        Task { @MainActor in
+            do {
+                try await firestoreService.updateMember(member, in: group)
+                fetchGroups()
+            } catch {
+                print("❌ Failed to update member: \(error)")
+                errorMessage = error.localizedDescription
+            }
         }
     }
 }

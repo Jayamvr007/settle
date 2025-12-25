@@ -3,7 +3,6 @@
 //  Settle
 //
 
-
 import SwiftUI
 import FirebaseCore
 import GoogleSignIn
@@ -31,13 +30,12 @@ struct SettleApp: App {
                     )
                 } else {
                     ContentView()
-                .environment(\.managedObjectContext, dataManager.context)
-                .environmentObject(groupRepository)
-                .environmentObject(authManager)
+                        .environment(\.managedObjectContext, dataManager.context)
+                        .environmentObject(groupRepository)
+                        .environmentObject(authManager)
                         .onOpenURL { url in
                             handleIncomingURL(url)
                         }
-                        .environmentObject(authManager)
                 }
             }
             .environmentObject(authManager)

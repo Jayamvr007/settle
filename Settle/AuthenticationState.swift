@@ -141,7 +141,19 @@ class AuthenticationManager: ObservableObject {
     // MARK: - User Info
     
     var userName: String {
-        user?.displayName ?? "User"
+        // Try displayName first (Google Sign-In)
+        if let displayName = user?.displayName, !displayName.isEmpty {
+            return displayName
+        }
+        // Fallback to phone number (Phone Auth)
+        if let phone = user?.phoneNumber, !phone.isEmpty {
+            return phone
+        }
+        // Fallback to email prefix
+        if let email = user?.email, !email.isEmpty {
+            return email.components(separatedBy: "@").first ?? "User"
+        }
+        return "User"
     }
     
     var userEmail: String {
