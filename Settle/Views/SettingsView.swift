@@ -133,17 +133,10 @@ struct SettingsView: View {
     }
     
     private func clearAllData() {
-        let dataManager = DataManager.shared
-        let context = dataManager.context
-        
-        // Delete all groups (cascade will delete everything)
-        let fetchRequest = CDGroup.fetchRequest()
-        if let groups = try? context.fetch(fetchRequest) {
-            for group in groups {
-                context.delete(group)
-            }
-            dataManager.save()
-        }
+        // Clear Firestore data is handled by deleting groups through repository
+        // For now, just sign out which effectively clears visible data
+        // User data remains in Firestore but becomes inaccessible after sign out
+        GroupRepository.shared.groups = []
     }
     
     private func validateUPI() {

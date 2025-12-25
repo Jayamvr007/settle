@@ -113,57 +113,8 @@ struct SettlementsView: View {
     }
     
     private func fetchLatestGroup() -> Group? {
-        let context = DataManager.shared.context
-        let fetchRequest = CDGroup.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", groupId as CVarArg)
-        
-        guard let cdGroup = try? context.fetch(fetchRequest).first else {
-            return nil
-        }
-        
-        // Convert CDGroup to Group model
-        let members = (cdGroup.members?.allObjects as? [CDMember])?.compactMap { cdMember -> Member? in
-            guard let id = cdMember.id, let name = cdMember.name else { return nil }
-            return Member(id: id, name: name, phoneNumber: cdMember.phoneNumber, upiId: cdMember.upiId)
-        } ?? []
-        
-        let expenses = (cdGroup.expenses?.allObjects as? [CDExpense])?.compactMap { cdExpense -> Expense? in
-            guard let id = cdExpense.id,
-                  let title = cdExpense.title,
-                  let amount = cdExpense.amount as? Decimal,
-                  let date = cdExpense.date,
-                  let paidById = cdExpense.paidBy?.id,
-                  let paidByName = cdExpense.paidBy?.name else { return nil }
-            
-            let paidBy = Member(id: paidById, name: paidByName, 
-                               phoneNumber: cdExpense.paidBy?.phoneNumber,
-                               upiId: cdExpense.paidBy?.upiId)
-            
-            let shares = (cdExpense.shares?.allObjects as? [CDExpenseShare])?.compactMap { cdShare -> ExpenseShare? in
-                guard let shareId = cdShare.id,
-                      let memberId = cdShare.member?.id, 
-                      let memberName = cdShare.member?.name,
-                      let shareAmount = cdShare.amount as? Decimal else { return nil }
-                let member = Member(id: memberId, name: memberName,
-                                   phoneNumber: cdShare.member?.phoneNumber,
-                                   upiId: cdShare.member?.upiId)
-                return ExpenseShare(id: shareId, member: member, amount: shareAmount)
-            } ?? []
-            
-            let categoryRaw = cdExpense.category ?? "General"
-            let category = ExpenseCategory(rawValue: categoryRaw) ?? .general
-            
-            return Expense(id: id, title: title, amount: amount, date: date, 
-                          category: category, notes: cdExpense.notes,
-                          paidBy: paidBy, shares: shares)
-        } ?? []
-        
-        return Group(
-            id: cdGroup.id ?? groupId,
-            name: cdGroup.name ?? "",
-            members: members,
-            expenses: expenses
-        )
+        // Get group from Firestore via repository
+        return repository.groups.first(where: { $0.id == groupId })
     }
 }
 
@@ -181,10 +132,11 @@ struct SettlementRowView: View {
                     Image(systemName: "person.fill")
                         .foregroundColor(.white)
                 }
-                Text(settlement.from.name)
+                Text(UserHelper.displayName(for: settlement.from))
                     .font(.caption)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)
+                    .foregroundColor(UserHelper.isCurrentUser(settlement.from) ? AppTheme.primary : .primary)
             }
             .frame(width: 70)
             
@@ -214,10 +166,11 @@ struct SettlementRowView: View {
                     Image(systemName: "person.fill")
                         .foregroundColor(.white)
                 }
-                Text(settlement.to.name)
+                Text(UserHelper.displayName(for: settlement.to))
                     .font(.caption)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)
+                    .foregroundColor(UserHelper.isCurrentUser(settlement.to) ? AppTheme.primary : .primary)
                 
                 if let upi = settlement.to.upiId {
                     Text(upi)
@@ -251,39 +204,8 @@ class SettlementsViewModel: ObservableObject {
         settlements = allSettlements
     }
     
-    private func fetchCompletedSettlements(for group: Group) -> [SimplifiedSettlement] {
-        let dataManager = DataManager.shared
-        let context = dataManager.context
-        
-        let fetchRequest = CDSettlement.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "group.id == %@ AND status == %@",
-                                            group.id as CVarArg,
-                                            SettlementStatus.completed.rawValue)
-        
-        guard let cdSettlements = try? context.fetch(fetchRequest) else {
-            return []
-        }
-        
-        return cdSettlements.compactMap { cdSettlement in
-            guard let fromMember = cdSettlement.from,
-                  let toMember = cdSettlement.to,
-                  let amount = cdSettlement.amount as? Decimal,
-                  let id = cdSettlement.id else {
-                return nil
-            }
-            
-            let from = Member(id: fromMember.id ?? UUID(),
-                            name: fromMember.name ?? "")
-            let to = Member(id: toMember.id ?? UUID(),
-                          name: toMember.name ?? "")
-            
-            return SimplifiedSettlement(id: id,
-                                      from: from,
-                                      to: to,
-                                      amount: amount,
-                                      status: .completed)
-        }
-    }
+    // Note: Completed settlements are now tracked as payment expenses in Firestore
+    // The settlement calculation uses current expense data, not stored settlement records
     
     func markAsSettled(_ settlement: SimplifiedSettlement) {
         if let index = settlements.firstIndex(where: { $0.id == settlement.id }) {
@@ -291,3 +213,4 @@ class SettlementsViewModel: ObservableObject {
         }
     }
 }
+

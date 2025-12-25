@@ -27,7 +27,6 @@ class PaymentViewModel: ObservableObject {
     
     // Dependencies
     private let upiManager = UPIManager.shared
-    private let dataManager = DataManager.shared
     private var paymentService: PaymentService?
     
     // Transaction State

@@ -39,12 +39,13 @@ struct AddGroupView: View {
                 Section {
                     ForEach(members) { member in
                         HStack {
-                            Image(systemName: member.name.contains("(Me)") ? "person.crop.circle.badge.checkmark" : "person.circle.fill")
-                                .foregroundColor(member.name.contains("(Me)") ? AppTheme.getsBack : AppTheme.primary)
+                            Image(systemName: UserHelper.isCurrentUser(member) ? "person.crop.circle.badge.checkmark" : "person.circle.fill")
+                                .foregroundColor(UserHelper.isCurrentUser(member) ? AppTheme.primary : AppTheme.primary)
                             VStack(alignment: .leading) {
-                                Text(member.name)
+                                Text(UserHelper.displayName(for: member))
                                     .font(.body)
-                                    .fontWeight(member.name.contains("(Me)") ? .semibold : .regular)
+                                    .fontWeight(UserHelper.isCurrentUser(member) ? .semibold : .regular)
+                                    .foregroundColor(UserHelper.isCurrentUser(member) ? AppTheme.primary : .primary)
                                 if let phone = member.phoneNumber {
                                     Text(phone)
                                         .font(.caption)
@@ -52,13 +53,13 @@ struct AddGroupView: View {
                                 }
                             }
                             Spacer()
-                            if member.name.contains("(Me)") {
-                                Text("You")
+                            if UserHelper.isCurrentUser(member) {
+                                Text("Owner")
                                     .font(.caption)
-                                    .foregroundColor(AppTheme.getsBack)
+                                    .foregroundColor(AppTheme.primary)
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 2)
-                                    .background(AppTheme.getsBack.opacity(0.15))
+                                    .background(AppTheme.primary.opacity(0.15))
                                     .cornerRadius(4)
                             }
                         }
@@ -113,9 +114,9 @@ struct AddGroupView: View {
             let userName = authManager.userName
             let userPhone = authManager.user?.phoneNumber
             
-            // Create "Me" member
+            // Create current user member with clean name (no "(Me)" suffix)
             let currentUser = Member(
-                name: "\(userName) (Me)",
+                name: userName,
                 phoneNumber: userPhone,
                 upiId: nil
             )
@@ -126,9 +127,9 @@ struct AddGroupView: View {
     }
     
     private func deleteMember(at offsets: IndexSet) {
-        // Prevent deleting the current user (first member marked as "Me")
+        // Prevent deleting the current user
         let indicesToDelete = offsets.filter { index in
-            !members[index].name.contains("(Me)")
+            !UserHelper.isCurrentUser(members[index])
         }
         members.remove(atOffsets: IndexSet(indicesToDelete))
     }

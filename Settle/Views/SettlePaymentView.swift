@@ -10,15 +10,20 @@ import SwiftUI
 struct SettlePaymentView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var viewModel = PaymentViewModel()
-    @State private var showingManualConfirmation = false
     
     let settlement: SimplifiedSettlement
     let group: Group
     let onComplete: () -> Void
     
-    // UI State
-    @State private var showingUPIOptions = false
-    @State private var showingRecordCash = false
+    // Single sheet state to prevent multiple sheet issue
+    enum ActiveSheet: Identifiable {
+        case upiOptions
+        case recordCash
+        case manualConfirmation
+        
+        var id: Int { hashValue }
+    }
+    @State private var activeSheet: ActiveSheet?
     
     // For Gateway
     @State private var presentingController: UIViewController?
@@ -33,8 +38,9 @@ struct SettlePaymentView: View {
                             Text("From")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
-                            Text(settlement.from.name)
+                            Text(UserHelper.displayName(for: settlement.from))
                                 .font(.headline)
+                                .foregroundColor(UserHelper.isCurrentUser(settlement.from) ? AppTheme.primary : .primary)
                         }
                         Spacer()
                         Image(systemName: "arrow.right")
@@ -44,8 +50,9 @@ struct SettlePaymentView: View {
                             Text("To")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
-                            Text(settlement.to.name)
+                            Text(UserHelper.displayName(for: settlement.to))
                                 .font(.headline)
+                                .foregroundColor(UserHelper.isCurrentUser(settlement.to) ? AppTheme.primary : .primary)
                         }
                     }
                     .padding(.vertical, 8)
@@ -67,7 +74,7 @@ struct SettlePaymentView: View {
                     if let upiId = settlement.to.upiId, !upiId.isEmpty {
                         Button {
                             viewModel.preparePayment(settlement: settlement, group: group)
-                            showingUPIOptions = true
+                            activeSheet = .upiOptions
                         } label: {
                             HStack {
                                 Image(systemName: "indianrupeesign.circle.fill")
@@ -93,7 +100,8 @@ struct SettlePaymentView: View {
                             .italic()
                     }
                     
-                    // 2. Gateway (Razorpay) - Test Mode
+                    // Razorpay - Commented out (not fully integrated)
+                    /*
                     Button {
                         viewModel.preparePayment(settlement: settlement, group: group)
                         if let controller = presentingController {
@@ -120,10 +128,11 @@ struct SettlePaymentView: View {
                         }
                     }
                     .disabled(!viewModel.isRazorpayAvailable)
+                    */
                     
                     // 3. Manual
                     Button {
-                        showingRecordCash = true
+                        activeSheet = .recordCash
                     } label: {
                         HStack {
                             Image(systemName: "banknote.fill")
@@ -140,7 +149,7 @@ struct SettlePaymentView: View {
                 }
                 
                 Section {
-                    Text("Secure payments powered by UPI & Razorpay")
+                    Text("Secure payments powered by UPI")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -152,33 +161,38 @@ struct SettlePaymentView: View {
                     Button("Cancel") { dismiss() }
                 }
             }
-            // Sheets
-            .sheet(isPresented: $showingUPIOptions) {
-                UPIAppSelectionView(viewModel: viewModel, settlement: settlement, group: group, onComplete: {
-                    dismiss()
-                    onComplete()
-                })
-            }
-            .sheet(isPresented: $showingRecordCash) {
-                RecordCashView(viewModel: viewModel, settlement: settlement, group: group, onComplete: {
-                    dismiss()
-                    onComplete()
-                })
+            // Single sheet using item-based approach
+            .sheet(item: $activeSheet) { sheet in
+                switch sheet {
+                case .upiOptions:
+                    UPIAppSelectionView(viewModel: viewModel, settlement: settlement, group: group, onComplete: {
+                        activeSheet = nil
+                        dismiss()
+                        onComplete()
+                    })
+                case .recordCash:
+                    RecordCashView(viewModel: viewModel, settlement: settlement, group: group, onComplete: {
+                        activeSheet = nil
+                        dismiss()
+                        onComplete()
+                    })
+                case .manualConfirmation:
+                    ManualConfirmationView(viewModel: viewModel, settlement: settlement, group: group, onComplete: {
+                        activeSheet = nil
+                        dismiss()
+                        onComplete()
+                    })
+                }
             }
             .background(ViewControllerResolver { controller in
                 presentingController = controller
             })
-            // Manual Confirmation Triggered by ViewModel
-            .sheet(isPresented: $viewModel.showingManualConfirmation) {
-                 ManualConfirmationView(
-                    viewModel: viewModel,
-                    settlement: settlement,
-                    group: group,
-                    onComplete: {
-                         dismiss()
-                         onComplete()
-                    }
-                 )
+            // Sync viewModel flag with activeSheet
+            .onChange(of: viewModel.showingManualConfirmation) { newValue in
+                if newValue {
+                    activeSheet = .manualConfirmation
+                    viewModel.showingManualConfirmation = false
+                }
             }
             .alert("Payment Error", isPresented: Binding(
                 get: { viewModel.errorMessage != nil },

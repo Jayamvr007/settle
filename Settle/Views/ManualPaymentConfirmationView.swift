@@ -104,42 +104,11 @@ struct ManualPaymentConfirmationView: View {
     }
     
     private func confirmPayment() {
-        // Save to Core Data
-        let dataManager = DataManager.shared
-        let context = dataManager.context
-        
-        let cdSettlement = CDSettlement(context: context)
-        cdSettlement.id = settlement.id
-        cdSettlement.amount = settlement.amount as NSDecimalNumber
-        cdSettlement.date = Date()
-        cdSettlement.status = SettlementStatus.completed.rawValue
-        cdSettlement.upiTransactionId = transactionId.isEmpty ? nil : transactionId
-        
-        // Find group
-        let groupFetch = CDGroup.fetchRequest()
-        groupFetch.predicate = NSPredicate(format: "id == %@", group.id as CVarArg)
-        if let cdGroup = try? context.fetch(groupFetch).first {
-            cdSettlement.group = cdGroup
-            
-            // Find members
-            let fromFetch = CDMember.fetchRequest()
-            fromFetch.predicate = NSPredicate(format: "id == %@ AND group == %@", settlement.from.id as CVarArg, cdGroup)
-            if let cdFrom = try? context.fetch(fromFetch).first {
-                cdSettlement.from = cdFrom
-            }
-            
-            let toFetch = CDMember.fetchRequest()
-            toFetch.predicate = NSPredicate(format: "id == %@ AND group == %@", settlement.to.id as CVarArg, cdGroup)
-            if let cdTo = try? context.fetch(toFetch).first {
-                cdSettlement.to = cdTo
-            }
-        }
-        
-        dataManager.save()
-        
-        // Notify completion
+        // Settlement is recorded via PaymentViewModel.recordCashPayment() 
+        // which creates a settlement expense in Firestore
+        // Just notify completion and dismiss
         onComplete()
-        
         dismiss()
     }
 }
+

@@ -75,21 +75,16 @@ struct EditMemberSheet: View {
     }
     
     private func saveMember() {
-        let dataManager = DataManager.shared
-        let context = dataManager.context
+        // Create updated member with new values
+        let updatedMember = Member(
+            id: member.id,
+            name: name.trimmingCharacters(in: .whitespaces),
+            phoneNumber: phoneNumber.isEmpty ? nil : phoneNumber,
+            upiId: upiId.isEmpty ? nil : upiId
+        )
         
-        let fetchRequest = CDMember.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", member.id as CVarArg)
-        
-        if let cdMember = try? context.fetch(fetchRequest).first {
-            cdMember.name = name.trimmingCharacters(in: .whitespaces)
-            cdMember.phoneNumber = phoneNumber.isEmpty ? nil : phoneNumber
-            cdMember.upiId = upiId.isEmpty ? nil : upiId
-            dataManager.save()
-        }
-        
-        // Refresh the repository to update groups
-        repository.fetchGroups()
+        // Save to Firestore via repository
+        repository.updateMember(updatedMember, in: group)
         
         dismiss()
     }

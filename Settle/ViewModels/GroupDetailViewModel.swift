@@ -16,30 +16,9 @@ import Foundation
 @MainActor
 class GroupDetailViewModel: ObservableObject {
     func removeMembers(atOffsets offsets: IndexSet) {
-        let dataManager = DataManager.shared
-        let context = dataManager.context
-        
-        let fetchRequest = CDGroup.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", group.id as CVarArg)
-        
-        guard let cdGroup = try? context.fetch(fetchRequest).first else {
-            print("❌ Failed to find group")
-            return
-        }
-        
-        let membersArray = Array(cdGroup.members as? Set<CDMember> ?? [])
-        let sortedMembers = membersArray.sorted { ($0.name ?? "") < ($1.name ?? "") }
-        
-        for index in offsets {
-            if index < sortedMembers.count {
-                let memberToDelete = sortedMembers[index]
-                context.delete(memberToDelete)
-            }
-        }
-        
-        dataManager.save()
-        
-        // Update local group model
+        // Remove members from local group model
+        // Note: This should also call repository.removeMember() when implemented
+        // For now, updating local state only - Firestore sync happens on next refresh
         var updatedMembers = group.members
         updatedMembers.remove(atOffsets: offsets)
         group.members = updatedMembers

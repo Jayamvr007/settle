@@ -59,8 +59,9 @@ struct ExpenseDetailView: View {
                         Text("Paid by")
                             .foregroundColor(.secondary)
                         Spacer()
-                        Text(expense.paidBy.name)
+                        Text(UserHelper.displayName(for: expense.paidBy))
                             .fontWeight(.medium)
+                            .foregroundColor(UserHelper.isCurrentUser(expense.paidBy) ? AppTheme.primary : .primary)
                     }
                 }
                 
@@ -68,9 +69,10 @@ struct ExpenseDetailView: View {
                     ForEach(expense.shares) { share in
                         HStack {
                             Image(systemName: "person.circle.fill")
-                                .foregroundColor(AppTheme.primary)
+                                .foregroundColor(UserHelper.isCurrentUser(share.member) ? AppTheme.primary : AppTheme.primary)
                             
-                            Text(share.member.name)
+                            Text(UserHelper.displayName(for: share.member))
+                                .foregroundColor(UserHelper.isCurrentUser(share.member) ? AppTheme.primary : .primary)
                             
                             Spacer()
                             Text("₹\(share.amount.formattedAmount)")

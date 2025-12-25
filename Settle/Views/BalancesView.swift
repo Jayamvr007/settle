@@ -23,7 +23,8 @@ struct BalancesView: View {
             let viewModel = GroupDetailViewModel(group: group)
             for member in group.members {
                 let balance = viewModel.balanceFor(member: member)
-                if balance != 0 {
+                // Filter out zero and near-zero balances (avoids -0 display)
+                if abs(balance) > Decimal(string: "0.01")! {
                     balances.append((member: member, group: group, balance: balance))
                 }
             }
@@ -91,8 +92,9 @@ struct BalanceRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(member.name)
+                Text(UserHelper.displayName(for: member))
                     .font(.headline)
+                    .foregroundColor(UserHelper.isCurrentUser(member) ? AppTheme.primary : .primary)
                 
                 Text(group.name)
                     .font(.caption)
@@ -102,7 +104,7 @@ struct BalanceRow: View {
             Spacer()
             
             VStack(alignment: .trailing, spacing: 4) {
-                Text("₹\(balance.formattedAmount)")
+                Text("₹\(abs(balance).formattedAmount)")
                     .font(.headline)
                     .foregroundColor(balance >= 0 ? AppTheme.getsBack : AppTheme.owes)
                 

@@ -111,7 +111,8 @@ struct AddExpenseView: View {
                 Section("Paid By") {
                     ForEach(group.members) { member in
                         HStack {
-                            Text(member.name)
+                            Text(UserHelper.displayName(for: member))
+                                .foregroundColor(UserHelper.isCurrentUser(member) ? AppTheme.primary : .primary)
                             Spacer()
                             if selectedPayer?.id == member.id {
                                 Image(systemName: "checkmark")
@@ -170,7 +171,7 @@ struct AddExpenseView: View {
             
             ForEach(group.members) { member in
                 HStack {
-                    Toggle(member.name, isOn: Binding(
+                    Toggle(UserHelper.displayName(for: member), isOn: Binding(
                         get: { selectedMembers.contains(member.id) },
                         set: { isSelected in
                             if isSelected {

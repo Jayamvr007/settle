@@ -39,9 +39,10 @@ struct GroupDetailView: View {
                 ForEach(currentGroup.members) { member in
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(member.name)
+                            Text(UserHelper.displayName(for: member))
                                 .font(.body)
                                 .fontWeight(.medium)
+                                .foregroundColor(UserHelper.isCurrentUser(member) ? AppTheme.primary : .primary)
 
                             if let upiId = member.upiId {
                                 Text(upiId)
@@ -162,22 +163,11 @@ struct GroupDetailView: View {
     }
     
     private func addMemberToGroup(_ newMember: Member) {
-        let dataManager = DataManager.shared
-        let context = dataManager.context
+        // Add member to Firestore via repository
+        repository.addMember(newMember, to: currentGroup)
         
-        let fetchRequest = CDGroup.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", currentGroup.id as CVarArg)
-        
-        if let cdGroup = try? context.fetch(fetchRequest).first {
-            let cdMember = CDMember(context: context)
-            cdMember.id = newMember.id
-            cdMember.name = newMember.name
-            cdMember.phoneNumber = newMember.phoneNumber
-            cdMember.upiId = newMember.upiId
-            cdMember.group = cdGroup
-            
-            dataManager.save()
-            repository.fetchGroups()
+        // Refresh local state
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             refreshGroup()
         }
     }
@@ -226,11 +216,12 @@ struct MemberBalanceRow: View {
         HStack {
             Image(systemName: "person.circle.fill")
                 .font(.title2)
-                .foregroundColor(AppTheme.primary)
+                .foregroundColor(UserHelper.isCurrentUser(member) ? AppTheme.primary : AppTheme.primary)
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(member.name)
+                Text(UserHelper.displayName(for: member))
                     .font(.body)
+                    .foregroundColor(UserHelper.isCurrentUser(member) ? AppTheme.primary : .primary)
                 
                 if let upi = member.upiId {
                     Text(upi)
@@ -242,7 +233,7 @@ struct MemberBalanceRow: View {
             Spacer()
             
             VStack(alignment: .trailing, spacing: 4) {
-                Text("₹\(balance.formattedAmount)")
+                Text("₹\(abs(balance).formattedAmount)")
                     .font(.headline)
                     .foregroundColor(balance >= 0 ? AppTheme.getsBack : AppTheme.owes)
                 
