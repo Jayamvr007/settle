@@ -37,20 +37,19 @@ struct OnboardingView: View {
                     message: "All groups, expenses, and balances are stored locally on your iPhone. No analytics, no tracking."
                 )
             }
-            .tabViewStyle(.page)
+            .tabViewStyle(.page(indexDisplayMode: .always))
             
             VStack {
                 Spacer()
-                Button(action: { hasSeenOnboarding = true }) {
+                Button(action: {
+                    HapticManager.success()
+                    hasSeenOnboarding = true
+                }) {
                     Text("Get Started")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(12)
-                        .padding([.horizontal, .bottom])
                 }
+                .buttonStyle(PrimaryButtonStyle())
+                .padding(.horizontal, 32)
+                .padding(.bottom, 48)
             }
         }
     }
@@ -61,28 +60,36 @@ private struct OnboardingPageView: View {
     let title: String
     let message: String
     
+    @State private var isAnimated = false
+    
     var body: some View {
         VStack(spacing: 24) {
             Spacer()
             
             Image(systemName: systemImage)
                 .font(.system(size: 72))
-                .foregroundColor(.blue)
+                .foregroundStyle(AppTheme.primaryGradient)
+                .scaleEffect(isAnimated ? 1.0 : 0.8)
+                .opacity(isAnimated ? 1.0 : 0.5)
                 .padding(.bottom, 8)
             
             Text(title)
-                .font(.title2)
-                .fontWeight(.semibold)
+                .font(.settleTitle)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
             
             Text(message)
-                .font(.body)
+                .font(.settleBody)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
             
             Spacer()
+        }
+        .onAppear {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
+                isAnimated = true
+            }
         }
     }
 }

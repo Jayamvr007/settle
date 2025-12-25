@@ -25,7 +25,7 @@ struct ExpenseDetailView: View {
                     HStack {
                         Image(systemName: expense.category.icon)
                             .font(.title)
-                            .foregroundColor(.blue)
+                            .foregroundColor(AppTheme.primary)
                             .frame(width: 50)
                         
                         VStack(alignment: .leading, spacing: 4) {
@@ -68,7 +68,7 @@ struct ExpenseDetailView: View {
                     ForEach(expense.shares) { share in
                         HStack {
                             Image(systemName: "person.circle.fill")
-                                .foregroundColor(.blue)
+                                .foregroundColor(AppTheme.primary)
                             
                             Text(share.member.name)
                             

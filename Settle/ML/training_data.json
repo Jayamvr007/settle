@@ -1,0 +1,5866 @@
+[
+  {
+    "text": "outpatient",
+    "label": "Healthcare"
+  },
+  {
+    "text": "levis order",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid indigo",
+    "label": "Travel"
+  },
+  {
+    "text": "air india purchase",
+    "label": "Travel"
+  },
+  {
+    "text": "diesel",
+    "label": "Transport"
+  },
+  {
+    "text": "paid mi store",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from reliance digital",
+    "label": "Shopping"
+  },
+  {
+    "text": "aster payment",
+    "label": "Healthcare"
+  },
+  {
+    "text": "skillshare",
+    "label": "Education"
+  },
+  {
+    "text": "subway payment",
+    "label": "Food"
+  },
+  {
+    "text": "sugar",
+    "label": "Groceries"
+  },
+  {
+    "text": "meesho order",
+    "label": "Shopping"
+  },
+  {
+    "text": "tneb payment",
+    "label": "Utilities"
+  },
+  {
+    "text": "nilgiris bill",
+    "label": "Groceries"
+  },
+  {
+    "text": "daily commute",
+    "label": "Transport"
+  },
+  {
+    "text": "property tax online payment",
+    "label": "Utilities"
+  },
+  {
+    "text": "zee5 subscription",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "kitchen supplies",
+    "label": "Groceries"
+  },
+  {
+    "text": "paid vodafone idea",
+    "label": "Utilities"
+  },
+  {
+    "text": "flat rent",
+    "label": "Utilities"
+  },
+  {
+    "text": "advance",
+    "label": "General"
+  },
+  {
+    "text": "bought from irctc",
+    "label": "Travel"
+  },
+  {
+    "text": "convenience fee",
+    "label": "General"
+  },
+  {
+    "text": "mixer",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from spotify",
+    "label": "Entertainment"
+  },
+  {
+    "text": "chair",
+    "label": "Shopping"
+  },
+  {
+    "text": "cloudnine bill",
+    "label": "Healthcare"
+  },
+  {
+    "text": "mi store order",
+    "label": "Shopping"
+  },
+  {
+    "text": "pharma",
+    "label": "Healthcare"
+  },
+  {
+    "text": "magazine subscription",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "dominos bill",
+    "label": "Food"
+  },
+  {
+    "text": "apollo pharmacy",
+    "label": "Healthcare"
+  },
+  {
+    "text": "noise purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "supermarket",
+    "label": "Groceries"
+  },
+  {
+    "text": "gym fees",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "course fee",
+    "label": "Education"
+  },
+  {
+    "text": "restaurant",
+    "label": "Food"
+  },
+  {
+    "text": "gym equipment",
+    "label": "Shopping"
+  },
+  {
+    "text": "mcdonalds",
+    "label": "Food"
+  },
+  {
+    "text": "outstation",
+    "label": "Travel"
+  },
+  {
+    "text": "bsnl purchase",
+    "label": "Utilities"
+  },
+  {
+    "text": "bought from taco bell",
+    "label": "Food"
+  },
+  {
+    "text": "vivo store bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "times subscription",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "playstation",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bought from indigo",
+    "label": "Travel"
+  },
+  {
+    "text": "delhi metro",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from redbus",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from oyo",
+    "label": "Travel"
+  },
+  {
+    "text": "spotify bill",
+    "label": "Entertainment"
+  },
+  {
+    "text": "allen solly order",
+    "label": "Shopping"
+  },
+  {
+    "text": "lunch",
+    "label": "Food"
+  },
+  {
+    "text": "paid pizza hut",
+    "label": "Food"
+  },
+  {
+    "text": "bought from meesho",
+    "label": "Shopping"
+  },
+  {
+    "text": "heels",
+    "label": "Shopping"
+  },
+  {
+    "text": "gadgets",
+    "label": "Shopping"
+  },
+  {
+    "text": "decathlon",
+    "label": "Shopping"
+  },
+  {
+    "text": "bike wash",
+    "label": "Transport"
+  },
+  {
+    "text": "late fee",
+    "label": "General"
+  },
+  {
+    "text": "us polo payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "ajio purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "amazon payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "hathway",
+    "label": "Utilities"
+  },
+  {
+    "text": "arcade games",
+    "label": "Entertainment"
+  },
+  {
+    "text": "h&m bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from nature's basket",
+    "label": "Groceries"
+  },
+  {
+    "text": "college fees",
+    "label": "Education"
+  },
+  {
+    "text": "lenskart order",
+    "label": "Shopping"
+  },
+  {
+    "text": "medical claim",
+    "label": "Healthcare"
+  },
+  {
+    "text": "express train",
+    "label": "Travel"
+  },
+  {
+    "text": "bought from dell exclusive",
+    "label": "Shopping"
+  },
+  {
+    "text": "kindle unlimited",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "netflix purchase",
+    "label": "Entertainment"
+  },
+  {
+    "text": "annual subscription",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "medicine",
+    "label": "Healthcare"
+  },
+  {
+    "text": "bought from burger king",
+    "label": "Food"
+  },
+  {
+    "text": "linkedin premium",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "paradise biryani",
+    "label": "Food"
+  },
+  {
+    "text": "bought from kfc",
+    "label": "Food"
+  },
+  {
+    "text": "tsrtc bill",
+    "label": "Transport"
+  },
+  {
+    "text": "temple donation",
+    "label": "General"
+  },
+  {
+    "text": "bought from paradise biryani",
+    "label": "Food"
+  },
+  {
+    "text": "school",
+    "label": "Education"
+  },
+  {
+    "text": "paid gaana",
+    "label": "Entertainment"
+  },
+  {
+    "text": "apollo hospital order",
+    "label": "Healthcare"
+  },
+  {
+    "text": "club entry",
+    "label": "Entertainment"
+  },
+  {
+    "text": "amazon pay",
+    "label": "Shopping"
+  },
+  {
+    "text": "us polo",
+    "label": "Shopping"
+  },
+  {
+    "text": "irctc",
+    "label": "Travel"
+  },
+  {
+    "text": "imagica",
+    "label": "Entertainment"
+  },
+  {
+    "text": "flipkart shopping",
+    "label": "Shopping"
+  },
+  {
+    "text": "amazon bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "max hospital",
+    "label": "Healthcare"
+  },
+  {
+    "text": "treebo",
+    "label": "Travel"
+  },
+  {
+    "text": "tneb purchase",
+    "label": "Utilities"
+  },
+  {
+    "text": "zara",
+    "label": "Shopping"
+  },
+  {
+    "text": "film",
+    "label": "Entertainment"
+  },
+  {
+    "text": "irctc booking",
+    "label": "Travel"
+  },
+  {
+    "text": "roti",
+    "label": "Food"
+  },
+  {
+    "text": "burger king",
+    "label": "Food"
+  },
+  {
+    "text": "subway order",
+    "label": "Food"
+  },
+  {
+    "text": "room rent",
+    "label": "Utilities"
+  },
+  {
+    "text": "taco bell order",
+    "label": "Food"
+  },
+  {
+    "text": "kfc purchase",
+    "label": "Food"
+  },
+  {
+    "text": "starbucks purchase",
+    "label": "Food"
+  },
+  {
+    "text": "hp world purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from croma",
+    "label": "Shopping"
+  },
+  {
+    "text": "volvo bus",
+    "label": "Travel"
+  },
+  {
+    "text": "handbag",
+    "label": "Shopping"
+  },
+  {
+    "text": "veg biryani",
+    "label": "Food"
+  },
+  {
+    "text": "bought from puma",
+    "label": "Shopping"
+  },
+  {
+    "text": "hotel",
+    "label": "Travel"
+  },
+  {
+    "text": "course",
+    "label": "Education"
+  },
+  {
+    "text": "amazon prime payment",
+    "label": "Entertainment"
+  },
+  {
+    "text": "pharmeasy",
+    "label": "Healthcare"
+  },
+  {
+    "text": "youtube music",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "sony center",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid dominos",
+    "label": "Food"
+  },
+  {
+    "text": "dominos order",
+    "label": "Food"
+  },
+  {
+    "text": "nilgiris payment",
+    "label": "Groceries"
+  },
+  {
+    "text": "netflix",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "star bazaar",
+    "label": "Groceries"
+  },
+  {
+    "text": "anniversary gift",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid booking.com",
+    "label": "Travel"
+  },
+  {
+    "text": "bought from vivo store",
+    "label": "Shopping"
+  },
+  {
+    "text": "act fibernet payment",
+    "label": "Utilities"
+  },
+  {
+    "text": "emergency",
+    "label": "General"
+  },
+  {
+    "text": "workshop",
+    "label": "Education"
+  },
+  {
+    "text": "bsnl payment",
+    "label": "Utilities"
+  },
+  {
+    "text": "youtube premium order",
+    "label": "Entertainment"
+  },
+  {
+    "text": "apple watch",
+    "label": "Shopping"
+  },
+  {
+    "text": "h&m order",
+    "label": "Shopping"
+  },
+  {
+    "text": "yulu bikes order",
+    "label": "Transport"
+  },
+  {
+    "text": "starbucks bill",
+    "label": "Food"
+  },
+  {
+    "text": "levis payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "reliance fresh payment",
+    "label": "Groceries"
+  },
+  {
+    "text": "postpaid bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "dessert",
+    "label": "Food"
+  },
+  {
+    "text": "puma payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "us polo bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "meesho payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "youtube premium bill",
+    "label": "Entertainment"
+  },
+  {
+    "text": "ecg",
+    "label": "Healthcare"
+  },
+  {
+    "text": "eggs",
+    "label": "Groceries"
+  },
+  {
+    "text": "meesho bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "uber order",
+    "label": "Transport"
+  },
+  {
+    "text": "paid lenskart",
+    "label": "Shopping"
+  },
+  {
+    "text": "spices",
+    "label": "Groceries"
+  },
+  {
+    "text": "paid starbucks",
+    "label": "Food"
+  },
+  {
+    "text": "naan",
+    "label": "Food"
+  },
+  {
+    "text": "mi store purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "air india flight",
+    "label": "Travel"
+  },
+  {
+    "text": "anniversary dinner",
+    "label": "Food"
+  },
+  {
+    "text": "gift",
+    "label": "Shopping"
+  },
+  {
+    "text": "reliance energy",
+    "label": "Utilities"
+  },
+  {
+    "text": "medicines",
+    "label": "Healthcare"
+  },
+  {
+    "text": "netflix order",
+    "label": "Entertainment"
+  },
+  {
+    "text": "wrogn purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "backpack",
+    "label": "Shopping"
+  },
+  {
+    "text": "asus store",
+    "label": "Shopping"
+  },
+  {
+    "text": "irctc bill",
+    "label": "Travel"
+  },
+  {
+    "text": "eb bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "fried chicken",
+    "label": "Food"
+  },
+  {
+    "text": "ngo donation",
+    "label": "General"
+  },
+  {
+    "text": "auto",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from netflix",
+    "label": "Entertainment"
+  },
+  {
+    "text": "zara payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "plane ticket",
+    "label": "Travel"
+  },
+  {
+    "text": "misc expense",
+    "label": "General"
+  },
+  {
+    "text": "nykaa order",
+    "label": "Shopping"
+  },
+  {
+    "text": "bsnl order",
+    "label": "Utilities"
+  },
+  {
+    "text": "ipl",
+    "label": "Entertainment"
+  },
+  {
+    "text": "udemy",
+    "label": "Education"
+  },
+  {
+    "text": "bought from uber",
+    "label": "Transport"
+  },
+  {
+    "text": "paid youtube premium",
+    "label": "Entertainment"
+  },
+  {
+    "text": "uber premium",
+    "label": "Transport"
+  },
+  {
+    "text": "reliance fresh order",
+    "label": "Groceries"
+  },
+  {
+    "text": "party",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid hotstar",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid cloudnine",
+    "label": "Healthcare"
+  },
+  {
+    "text": "paid barbeque nation",
+    "label": "Food"
+  },
+  {
+    "text": "aster purchase",
+    "label": "Healthcare"
+  },
+  {
+    "text": "bank transfer",
+    "label": "General"
+  },
+  {
+    "text": "woodland payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from act fibernet",
+    "label": "Utilities"
+  },
+  {
+    "text": "checkup",
+    "label": "Healthcare"
+  },
+  {
+    "text": "service charge",
+    "label": "General"
+  },
+  {
+    "text": "power bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "sony liv",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "myntra order",
+    "label": "Shopping"
+  },
+  {
+    "text": "zara bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "semester fee",
+    "label": "Education"
+  },
+  {
+    "text": "ac ticket",
+    "label": "Travel"
+  },
+  {
+    "text": "scan",
+    "label": "Healthcare"
+  },
+  {
+    "text": "dth recharge",
+    "label": "Utilities"
+  },
+  {
+    "text": "netmeds payment",
+    "label": "Healthcare"
+  },
+  {
+    "text": "escape room",
+    "label": "Entertainment"
+  },
+  {
+    "text": "cream stone payment",
+    "label": "Food"
+  },
+  {
+    "text": "paid dell exclusive",
+    "label": "Shopping"
+  },
+  {
+    "text": "pizza hut purchase",
+    "label": "Food"
+  },
+  {
+    "text": "rapido payment",
+    "label": "Transport"
+  },
+  {
+    "text": "jiomart payment",
+    "label": "Groceries"
+  },
+  {
+    "text": "uttapam",
+    "label": "Food"
+  },
+  {
+    "text": "metro rail",
+    "label": "Transport"
+  },
+  {
+    "text": "uber cab",
+    "label": "Transport"
+  },
+  {
+    "text": "cream stone bill",
+    "label": "Food"
+  },
+  {
+    "text": "hotstar subscription",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "paid noise",
+    "label": "Shopping"
+  },
+  {
+    "text": "ration",
+    "label": "Groceries"
+  },
+  {
+    "text": "loan repayment",
+    "label": "General"
+  },
+  {
+    "text": "paid redbus",
+    "label": "Transport"
+  },
+  {
+    "text": "paid amazon",
+    "label": "Shopping"
+  },
+  {
+    "text": "goibibo order",
+    "label": "Travel"
+  },
+  {
+    "text": "flipkart bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "karaoke",
+    "label": "Entertainment"
+  },
+  {
+    "text": "biba payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "yatra payment",
+    "label": "Travel"
+  },
+  {
+    "text": "allen solly",
+    "label": "Shopping"
+  },
+  {
+    "text": "oneplus order",
+    "label": "Shopping"
+  },
+  {
+    "text": "books",
+    "label": "Education"
+  },
+  {
+    "text": "water board payment",
+    "label": "Utilities"
+  },
+  {
+    "text": "dentist",
+    "label": "Healthcare"
+  },
+  {
+    "text": "paradise biryani purchase",
+    "label": "Food"
+  },
+  {
+    "text": "dmart order",
+    "label": "Groceries"
+  },
+  {
+    "text": "paid puma",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from nykaa",
+    "label": "Shopping"
+  },
+  {
+    "text": "aster",
+    "label": "Healthcare"
+  },
+  {
+    "text": "eating out",
+    "label": "Food"
+  },
+  {
+    "text": "tata cliq",
+    "label": "Shopping"
+  },
+  {
+    "text": "boat lifestyle bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "cash",
+    "label": "General"
+  },
+  {
+    "text": "accommodation",
+    "label": "Travel"
+  },
+  {
+    "text": "atm",
+    "label": "General"
+  },
+  {
+    "text": "paid ccd",
+    "label": "Food"
+  },
+  {
+    "text": "tip",
+    "label": "General"
+  },
+  {
+    "text": "chai",
+    "label": "Food"
+  },
+  {
+    "text": "audible",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "urgent expense",
+    "label": "General"
+  },
+  {
+    "text": "kurta",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid property tax online",
+    "label": "Utilities"
+  },
+  {
+    "text": "adidas purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "mobile",
+    "label": "Shopping"
+  },
+  {
+    "text": "study material",
+    "label": "Education"
+  },
+  {
+    "text": "drama",
+    "label": "Entertainment"
+  },
+  {
+    "text": "petrol",
+    "label": "Transport"
+  },
+  {
+    "text": "tour package",
+    "label": "Travel"
+  },
+  {
+    "text": "game purchase",
+    "label": "Entertainment"
+  },
+  {
+    "text": "pubg",
+    "label": "Entertainment"
+  },
+  {
+    "text": "kauvery order",
+    "label": "Healthcare"
+  },
+  {
+    "text": "apollo pharmacy bill",
+    "label": "Healthcare"
+  },
+  {
+    "text": "redbus payment",
+    "label": "Transport"
+  },
+  {
+    "text": "curtains",
+    "label": "Shopping"
+  },
+  {
+    "text": "fiber",
+    "label": "Utilities"
+  },
+  {
+    "text": "pizza order",
+    "label": "Food"
+  },
+  {
+    "text": "duronto",
+    "label": "Travel"
+  },
+  {
+    "text": "zee5 order",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bescom",
+    "label": "Utilities"
+  },
+  {
+    "text": "bought from hp world",
+    "label": "Shopping"
+  },
+  {
+    "text": "spotify payment",
+    "label": "Entertainment"
+  },
+  {
+    "text": "hotstar purchase",
+    "label": "Entertainment"
+  },
+  {
+    "text": "snooker",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bike service",
+    "label": "Transport"
+  },
+  {
+    "text": "parking",
+    "label": "Transport"
+  },
+  {
+    "text": "taxi",
+    "label": "Transport"
+  },
+  {
+    "text": "college",
+    "label": "Education"
+  },
+  {
+    "text": "bb order",
+    "label": "Groceries"
+  },
+  {
+    "text": "amazon prime",
+    "label": "Entertainment"
+  },
+  {
+    "text": "jiomart bill",
+    "label": "Groceries"
+  },
+  {
+    "text": "eye checkup",
+    "label": "Healthcare"
+  },
+  {
+    "text": "waiter tip",
+    "label": "General"
+  },
+  {
+    "text": "paid gas agency",
+    "label": "Utilities"
+  },
+  {
+    "text": "oyo payment",
+    "label": "Travel"
+  },
+  {
+    "text": "allen solly purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "amazon order",
+    "label": "Shopping"
+  },
+  {
+    "text": "purplle",
+    "label": "Shopping"
+  },
+  {
+    "text": "music concert",
+    "label": "Entertainment"
+  },
+  {
+    "text": "newspaper subscription",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "video game",
+    "label": "Entertainment"
+  },
+  {
+    "text": "tsrtc order",
+    "label": "Transport"
+  },
+  {
+    "text": "apollo pharmacy order",
+    "label": "Healthcare"
+  },
+  {
+    "text": "bought from dmart",
+    "label": "Groceries"
+  },
+  {
+    "text": "penalty",
+    "label": "General"
+  },
+  {
+    "text": "diesel fill",
+    "label": "Transport"
+  },
+  {
+    "text": "tneb",
+    "label": "Utilities"
+  },
+  {
+    "text": "jeans",
+    "label": "Shopping"
+  },
+  {
+    "text": "chemist",
+    "label": "Healthcare"
+  },
+  {
+    "text": "consultation",
+    "label": "Healthcare"
+  },
+  {
+    "text": "indane",
+    "label": "Utilities"
+  },
+  {
+    "text": "multiplex",
+    "label": "Entertainment"
+  },
+  {
+    "text": "rapido bill",
+    "label": "Transport"
+  },
+  {
+    "text": "bike petrol",
+    "label": "Transport"
+  },
+  {
+    "text": "wonderla",
+    "label": "Entertainment"
+  },
+  {
+    "text": "uber auto",
+    "label": "Transport"
+  },
+  {
+    "text": "prime video",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "bought from pizza hut",
+    "label": "Food"
+  },
+  {
+    "text": "toll charges",
+    "label": "Transport"
+  },
+  {
+    "text": "medical store",
+    "label": "Healthcare"
+  },
+  {
+    "text": "meals",
+    "label": "Food"
+  },
+  {
+    "text": "paid biba",
+    "label": "Shopping"
+  },
+  {
+    "text": "noise payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "steam",
+    "label": "Entertainment"
+  },
+  {
+    "text": "cricket bat",
+    "label": "Shopping"
+  },
+  {
+    "text": "sunglasses",
+    "label": "Shopping"
+  },
+  {
+    "text": "adidas order",
+    "label": "Shopping"
+  },
+  {
+    "text": "gratuity",
+    "label": "General"
+  },
+  {
+    "text": "paid sony center",
+    "label": "Shopping"
+  },
+  {
+    "text": "biba order",
+    "label": "Shopping"
+  },
+  {
+    "text": "swiggy instamart",
+    "label": "Groceries"
+  },
+  {
+    "text": "paid goibibo",
+    "label": "Travel"
+  },
+  {
+    "text": "courier",
+    "label": "General"
+  },
+  {
+    "text": "goibibo booking",
+    "label": "Travel"
+  },
+  {
+    "text": "paid kfc",
+    "label": "Food"
+  },
+  {
+    "text": "fitness membership",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "commute",
+    "label": "Transport"
+  },
+  {
+    "text": "egg tray",
+    "label": "Groceries"
+  },
+  {
+    "text": "best bus",
+    "label": "Transport"
+  },
+  {
+    "text": "paid paradise biryani",
+    "label": "Food"
+  },
+  {
+    "text": "test fee",
+    "label": "Education"
+  },
+  {
+    "text": "barbeque nation order",
+    "label": "Food"
+  },
+  {
+    "text": "act fibernet order",
+    "label": "Utilities"
+  },
+  {
+    "text": "rapido bike",
+    "label": "Transport"
+  },
+  {
+    "text": "paid pharmeasy",
+    "label": "Healthcare"
+  },
+  {
+    "text": "ccd bill",
+    "label": "Food"
+  },
+  {
+    "text": "vistara flight",
+    "label": "Travel"
+  },
+  {
+    "text": "subway",
+    "label": "Food"
+  },
+  {
+    "text": "gaana",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "swiggy order",
+    "label": "Food"
+  },
+  {
+    "text": "goggles",
+    "label": "Shopping"
+  },
+  {
+    "text": "holiday trip",
+    "label": "Travel"
+  },
+  {
+    "text": "grocery shopping",
+    "label": "Groceries"
+  },
+  {
+    "text": "star bazaar order",
+    "label": "Groceries"
+  },
+  {
+    "text": "comedy show",
+    "label": "Entertainment"
+  },
+  {
+    "text": "dine out",
+    "label": "Food"
+  },
+  {
+    "text": "apple music purchase",
+    "label": "Entertainment"
+  },
+  {
+    "text": "electric bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "hp world payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "saravana bhavan bill",
+    "label": "Food"
+  },
+  {
+    "text": "property tax online order",
+    "label": "Utilities"
+  },
+  {
+    "text": "paid bigbazaar",
+    "label": "Groceries"
+  },
+  {
+    "text": "chai point",
+    "label": "Food"
+  },
+  {
+    "text": "1mg order",
+    "label": "Healthcare"
+  },
+  {
+    "text": "hospitalization",
+    "label": "Healthcare"
+  },
+  {
+    "text": "gym membership",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "data pack",
+    "label": "Utilities"
+  },
+  {
+    "text": "ola bill",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from bmtc",
+    "label": "Transport"
+  },
+  {
+    "text": "jiomart",
+    "label": "Groceries"
+  },
+  {
+    "text": "metro ticket",
+    "label": "Transport"
+  },
+  {
+    "text": "diagnostics",
+    "label": "Healthcare"
+  },
+  {
+    "text": "bought from more supermarket",
+    "label": "Groceries"
+  },
+  {
+    "text": "mi store bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from ajio",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from myntra",
+    "label": "Shopping"
+  },
+  {
+    "text": "puma bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "phone purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "nature's basket purchase",
+    "label": "Groceries"
+  },
+  {
+    "text": "youtube premium",
+    "label": "Entertainment"
+  },
+  {
+    "text": "calm",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "library membership",
+    "label": "Education"
+  },
+  {
+    "text": "sandals",
+    "label": "Shopping"
+  },
+  {
+    "text": "medplus order",
+    "label": "Healthcare"
+  },
+  {
+    "text": "big basket",
+    "label": "Groceries"
+  },
+  {
+    "text": "theme park",
+    "label": "Entertainment"
+  },
+  {
+    "text": "mri",
+    "label": "Healthcare"
+  },
+  {
+    "text": "cream stone",
+    "label": "Food"
+  },
+  {
+    "text": "biba bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "hotel booking",
+    "label": "Travel"
+  },
+  {
+    "text": "premium membership",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "meru cabs payment",
+    "label": "Transport"
+  },
+  {
+    "text": "bed",
+    "label": "Shopping"
+  },
+  {
+    "text": "vivo store order",
+    "label": "Shopping"
+  },
+  {
+    "text": "ola purchase",
+    "label": "Transport"
+  },
+  {
+    "text": "cult fit",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "flight booking",
+    "label": "Travel"
+  },
+  {
+    "text": "tata cliq purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "jio fiber order",
+    "label": "Utilities"
+  },
+  {
+    "text": "zara purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid yulu bikes",
+    "label": "Transport"
+  },
+  {
+    "text": "paid bmtc",
+    "label": "Transport"
+  },
+  {
+    "text": "dell exclusive payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "dinner",
+    "label": "Food"
+  },
+  {
+    "text": "max fashion bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "noise order",
+    "label": "Shopping"
+  },
+  {
+    "text": "boat lifestyle",
+    "label": "Shopping"
+  },
+  {
+    "text": "burger king purchase",
+    "label": "Food"
+  },
+  {
+    "text": "asus store order",
+    "label": "Shopping"
+  },
+  {
+    "text": "sonyliv payment",
+    "label": "Entertainment"
+  },
+  {
+    "text": "dmart payment",
+    "label": "Groceries"
+  },
+  {
+    "text": "burger",
+    "label": "Food"
+  },
+  {
+    "text": "paid oneplus",
+    "label": "Shopping"
+  },
+  {
+    "text": "trivago",
+    "label": "Travel"
+  },
+  {
+    "text": "gaana order",
+    "label": "Entertainment"
+  },
+  {
+    "text": "sneakers",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid adidas",
+    "label": "Shopping"
+  },
+  {
+    "text": "medplus",
+    "label": "Healthcare"
+  },
+  {
+    "text": "cooking oil",
+    "label": "Groceries"
+  },
+  {
+    "text": "goibibo payment",
+    "label": "Travel"
+  },
+  {
+    "text": "overdraft",
+    "label": "General"
+  },
+  {
+    "text": "bought from cloudnine",
+    "label": "Healthcare"
+  },
+  {
+    "text": "paid h&m",
+    "label": "Shopping"
+  },
+  {
+    "text": "abhibus",
+    "label": "Travel"
+  },
+  {
+    "text": "nature's basket bill",
+    "label": "Groceries"
+  },
+  {
+    "text": "wrogn",
+    "label": "Shopping"
+  },
+  {
+    "text": "ikea",
+    "label": "Shopping"
+  },
+  {
+    "text": "amazon prime",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "snapdeal purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "dal",
+    "label": "Groceries"
+  },
+  {
+    "text": "vistara bill",
+    "label": "Travel"
+  },
+  {
+    "text": "dominos pizza",
+    "label": "Food"
+  },
+  {
+    "text": "bought from airasia",
+    "label": "Travel"
+  },
+  {
+    "text": "paid reliance digital",
+    "label": "Shopping"
+  },
+  {
+    "text": "d-mart",
+    "label": "Groceries"
+  },
+  {
+    "text": "ajio",
+    "label": "Shopping"
+  },
+  {
+    "text": "hp world order",
+    "label": "Shopping"
+  },
+  {
+    "text": "medplus purchase",
+    "label": "Healthcare"
+  },
+  {
+    "text": "shatabdi",
+    "label": "Travel"
+  },
+  {
+    "text": "samsung store",
+    "label": "Shopping"
+  },
+  {
+    "text": "airtel recharge",
+    "label": "Utilities"
+  },
+  {
+    "text": "petrol fill",
+    "label": "Transport"
+  },
+  {
+    "text": "weekend trip",
+    "label": "Travel"
+  },
+  {
+    "text": "asus store payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "woodland purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "fine",
+    "label": "General"
+  },
+  {
+    "text": "more supermarket payment",
+    "label": "Groceries"
+  },
+  {
+    "text": "doctor",
+    "label": "Healthcare"
+  },
+  {
+    "text": "irctc purchase",
+    "label": "Travel"
+  },
+  {
+    "text": "zee5 bill",
+    "label": "Entertainment"
+  },
+  {
+    "text": "levis bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "fastag recharge",
+    "label": "Transport"
+  },
+  {
+    "text": "cashback",
+    "label": "General"
+  },
+  {
+    "text": "bought from amazon",
+    "label": "Shopping"
+  },
+  {
+    "text": "dumplings",
+    "label": "Food"
+  },
+  {
+    "text": "hotstar payment",
+    "label": "Entertainment"
+  },
+  {
+    "text": "auto fare",
+    "label": "Transport"
+  },
+  {
+    "text": "car service",
+    "label": "Transport"
+  },
+  {
+    "text": "kfc order",
+    "label": "Food"
+  },
+  {
+    "text": "travel expense",
+    "label": "Travel"
+  },
+  {
+    "text": "masala",
+    "label": "Groceries"
+  },
+  {
+    "text": "cinema",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid taco bell",
+    "label": "Food"
+  },
+  {
+    "text": "yulu bikes purchase",
+    "label": "Transport"
+  },
+  {
+    "text": "adidas payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "paradise biryani order",
+    "label": "Food"
+  },
+  {
+    "text": "paid nilgiris",
+    "label": "Groceries"
+  },
+  {
+    "text": "chai point order",
+    "label": "Food"
+  },
+  {
+    "text": "youtube premium",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "packing charges",
+    "label": "General"
+  },
+  {
+    "text": "booking.com payment",
+    "label": "Travel"
+  },
+  {
+    "text": "hp world",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from makemytrip",
+    "label": "Travel"
+  },
+  {
+    "text": "sports equipment",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from zara",
+    "label": "Shopping"
+  },
+  {
+    "text": "meru cabs purchase",
+    "label": "Transport"
+  },
+  {
+    "text": "croma payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "zee5",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "bsnl",
+    "label": "Utilities"
+  },
+  {
+    "text": "airtel payment",
+    "label": "Utilities"
+  },
+  {
+    "text": "inox",
+    "label": "Entertainment"
+  },
+  {
+    "text": "vr gaming",
+    "label": "Entertainment"
+  },
+  {
+    "text": "nykaa",
+    "label": "Shopping"
+  },
+  {
+    "text": "air india bill",
+    "label": "Travel"
+  },
+  {
+    "text": "amazon prime purchase",
+    "label": "Entertainment"
+  },
+  {
+    "text": "airasia bill",
+    "label": "Travel"
+  },
+  {
+    "text": "paid allen solly",
+    "label": "Shopping"
+  },
+  {
+    "text": "tata cliq payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "lpg",
+    "label": "Utilities"
+  },
+  {
+    "text": "pepperfry payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from barbeque nation",
+    "label": "Food"
+  },
+  {
+    "text": "max fashion",
+    "label": "Shopping"
+  },
+  {
+    "text": "fortis bill",
+    "label": "Healthcare"
+  },
+  {
+    "text": "burger king order",
+    "label": "Food"
+  },
+  {
+    "text": "milk",
+    "label": "Groceries"
+  },
+  {
+    "text": "reliance digital",
+    "label": "Shopping"
+  },
+  {
+    "text": "mxplayer",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "paid aster",
+    "label": "Healthcare"
+  },
+  {
+    "text": "kirana",
+    "label": "Groceries"
+  },
+  {
+    "text": "hotstar bill",
+    "label": "Entertainment"
+  },
+  {
+    "text": "shawarma",
+    "label": "Food"
+  },
+  {
+    "text": "metro rail purchase",
+    "label": "Transport"
+  },
+  {
+    "text": "onedrive",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "chai samosa",
+    "label": "Food"
+  },
+  {
+    "text": "yatra order",
+    "label": "Travel"
+  },
+  {
+    "text": "air ticket",
+    "label": "Travel"
+  },
+  {
+    "text": "chai point payment",
+    "label": "Food"
+  },
+  {
+    "text": "food delivery",
+    "label": "Food"
+  },
+  {
+    "text": "cloud storage",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "google one",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "bought from vodafone idea",
+    "label": "Utilities"
+  },
+  {
+    "text": "pantaloons order",
+    "label": "Shopping"
+  },
+  {
+    "text": "zara order",
+    "label": "Shopping"
+  },
+  {
+    "text": "h&m purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "online food",
+    "label": "Food"
+  },
+  {
+    "text": "medplus pharmacy",
+    "label": "Healthcare"
+  },
+  {
+    "text": "oyo purchase",
+    "label": "Travel"
+  },
+  {
+    "text": "vodafone idea bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "bookmyshow",
+    "label": "Entertainment"
+  },
+  {
+    "text": "apple store order",
+    "label": "Shopping"
+  },
+  {
+    "text": "subway purchase",
+    "label": "Food"
+  },
+  {
+    "text": "tsrtc",
+    "label": "Transport"
+  },
+  {
+    "text": "idli",
+    "label": "Food"
+  },
+  {
+    "text": "dress",
+    "label": "Shopping"
+  },
+  {
+    "text": "airtel purchase",
+    "label": "Utilities"
+  },
+  {
+    "text": "pizza hut payment",
+    "label": "Food"
+  },
+  {
+    "text": "spicejet flight",
+    "label": "Travel"
+  },
+  {
+    "text": "weekly grocery",
+    "label": "Groceries"
+  },
+  {
+    "text": "a2b",
+    "label": "Food"
+  },
+  {
+    "text": "paid croma",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from kauvery",
+    "label": "Healthcare"
+  },
+  {
+    "text": "dell exclusive order",
+    "label": "Shopping"
+  },
+  {
+    "text": "shopclues",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from netmeds",
+    "label": "Healthcare"
+  },
+  {
+    "text": "spotify",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "credit card payment",
+    "label": "General"
+  },
+  {
+    "text": "belt",
+    "label": "Shopping"
+  },
+  {
+    "text": "tneb order",
+    "label": "Utilities"
+  },
+  {
+    "text": "school supplies",
+    "label": "Education"
+  },
+  {
+    "text": "apple music bill",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid apollo pharmacy",
+    "label": "Healthcare"
+  },
+  {
+    "text": "processing fee",
+    "label": "General"
+  },
+  {
+    "text": "gas agency purchase",
+    "label": "Utilities"
+  },
+  {
+    "text": "zepto order",
+    "label": "Groceries"
+  },
+  {
+    "text": "paid saravana bhavan",
+    "label": "Food"
+  },
+  {
+    "text": "oneplus bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "youtube premium payment",
+    "label": "Entertainment"
+  },
+  {
+    "text": "uber go",
+    "label": "Transport"
+  },
+  {
+    "text": "1mg purchase",
+    "label": "Healthcare"
+  },
+  {
+    "text": "unacademy",
+    "label": "Education"
+  },
+  {
+    "text": "vedantu",
+    "label": "Education"
+  },
+  {
+    "text": "netmeds bill",
+    "label": "Healthcare"
+  },
+  {
+    "text": "water board bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "ipl ticket",
+    "label": "Entertainment"
+  },
+  {
+    "text": "standup comedy",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bought from gas agency",
+    "label": "Utilities"
+  },
+  {
+    "text": "bigbazaar purchase",
+    "label": "Groceries"
+  },
+  {
+    "text": "cream stone order",
+    "label": "Food"
+  },
+  {
+    "text": "fitness band",
+    "label": "Shopping"
+  },
+  {
+    "text": "wedding gift",
+    "label": "Shopping"
+  },
+  {
+    "text": "chai point bill",
+    "label": "Food"
+  },
+  {
+    "text": "wallet",
+    "label": "Shopping"
+  },
+  {
+    "text": "office lunch",
+    "label": "Food"
+  },
+  {
+    "text": "dell exclusive purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "spotify purchase",
+    "label": "Entertainment"
+  },
+  {
+    "text": "puma order",
+    "label": "Shopping"
+  },
+  {
+    "text": "netflix",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bought from ola",
+    "label": "Transport"
+  },
+  {
+    "text": "paid ola",
+    "label": "Transport"
+  },
+  {
+    "text": "netmeds purchase",
+    "label": "Healthcare"
+  },
+  {
+    "text": "goibibo purchase",
+    "label": "Travel"
+  },
+  {
+    "text": "bought from airtel",
+    "label": "Utilities"
+  },
+  {
+    "text": "paid more supermarket",
+    "label": "Groceries"
+  },
+  {
+    "text": "bought from a2b",
+    "label": "Food"
+  },
+  {
+    "text": "apartment rent",
+    "label": "Utilities"
+  },
+  {
+    "text": "stadium",
+    "label": "Entertainment"
+  },
+  {
+    "text": "water bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "online payment",
+    "label": "General"
+  },
+  {
+    "text": "indigo payment",
+    "label": "Travel"
+  },
+  {
+    "text": "airpods",
+    "label": "Shopping"
+  },
+  {
+    "text": "coffee shop",
+    "label": "Food"
+  },
+  {
+    "text": "bought from snapdeal",
+    "label": "Shopping"
+  },
+  {
+    "text": "dental",
+    "label": "Healthcare"
+  },
+  {
+    "text": "flipkart order",
+    "label": "Shopping"
+  },
+  {
+    "text": "bus fare",
+    "label": "Transport"
+  },
+  {
+    "text": "vacation",
+    "label": "Travel"
+  },
+  {
+    "text": "bought from tneb",
+    "label": "Utilities"
+  },
+  {
+    "text": "library fee",
+    "label": "Education"
+  },
+  {
+    "text": "railway ticket",
+    "label": "Travel"
+  },
+  {
+    "text": "gaana",
+    "label": "Entertainment"
+  },
+  {
+    "text": "hyderabadi biryani",
+    "label": "Food"
+  },
+  {
+    "text": "pharmeasy order",
+    "label": "Healthcare"
+  },
+  {
+    "text": "deposit",
+    "label": "General"
+  },
+  {
+    "text": "bought from biba",
+    "label": "Shopping"
+  },
+  {
+    "text": "hp gas",
+    "label": "Utilities"
+  },
+  {
+    "text": "apple music payment",
+    "label": "Entertainment"
+  },
+  {
+    "text": "billiards",
+    "label": "Entertainment"
+  },
+  {
+    "text": "examination fee",
+    "label": "Education"
+  },
+  {
+    "text": "makemytrip payment",
+    "label": "Travel"
+  },
+  {
+    "text": "paid vivo store",
+    "label": "Shopping"
+  },
+  {
+    "text": "taco bell payment",
+    "label": "Food"
+  },
+  {
+    "text": "bought from spencers",
+    "label": "Groceries"
+  },
+  {
+    "text": "building maintenance",
+    "label": "Utilities"
+  },
+  {
+    "text": "oneplus purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "taco bell",
+    "label": "Food"
+  },
+  {
+    "text": "myntra bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "myntra",
+    "label": "Shopping"
+  },
+  {
+    "text": "cod",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bought from nike",
+    "label": "Shopping"
+  },
+  {
+    "text": "jiomart order",
+    "label": "Groceries"
+  },
+  {
+    "text": "oneplus payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "soft drink",
+    "label": "Food"
+  },
+  {
+    "text": "aha payment",
+    "label": "Entertainment"
+  },
+  {
+    "text": "kauvery",
+    "label": "Healthcare"
+  },
+  {
+    "text": "wardrobe",
+    "label": "Shopping"
+  },
+  {
+    "text": "zoo visit",
+    "label": "Entertainment"
+  },
+  {
+    "text": "toll plaza",
+    "label": "Transport"
+  },
+  {
+    "text": "nykaa bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "full body checkup",
+    "label": "Healthcare"
+  },
+  {
+    "text": "bought from flipkart",
+    "label": "Shopping"
+  },
+  {
+    "text": "internet bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "airasia",
+    "label": "Travel"
+  },
+  {
+    "text": "phone bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "water",
+    "label": "Utilities"
+  },
+  {
+    "text": "jiomart purchase",
+    "label": "Groceries"
+  },
+  {
+    "text": "mustard oil",
+    "label": "Groceries"
+  },
+  {
+    "text": "aha bill",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bigbasket",
+    "label": "Groceries"
+  },
+  {
+    "text": "house party",
+    "label": "Entertainment"
+  },
+  {
+    "text": "air india payment",
+    "label": "Travel"
+  },
+  {
+    "text": "cricket match",
+    "label": "Entertainment"
+  },
+  {
+    "text": "resort",
+    "label": "Travel"
+  },
+  {
+    "text": "tata cliq bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "room booking",
+    "label": "Travel"
+  },
+  {
+    "text": "momos",
+    "label": "Food"
+  },
+  {
+    "text": "adidas",
+    "label": "Shopping"
+  },
+  {
+    "text": "family trip",
+    "label": "Travel"
+  },
+  {
+    "text": "cake",
+    "label": "Food"
+  },
+  {
+    "text": "netmeds",
+    "label": "Healthcare"
+  },
+  {
+    "text": "vada pav",
+    "label": "Food"
+  },
+  {
+    "text": "dinner party",
+    "label": "Food"
+  },
+  {
+    "text": "pillow",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid nykaa",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid boat lifestyle",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from jiomart",
+    "label": "Groceries"
+  },
+  {
+    "text": "airbnb",
+    "label": "Travel"
+  },
+  {
+    "text": "smartphone",
+    "label": "Shopping"
+  },
+  {
+    "text": "ps5",
+    "label": "Entertainment"
+  },
+  {
+    "text": "redbus",
+    "label": "Transport"
+  },
+  {
+    "text": "monthly pass",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from dominos",
+    "label": "Food"
+  },
+  {
+    "text": "reference books",
+    "label": "Education"
+  },
+  {
+    "text": "insurance claim",
+    "label": "Healthcare"
+  },
+  {
+    "text": "yulu bikes payment",
+    "label": "Transport"
+  },
+  {
+    "text": "paid star bazaar",
+    "label": "Groceries"
+  },
+  {
+    "text": "apollo hospital",
+    "label": "Healthcare"
+  },
+  {
+    "text": "dmart bill",
+    "label": "Groceries"
+  },
+  {
+    "text": "paid ajio",
+    "label": "Shopping"
+  },
+  {
+    "text": "uber purchase",
+    "label": "Transport"
+  },
+  {
+    "text": "apollo",
+    "label": "Healthcare"
+  },
+  {
+    "text": "imps",
+    "label": "General"
+  },
+  {
+    "text": "dominos",
+    "label": "Food"
+  },
+  {
+    "text": "tennis ball",
+    "label": "Shopping"
+  },
+  {
+    "text": "sony center purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "prime subscription",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "training",
+    "label": "Education"
+  },
+  {
+    "text": "agoda",
+    "label": "Travel"
+  },
+  {
+    "text": "maintenance",
+    "label": "Utilities"
+  },
+  {
+    "text": "lab test",
+    "label": "Healthcare"
+  },
+  {
+    "text": "hotstar order",
+    "label": "Entertainment"
+  },
+  {
+    "text": "gaana purchase",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bought from star bazaar",
+    "label": "Groceries"
+  },
+  {
+    "text": "bus ticket",
+    "label": "Transport"
+  },
+  {
+    "text": "microwave",
+    "label": "Shopping"
+  },
+  {
+    "text": "natures basket",
+    "label": "Groceries"
+  },
+  {
+    "text": "ccd order",
+    "label": "Food"
+  },
+  {
+    "text": "paid airasia",
+    "label": "Travel"
+  },
+  {
+    "text": "paid spencers",
+    "label": "Groceries"
+  },
+  {
+    "text": "takeaway",
+    "label": "Food"
+  },
+  {
+    "text": "bigbazaar",
+    "label": "Groceries"
+  },
+  {
+    "text": "paid vistara",
+    "label": "Travel"
+  },
+  {
+    "text": "mcdonalds purchase",
+    "label": "Food"
+  },
+  {
+    "text": "oyo order",
+    "label": "Travel"
+  },
+  {
+    "text": "dinner date",
+    "label": "Food"
+  },
+  {
+    "text": "booking.com purchase",
+    "label": "Travel"
+  },
+  {
+    "text": "bigbazaar order",
+    "label": "Groceries"
+  },
+  {
+    "text": "gpay",
+    "label": "General"
+  },
+  {
+    "text": "dal makhani",
+    "label": "Food"
+  },
+  {
+    "text": "admission",
+    "label": "Healthcare"
+  },
+  {
+    "text": "hospital bill",
+    "label": "Healthcare"
+  },
+  {
+    "text": "paratha",
+    "label": "Food"
+  },
+  {
+    "text": "noise",
+    "label": "Shopping"
+  },
+  {
+    "text": "nike purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "tuition fees",
+    "label": "Education"
+  },
+  {
+    "text": "paid nike",
+    "label": "Shopping"
+  },
+  {
+    "text": "exhibition",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bike taxi",
+    "label": "Transport"
+  },
+  {
+    "text": "nike payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "redbus",
+    "label": "Travel"
+  },
+  {
+    "text": "biba purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "cafe coffee day",
+    "label": "Food"
+  },
+  {
+    "text": "football",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from mcdonalds",
+    "label": "Food"
+  },
+  {
+    "text": "apple music",
+    "label": "Entertainment"
+  },
+  {
+    "text": "sports gear",
+    "label": "Shopping"
+  },
+  {
+    "text": "transfer",
+    "label": "General"
+  },
+  {
+    "text": "air india",
+    "label": "Travel"
+  },
+  {
+    "text": "bsnl bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "ice cream",
+    "label": "Food"
+  },
+  {
+    "text": "admission fee",
+    "label": "Education"
+  },
+  {
+    "text": "bought from wrogn",
+    "label": "Shopping"
+  },
+  {
+    "text": "juice",
+    "label": "Food"
+  },
+  {
+    "text": "vodafone idea order",
+    "label": "Utilities"
+  },
+  {
+    "text": "rapido purchase",
+    "label": "Transport"
+  },
+  {
+    "text": "airasia payment",
+    "label": "Travel"
+  },
+  {
+    "text": "society maintenance",
+    "label": "Utilities"
+  },
+  {
+    "text": "apollo hospital purchase",
+    "label": "Healthcare"
+  },
+  {
+    "text": "rapido auto",
+    "label": "Transport"
+  },
+  {
+    "text": "yt premium",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "blanket",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from levis",
+    "label": "Shopping"
+  },
+  {
+    "text": "woodland bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "lenskart bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "spotify premium",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "vivo store purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from saravana bhavan",
+    "label": "Food"
+  },
+  {
+    "text": "paid samsung store",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from nilgiris",
+    "label": "Groceries"
+  },
+  {
+    "text": "nilgiris purchase",
+    "label": "Groceries"
+  },
+  {
+    "text": "brunch",
+    "label": "Food"
+  },
+  {
+    "text": "nature basket",
+    "label": "Groceries"
+  },
+  {
+    "text": "bought from hotstar",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid pantaloons",
+    "label": "Shopping"
+  },
+  {
+    "text": "valorant",
+    "label": "Entertainment"
+  },
+  {
+    "text": "hostel",
+    "label": "Travel"
+  },
+  {
+    "text": "dental checkup",
+    "label": "Healthcare"
+  },
+  {
+    "text": "croma order",
+    "label": "Shopping"
+  },
+  {
+    "text": "prime membership",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "clinic visit",
+    "label": "Healthcare"
+  },
+  {
+    "text": "paid burger king",
+    "label": "Food"
+  },
+  {
+    "text": "chicken",
+    "label": "Food"
+  },
+  {
+    "text": "bought from tsrtc",
+    "label": "Transport"
+  },
+  {
+    "text": "paid zee5",
+    "label": "Entertainment"
+  },
+  {
+    "text": "saravana bhavan order",
+    "label": "Food"
+  },
+  {
+    "text": "nilgiris",
+    "label": "Groceries"
+  },
+  {
+    "text": "netmeds order",
+    "label": "Healthcare"
+  },
+  {
+    "text": "dropbox",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "chole bhature",
+    "label": "Food"
+  },
+  {
+    "text": "property tax",
+    "label": "Utilities"
+  },
+  {
+    "text": "appliances",
+    "label": "Shopping"
+  },
+  {
+    "text": "chinese food",
+    "label": "Food"
+  },
+  {
+    "text": "starbucks order",
+    "label": "Food"
+  },
+  {
+    "text": "irctc order",
+    "label": "Travel"
+  },
+  {
+    "text": "water board order",
+    "label": "Utilities"
+  },
+  {
+    "text": "dth",
+    "label": "Utilities"
+  },
+  {
+    "text": "spotify subscription",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "pool",
+    "label": "Entertainment"
+  },
+  {
+    "text": "sandwich",
+    "label": "Food"
+  },
+  {
+    "text": "bmtc order",
+    "label": "Transport"
+  },
+  {
+    "text": "a2b order",
+    "label": "Food"
+  },
+  {
+    "text": "barbeque nation",
+    "label": "Food"
+  },
+  {
+    "text": "sports shoes",
+    "label": "Shopping"
+  },
+  {
+    "text": "ola order",
+    "label": "Transport"
+  },
+  {
+    "text": "nilgiris order",
+    "label": "Groceries"
+  },
+  {
+    "text": "wrap",
+    "label": "Food"
+  },
+  {
+    "text": "dell exclusive",
+    "label": "Shopping"
+  },
+  {
+    "text": "wifi bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "registration fee",
+    "label": "Education"
+  },
+  {
+    "text": "service tip",
+    "label": "General"
+  },
+  {
+    "text": "cable tv",
+    "label": "Utilities"
+  },
+  {
+    "text": "pathology",
+    "label": "Healthcare"
+  },
+  {
+    "text": "paid fortis",
+    "label": "Healthcare"
+  },
+  {
+    "text": "makemytrip",
+    "label": "Travel"
+  },
+  {
+    "text": "theatre",
+    "label": "Entertainment"
+  },
+  {
+    "text": "blinkit order",
+    "label": "Groceries"
+  },
+  {
+    "text": "bought from property tax online",
+    "label": "Utilities"
+  },
+  {
+    "text": "bought from fortis",
+    "label": "Healthcare"
+  },
+  {
+    "text": "vistara order",
+    "label": "Travel"
+  },
+  {
+    "text": "meditation app",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "icloud",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "boat lifestyle purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "headspace",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "paid netflix",
+    "label": "Entertainment"
+  },
+  {
+    "text": "linkedin learning",
+    "label": "Education"
+  },
+  {
+    "text": "cloudnine",
+    "label": "Healthcare"
+  },
+  {
+    "text": "rickshaw",
+    "label": "Transport"
+  },
+  {
+    "text": "tshirt",
+    "label": "Shopping"
+  },
+  {
+    "text": "furniture",
+    "label": "Shopping"
+  },
+  {
+    "text": "vodafone idea purchase",
+    "label": "Utilities"
+  },
+  {
+    "text": "more supermarket",
+    "label": "Groceries"
+  },
+  {
+    "text": "sony center bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "flight ticket",
+    "label": "Travel"
+  },
+  {
+    "text": "shirt",
+    "label": "Shopping"
+  },
+  {
+    "text": "paneer tikka",
+    "label": "Food"
+  },
+  {
+    "text": "yoga subscription",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "speaker",
+    "label": "Shopping"
+  },
+  {
+    "text": "bigbasket order",
+    "label": "Groceries"
+  },
+  {
+    "text": "puma",
+    "label": "Shopping"
+  },
+  {
+    "text": "yulu bikes",
+    "label": "Transport"
+  },
+  {
+    "text": "gas agency bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "paid snapdeal",
+    "label": "Shopping"
+  },
+  {
+    "text": "woodland",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from bsnl",
+    "label": "Utilities"
+  },
+  {
+    "text": "bought from mi store",
+    "label": "Shopping"
+  },
+  {
+    "text": "jio fiber",
+    "label": "Utilities"
+  },
+  {
+    "text": "kauvery purchase",
+    "label": "Healthcare"
+  },
+  {
+    "text": "bought from meru cabs",
+    "label": "Transport"
+  },
+  {
+    "text": "ola",
+    "label": "Transport"
+  },
+  {
+    "text": "bmtc purchase",
+    "label": "Transport"
+  },
+  {
+    "text": "book my show",
+    "label": "Entertainment"
+  },
+  {
+    "text": "myntra purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "wrogn order",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid reliance fresh",
+    "label": "Groceries"
+  },
+  {
+    "text": "petrol pump",
+    "label": "Transport"
+  },
+  {
+    "text": "electricity",
+    "label": "Utilities"
+  },
+  {
+    "text": "sleeper bus",
+    "label": "Travel"
+  },
+  {
+    "text": "vivo store",
+    "label": "Shopping"
+  },
+  {
+    "text": "oyo bill",
+    "label": "Travel"
+  },
+  {
+    "text": "paradise biryani payment",
+    "label": "Food"
+  },
+  {
+    "text": "bought from chai point",
+    "label": "Food"
+  },
+  {
+    "text": "bus ticket",
+    "label": "Travel"
+  },
+  {
+    "text": "bought from sonyliv",
+    "label": "Entertainment"
+  },
+  {
+    "text": "property tax online",
+    "label": "Utilities"
+  },
+  {
+    "text": "split bill",
+    "label": "General"
+  },
+  {
+    "text": "fortis payment",
+    "label": "Healthcare"
+  },
+  {
+    "text": "booking.com",
+    "label": "Travel"
+  },
+  {
+    "text": "asus store bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "amazon",
+    "label": "Shopping"
+  },
+  {
+    "text": "adidas bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid makemytrip",
+    "label": "Travel"
+  },
+  {
+    "text": "netflix payment",
+    "label": "Entertainment"
+  },
+  {
+    "text": "flour",
+    "label": "Groceries"
+  },
+  {
+    "text": "professional course",
+    "label": "Education"
+  },
+  {
+    "text": "bought from youtube premium",
+    "label": "Entertainment"
+  },
+  {
+    "text": "biba",
+    "label": "Shopping"
+  },
+  {
+    "text": "xbox",
+    "label": "Entertainment"
+  },
+  {
+    "text": "flipkart purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "smoothie",
+    "label": "Food"
+  },
+  {
+    "text": "piped gas",
+    "label": "Utilities"
+  },
+  {
+    "text": "bought from oneplus",
+    "label": "Shopping"
+  },
+  {
+    "text": "uber ride",
+    "label": "Transport"
+  },
+  {
+    "text": "jio recharge",
+    "label": "Utilities"
+  },
+  {
+    "text": "act fibernet purchase",
+    "label": "Utilities"
+  },
+  {
+    "text": "medplus bill",
+    "label": "Healthcare"
+  },
+  {
+    "text": "apollo hospital payment",
+    "label": "Healthcare"
+  },
+  {
+    "text": "yoga mat",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from aha",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bought from pepperfry",
+    "label": "Shopping"
+  },
+  {
+    "text": "house rent",
+    "label": "Utilities"
+  },
+  {
+    "text": "birthday gift",
+    "label": "Shopping"
+  },
+  {
+    "text": "donation",
+    "label": "General"
+  },
+  {
+    "text": "pantaloons purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "movie tickets",
+    "label": "Entertainment"
+  },
+  {
+    "text": "oyo",
+    "label": "Travel"
+  },
+  {
+    "text": "municipal tax",
+    "label": "Utilities"
+  },
+  {
+    "text": "milk packet",
+    "label": "Groceries"
+  },
+  {
+    "text": "return journey",
+    "label": "Transport"
+  },
+  {
+    "text": "kauvery payment",
+    "label": "Healthcare"
+  },
+  {
+    "text": "monthly subscription",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "croma purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "birthday party",
+    "label": "Entertainment"
+  },
+  {
+    "text": "airtel order",
+    "label": "Utilities"
+  },
+  {
+    "text": "byju",
+    "label": "Education"
+  },
+  {
+    "text": "show booking",
+    "label": "Entertainment"
+  },
+  {
+    "text": "cab",
+    "label": "Transport"
+  },
+  {
+    "text": "mcdonalds order",
+    "label": "Food"
+  },
+  {
+    "text": "saravana bhavan payment",
+    "label": "Food"
+  },
+  {
+    "text": "cng",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from water board",
+    "label": "Utilities"
+  },
+  {
+    "text": "snapdeal bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "vistara purchase",
+    "label": "Travel"
+  },
+  {
+    "text": "bought from goibibo",
+    "label": "Travel"
+  },
+  {
+    "text": "apple music",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "sofa",
+    "label": "Shopping"
+  },
+  {
+    "text": "star bazaar bill",
+    "label": "Groceries"
+  },
+  {
+    "text": "international flight",
+    "label": "Travel"
+  },
+  {
+    "text": "team lunch",
+    "label": "Food"
+  },
+  {
+    "text": "paid chai point",
+    "label": "Food"
+  },
+  {
+    "text": "reliance digital purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "cream stone purchase",
+    "label": "Food"
+  },
+  {
+    "text": "paid pepperfry",
+    "label": "Shopping"
+  },
+  {
+    "text": "resort booking",
+    "label": "Travel"
+  },
+  {
+    "text": "upgrad course",
+    "label": "Education"
+  },
+  {
+    "text": "shoes",
+    "label": "Shopping"
+  },
+  {
+    "text": "salt",
+    "label": "Groceries"
+  },
+  {
+    "text": "monthly grocery",
+    "label": "Groceries"
+  },
+  {
+    "text": "samsung store order",
+    "label": "Shopping"
+  },
+  {
+    "text": "restaurant bill",
+    "label": "Food"
+  },
+  {
+    "text": "ebooks",
+    "label": "Education"
+  },
+  {
+    "text": "bought from 1mg",
+    "label": "Healthcare"
+  },
+  {
+    "text": "pub night",
+    "label": "Entertainment"
+  },
+  {
+    "text": "pharmeasy payment",
+    "label": "Healthcare"
+  },
+  {
+    "text": "office commute",
+    "label": "Transport"
+  },
+  {
+    "text": "snapdeal",
+    "label": "Shopping"
+  },
+  {
+    "text": "apollo hospital bill",
+    "label": "Healthcare"
+  },
+  {
+    "text": "paid spotify",
+    "label": "Entertainment"
+  },
+  {
+    "text": "aha order",
+    "label": "Entertainment"
+  },
+  {
+    "text": "zepto",
+    "label": "Groceries"
+  },
+  {
+    "text": "broadband",
+    "label": "Utilities"
+  },
+  {
+    "text": "water park",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid asus store",
+    "label": "Shopping"
+  },
+  {
+    "text": "fresh vegetables",
+    "label": "Groceries"
+  },
+  {
+    "text": "gaana payment",
+    "label": "Entertainment"
+  },
+  {
+    "text": "fuel",
+    "label": "Transport"
+  },
+  {
+    "text": "spencers bill",
+    "label": "Groceries"
+  },
+  {
+    "text": "indigo flight",
+    "label": "Travel"
+  },
+  {
+    "text": "goibibo bill",
+    "label": "Travel"
+  },
+  {
+    "text": "electricity bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "subway bill",
+    "label": "Food"
+  },
+  {
+    "text": "paid apple music",
+    "label": "Entertainment"
+  },
+  {
+    "text": "akasa",
+    "label": "Travel"
+  },
+  {
+    "text": "rent",
+    "label": "Utilities"
+  },
+  {
+    "text": "pharmeasy purchase",
+    "label": "Healthcare"
+  },
+  {
+    "text": "sports event",
+    "label": "Entertainment"
+  },
+  {
+    "text": "indigo bill",
+    "label": "Travel"
+  },
+  {
+    "text": "ccd purchase",
+    "label": "Food"
+  },
+  {
+    "text": "ola bike",
+    "label": "Transport"
+  },
+  {
+    "text": "master checkup",
+    "label": "Healthcare"
+  },
+  {
+    "text": "pantaloons",
+    "label": "Shopping"
+  },
+  {
+    "text": "fortis",
+    "label": "Healthcare"
+  },
+  {
+    "text": "annual checkup",
+    "label": "Healthcare"
+  },
+  {
+    "text": "redbus order",
+    "label": "Transport"
+  },
+  {
+    "text": "wrogn payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "pastry",
+    "label": "Food"
+  },
+  {
+    "text": "jiocinema",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "pulses",
+    "label": "Groceries"
+  },
+  {
+    "text": "spotify order",
+    "label": "Entertainment"
+  },
+  {
+    "text": "lassi",
+    "label": "Food"
+  },
+  {
+    "text": "apple store bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "train ticket",
+    "label": "Travel"
+  },
+  {
+    "text": "max fashion payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "yatra",
+    "label": "Travel"
+  },
+  {
+    "text": "d2h",
+    "label": "Utilities"
+  },
+  {
+    "text": "celebration",
+    "label": "Entertainment"
+  },
+  {
+    "text": "more supermarket purchase",
+    "label": "Groceries"
+  },
+  {
+    "text": "postpaid",
+    "label": "Utilities"
+  },
+  {
+    "text": "metro card",
+    "label": "Transport"
+  },
+  {
+    "text": "prepaid recharge",
+    "label": "Utilities"
+  },
+  {
+    "text": "spencers payment",
+    "label": "Groceries"
+  },
+  {
+    "text": "bought from apple music",
+    "label": "Entertainment"
+  },
+  {
+    "text": "kfc payment",
+    "label": "Food"
+  },
+  {
+    "text": "ipad",
+    "label": "Shopping"
+  },
+  {
+    "text": "bread",
+    "label": "Groceries"
+  },
+  {
+    "text": "paid us polo",
+    "label": "Shopping"
+  },
+  {
+    "text": "sonyliv order",
+    "label": "Entertainment"
+  },
+  {
+    "text": "art gallery",
+    "label": "Entertainment"
+  },
+  {
+    "text": "max fashion order",
+    "label": "Shopping"
+  },
+  {
+    "text": "indigo order",
+    "label": "Travel"
+  },
+  {
+    "text": "fastag",
+    "label": "Transport"
+  },
+  {
+    "text": "bwssb",
+    "label": "Utilities"
+  },
+  {
+    "text": "coffee",
+    "label": "Food"
+  },
+  {
+    "text": "sabzi",
+    "label": "Groceries"
+  },
+  {
+    "text": "contribution",
+    "label": "General"
+  },
+  {
+    "text": "overnight bus",
+    "label": "Travel"
+  },
+  {
+    "text": "paid myntra",
+    "label": "Shopping"
+  },
+  {
+    "text": "starbucks payment",
+    "label": "Food"
+  },
+  {
+    "text": "yulu bikes bill",
+    "label": "Transport"
+  },
+  {
+    "text": "payment",
+    "label": "General"
+  },
+  {
+    "text": "bought from pantaloons",
+    "label": "Shopping"
+  },
+  {
+    "text": "tea break",
+    "label": "Food"
+  },
+  {
+    "text": "bowling alley",
+    "label": "Entertainment"
+  },
+  {
+    "text": "boat lifestyle order",
+    "label": "Shopping"
+  },
+  {
+    "text": "refund",
+    "label": "General"
+  },
+  {
+    "text": "lunch with friends",
+    "label": "Food"
+  },
+  {
+    "text": "bought from starbucks",
+    "label": "Food"
+  },
+  {
+    "text": "yatra booking",
+    "label": "Travel"
+  },
+  {
+    "text": "tsrtc payment",
+    "label": "Transport"
+  },
+  {
+    "text": "vodafone idea payment",
+    "label": "Utilities"
+  },
+  {
+    "text": "mi store",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from medplus",
+    "label": "Healthcare"
+  },
+  {
+    "text": "mcdonalds payment",
+    "label": "Food"
+  },
+  {
+    "text": "bgmi",
+    "label": "Entertainment"
+  },
+  {
+    "text": "mutton biryani",
+    "label": "Food"
+  },
+  {
+    "text": "cultfit",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "tata cliq order",
+    "label": "Shopping"
+  },
+  {
+    "text": "grocery",
+    "label": "Groceries"
+  },
+  {
+    "text": "car fuel",
+    "label": "Transport"
+  },
+  {
+    "text": "nykaa purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "gas",
+    "label": "Utilities"
+  },
+  {
+    "text": "chai point purchase",
+    "label": "Food"
+  },
+  {
+    "text": "paid nature's basket",
+    "label": "Groceries"
+  },
+  {
+    "text": "netflix monthly",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "gas agency order",
+    "label": "Utilities"
+  },
+  {
+    "text": "miscellaneous",
+    "label": "General"
+  },
+  {
+    "text": "bought from boat lifestyle",
+    "label": "Shopping"
+  },
+  {
+    "text": "upi transfer",
+    "label": "General"
+  },
+  {
+    "text": "paradise biryani bill",
+    "label": "Food"
+  },
+  {
+    "text": "play",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid wrogn",
+    "label": "Shopping"
+  },
+  {
+    "text": "spotify",
+    "label": "Entertainment"
+  },
+  {
+    "text": "museum",
+    "label": "Entertainment"
+  },
+  {
+    "text": "tuition fee",
+    "label": "Education"
+  },
+  {
+    "text": "us polo order",
+    "label": "Shopping"
+  },
+  {
+    "text": "drinks",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bought from yatra",
+    "label": "Travel"
+  },
+  {
+    "text": "karaoke night",
+    "label": "Entertainment"
+  },
+  {
+    "text": "vistara",
+    "label": "Travel"
+  },
+  {
+    "text": "vistara payment",
+    "label": "Travel"
+  },
+  {
+    "text": "airtel",
+    "label": "Utilities"
+  },
+  {
+    "text": "gaming zone",
+    "label": "Entertainment"
+  },
+  {
+    "text": "gaana plus",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "saravana bhavan",
+    "label": "Food"
+  },
+  {
+    "text": "fresh fruits",
+    "label": "Groceries"
+  },
+  {
+    "text": "metro recharge",
+    "label": "Transport"
+  },
+  {
+    "text": "metro",
+    "label": "Transport"
+  },
+  {
+    "text": "concert",
+    "label": "Entertainment"
+  },
+  {
+    "text": "spotify family",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "optician",
+    "label": "Healthcare"
+  },
+  {
+    "text": "levis",
+    "label": "Shopping"
+  },
+  {
+    "text": "amusement park",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid kauvery",
+    "label": "Healthcare"
+  },
+  {
+    "text": "bmtc bill",
+    "label": "Transport"
+  },
+  {
+    "text": "tablets",
+    "label": "Healthcare"
+  },
+  {
+    "text": "bought from yulu bikes",
+    "label": "Transport"
+  },
+  {
+    "text": "handling charge",
+    "label": "General"
+  },
+  {
+    "text": "reliance digital bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "1mg payment",
+    "label": "Healthcare"
+  },
+  {
+    "text": "samsung store purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "apple store",
+    "label": "Shopping"
+  },
+  {
+    "text": "gaana bill",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bmtc",
+    "label": "Transport"
+  },
+  {
+    "text": "noise bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "zee5 purchase",
+    "label": "Entertainment"
+  },
+  {
+    "text": "property tax online purchase",
+    "label": "Utilities"
+  },
+  {
+    "text": "myntra payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "redbus bill",
+    "label": "Transport"
+  },
+  {
+    "text": "dominos purchase",
+    "label": "Food"
+  },
+  {
+    "text": "trip expense",
+    "label": "Travel"
+  },
+  {
+    "text": "cinepolis",
+    "label": "Entertainment"
+  },
+  {
+    "text": "fab hotels",
+    "label": "Travel"
+  },
+  {
+    "text": "samsung store bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid aha",
+    "label": "Entertainment"
+  },
+  {
+    "text": "essel world",
+    "label": "Entertainment"
+  },
+  {
+    "text": "nike",
+    "label": "Shopping"
+  },
+  {
+    "text": "spencers purchase",
+    "label": "Groceries"
+  },
+  {
+    "text": "jio fiber bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "bought from cream stone",
+    "label": "Food"
+  },
+  {
+    "text": "earphones",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid meru cabs",
+    "label": "Transport"
+  },
+  {
+    "text": "school fee",
+    "label": "Education"
+  },
+  {
+    "text": "saravana bhavan purchase",
+    "label": "Food"
+  },
+  {
+    "text": "paid levis",
+    "label": "Shopping"
+  },
+  {
+    "text": "makemytrip order",
+    "label": "Travel"
+  },
+  {
+    "text": "seminar",
+    "label": "Education"
+  },
+  {
+    "text": "1mg",
+    "label": "Healthcare"
+  },
+  {
+    "text": "aha",
+    "label": "Entertainment"
+  },
+  {
+    "text": "uber payment",
+    "label": "Transport"
+  },
+  {
+    "text": "nike order",
+    "label": "Shopping"
+  },
+  {
+    "text": "byjus",
+    "label": "Education"
+  },
+  {
+    "text": "settle up",
+    "label": "General"
+  },
+  {
+    "text": "barbeque nation purchase",
+    "label": "Food"
+  },
+  {
+    "text": "private tuition",
+    "label": "Education"
+  },
+  {
+    "text": "inox booking",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bought from apollo hospital",
+    "label": "Healthcare"
+  },
+  {
+    "text": "amazon prime bill",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bar night",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid subway",
+    "label": "Food"
+  },
+  {
+    "text": "act fibernet bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "paid meesho",
+    "label": "Shopping"
+  },
+  {
+    "text": "property tax online bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "laptop",
+    "label": "Shopping"
+  },
+  {
+    "text": "ccd",
+    "label": "Food"
+  },
+  {
+    "text": "hotstar",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "football match",
+    "label": "Entertainment"
+  },
+  {
+    "text": "money transfer",
+    "label": "General"
+  },
+  {
+    "text": "pg rent",
+    "label": "Utilities"
+  },
+  {
+    "text": "pvr booking",
+    "label": "Entertainment"
+  },
+  {
+    "text": "makemytrip purchase",
+    "label": "Travel"
+  },
+  {
+    "text": "school fees",
+    "label": "Education"
+  },
+  {
+    "text": "vehicle wash",
+    "label": "Transport"
+  },
+  {
+    "text": "doctor fee",
+    "label": "Healthcare"
+  },
+  {
+    "text": "cab ride",
+    "label": "Transport"
+  },
+  {
+    "text": "bigbazaar payment",
+    "label": "Groceries"
+  },
+  {
+    "text": "jio fiber payment",
+    "label": "Utilities"
+  },
+  {
+    "text": "paid air india",
+    "label": "Travel"
+  },
+  {
+    "text": "paid netmeds",
+    "label": "Healthcare"
+  },
+  {
+    "text": "hotstar",
+    "label": "Entertainment"
+  },
+  {
+    "text": "lenskart payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "barbeque nation bill",
+    "label": "Food"
+  },
+  {
+    "text": "reliance fresh purchase",
+    "label": "Groceries"
+  },
+  {
+    "text": "taco bell bill",
+    "label": "Food"
+  },
+  {
+    "text": "indigo purchase",
+    "label": "Travel"
+  },
+  {
+    "text": "cng refill",
+    "label": "Transport"
+  },
+  {
+    "text": "h&m",
+    "label": "Shopping"
+  },
+  {
+    "text": "cash withdrawal",
+    "label": "General"
+  },
+  {
+    "text": "paid apollo hospital",
+    "label": "Healthcare"
+  },
+  {
+    "text": "ola auto",
+    "label": "Transport"
+  },
+  {
+    "text": "hotstar premium",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "booking.com bill",
+    "label": "Travel"
+  },
+  {
+    "text": "gas agency",
+    "label": "Utilities"
+  },
+  {
+    "text": "house tax",
+    "label": "Utilities"
+  },
+  {
+    "text": "rice bag",
+    "label": "Groceries"
+  },
+  {
+    "text": "yatra purchase",
+    "label": "Travel"
+  },
+  {
+    "text": "air india order",
+    "label": "Travel"
+  },
+  {
+    "text": "other expense",
+    "label": "General"
+  },
+  {
+    "text": "museum ticket",
+    "label": "Entertainment"
+  },
+  {
+    "text": "bought from lenskart",
+    "label": "Shopping"
+  },
+  {
+    "text": "suburban train",
+    "label": "Transport"
+  },
+  {
+    "text": "paid tneb",
+    "label": "Utilities"
+  },
+  {
+    "text": "local bus",
+    "label": "Transport"
+  },
+  {
+    "text": "gaming",
+    "label": "Entertainment"
+  },
+  {
+    "text": "ajio order",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from samsung store",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from apple store",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from subway",
+    "label": "Food"
+  },
+  {
+    "text": "paid airtel",
+    "label": "Utilities"
+  },
+  {
+    "text": "apollo pharmacy purchase",
+    "label": "Healthcare"
+  },
+  {
+    "text": "mcdonalds bill",
+    "label": "Food"
+  },
+  {
+    "text": "morning breakfast",
+    "label": "Food"
+  },
+  {
+    "text": "auto rickshaw",
+    "label": "Transport"
+  },
+  {
+    "text": "uber bill",
+    "label": "Transport"
+  },
+  {
+    "text": "thali",
+    "label": "Food"
+  },
+  {
+    "text": "thyrocare",
+    "label": "Healthcare"
+  },
+  {
+    "text": "flight",
+    "label": "Travel"
+  },
+  {
+    "text": "fruits",
+    "label": "Groceries"
+  },
+  {
+    "text": "ola cab",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from bigbazaar",
+    "label": "Groceries"
+  },
+  {
+    "text": "rajdhani",
+    "label": "Travel"
+  },
+  {
+    "text": "fab hotel",
+    "label": "Travel"
+  },
+  {
+    "text": "shared expense",
+    "label": "General"
+  },
+  {
+    "text": "rapido order",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from amazon prime",
+    "label": "Entertainment"
+  },
+  {
+    "text": "pepperfry",
+    "label": "Shopping"
+  },
+  {
+    "text": "mobile recharge",
+    "label": "Utilities"
+  },
+  {
+    "text": "kfc bucket",
+    "label": "Food"
+  },
+  {
+    "text": "pens",
+    "label": "Education"
+  },
+  {
+    "text": "bought from pharmeasy",
+    "label": "Healthcare"
+  },
+  {
+    "text": "pepperfry purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "macbook",
+    "label": "Shopping"
+  },
+  {
+    "text": "allen solly bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "gas bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "airasia order",
+    "label": "Travel"
+  },
+  {
+    "text": "lens",
+    "label": "Healthcare"
+  },
+  {
+    "text": "barbeque nation payment",
+    "label": "Food"
+  },
+  {
+    "text": "fortis order",
+    "label": "Healthcare"
+  },
+  {
+    "text": "bought from apollo pharmacy",
+    "label": "Healthcare"
+  },
+  {
+    "text": "glasses",
+    "label": "Healthcare"
+  },
+  {
+    "text": "netflix bill",
+    "label": "Entertainment"
+  },
+  {
+    "text": "disney hotstar",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "tatkal ticket",
+    "label": "Travel"
+  },
+  {
+    "text": "bought from allen solly",
+    "label": "Shopping"
+  },
+  {
+    "text": "1mg bill",
+    "label": "Healthcare"
+  },
+  {
+    "text": "dmart",
+    "label": "Groceries"
+  },
+  {
+    "text": "asus store purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "samsung store payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "biryani",
+    "label": "Food"
+  },
+  {
+    "text": "art supplies",
+    "label": "Education"
+  },
+  {
+    "text": "group expense",
+    "label": "General"
+  },
+  {
+    "text": "dominos payment",
+    "label": "Food"
+  },
+  {
+    "text": "paid jio fiber",
+    "label": "Utilities"
+  },
+  {
+    "text": "booking.com order",
+    "label": "Travel"
+  },
+  {
+    "text": "online course",
+    "label": "Education"
+  },
+  {
+    "text": "goair",
+    "label": "Travel"
+  },
+  {
+    "text": "cleartrip",
+    "label": "Travel"
+  },
+  {
+    "text": "breakfast",
+    "label": "Food"
+  },
+  {
+    "text": "evening tea",
+    "label": "Food"
+  },
+  {
+    "text": "spicejet",
+    "label": "Travel"
+  },
+  {
+    "text": "a2b payment",
+    "label": "Food"
+  },
+  {
+    "text": "png bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "meesho purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "youtube premium purchase",
+    "label": "Entertainment"
+  },
+  {
+    "text": "more supermarket bill",
+    "label": "Groceries"
+  },
+  {
+    "text": "amazon shopping",
+    "label": "Shopping"
+  },
+  {
+    "text": "random expense",
+    "label": "General"
+  },
+  {
+    "text": "home essentials",
+    "label": "Groceries"
+  },
+  {
+    "text": "spectacles",
+    "label": "Healthcare"
+  },
+  {
+    "text": "paid oyo",
+    "label": "Travel"
+  },
+  {
+    "text": "sonyliv bill",
+    "label": "Entertainment"
+  },
+  {
+    "text": "airtel fiber",
+    "label": "Utilities"
+  },
+  {
+    "text": "textbooks",
+    "label": "Education"
+  },
+  {
+    "text": "airtel bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "clothing",
+    "label": "Shopping"
+  },
+  {
+    "text": "pizza",
+    "label": "Food"
+  },
+  {
+    "text": "dish tv",
+    "label": "Utilities"
+  },
+  {
+    "text": "table",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid medplus",
+    "label": "Healthcare"
+  },
+  {
+    "text": "dunzo",
+    "label": "Groceries"
+  },
+  {
+    "text": "kfc",
+    "label": "Food"
+  },
+  {
+    "text": "nightclub",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid irctc",
+    "label": "Travel"
+  },
+  {
+    "text": "nature's basket payment",
+    "label": "Groceries"
+  },
+  {
+    "text": "shipping",
+    "label": "General"
+  },
+  {
+    "text": "live concert",
+    "label": "Entertainment"
+  },
+  {
+    "text": "oneplus",
+    "label": "Shopping"
+  },
+  {
+    "text": "ct scan",
+    "label": "Healthcare"
+  },
+  {
+    "text": "hospital",
+    "label": "Healthcare"
+  },
+  {
+    "text": "chicken wings",
+    "label": "Food"
+  },
+  {
+    "text": "snapdeal order",
+    "label": "Shopping"
+  },
+  {
+    "text": "snapdeal payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid mcdonalds",
+    "label": "Food"
+  },
+  {
+    "text": "vodafone idea",
+    "label": "Utilities"
+  },
+  {
+    "text": "apple store payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid act fibernet",
+    "label": "Utilities"
+  },
+  {
+    "text": "holiday",
+    "label": "Travel"
+  },
+  {
+    "text": "water tax",
+    "label": "Utilities"
+  },
+  {
+    "text": "barista",
+    "label": "Food"
+  },
+  {
+    "text": "family dinner",
+    "label": "Food"
+  },
+  {
+    "text": "movie ticket",
+    "label": "Entertainment"
+  },
+  {
+    "text": "ccd payment",
+    "label": "Food"
+  },
+  {
+    "text": "aster bill",
+    "label": "Healthcare"
+  },
+  {
+    "text": "burger king bill",
+    "label": "Food"
+  },
+  {
+    "text": "tuk tuk",
+    "label": "Transport"
+  },
+  {
+    "text": "lenskart purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "water board",
+    "label": "Utilities"
+  },
+  {
+    "text": "wifi",
+    "label": "Utilities"
+  },
+  {
+    "text": "charity",
+    "label": "General"
+  },
+  {
+    "text": "paid sonyliv",
+    "label": "Entertainment"
+  },
+  {
+    "text": "zoo",
+    "label": "Entertainment"
+  },
+  {
+    "text": "hp world bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "free fire",
+    "label": "Entertainment"
+  },
+  {
+    "text": "taxi fare",
+    "label": "Transport"
+  },
+  {
+    "text": "paid apple store",
+    "label": "Shopping"
+  },
+  {
+    "text": "internet",
+    "label": "Utilities"
+  },
+  {
+    "text": "dell exclusive bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "valet parking",
+    "label": "Transport"
+  },
+  {
+    "text": "cold coffee",
+    "label": "Food"
+  },
+  {
+    "text": "health checkup",
+    "label": "Healthcare"
+  },
+  {
+    "text": "spencers order",
+    "label": "Groceries"
+  },
+  {
+    "text": "us polo purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from jio fiber",
+    "label": "Utilities"
+  },
+  {
+    "text": "starbucks",
+    "label": "Food"
+  },
+  {
+    "text": "cab booking",
+    "label": "Transport"
+  },
+  {
+    "text": "water charges",
+    "label": "Utilities"
+  },
+  {
+    "text": "emergency fund",
+    "label": "General"
+  },
+  {
+    "text": "movie",
+    "label": "Entertainment"
+  },
+  {
+    "text": "amazon prime order",
+    "label": "Entertainment"
+  },
+  {
+    "text": "croma bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "tata sky internet",
+    "label": "Utilities"
+  },
+  {
+    "text": "sonyliv",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "medical",
+    "label": "Healthcare"
+  },
+  {
+    "text": "meesho",
+    "label": "Shopping"
+  },
+  {
+    "text": "pvr",
+    "label": "Entertainment"
+  },
+  {
+    "text": "indigo",
+    "label": "Travel"
+  },
+  {
+    "text": "saree",
+    "label": "Shopping"
+  },
+  {
+    "text": "zomato",
+    "label": "Food"
+  },
+  {
+    "text": "sonyliv purchase",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid zara",
+    "label": "Shopping"
+  },
+  {
+    "text": "smart watch",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid tata cliq",
+    "label": "Shopping"
+  },
+  {
+    "text": "teeth",
+    "label": "Healthcare"
+  },
+  {
+    "text": "get together",
+    "label": "Entertainment"
+  },
+  {
+    "text": "xray",
+    "label": "Healthcare"
+  },
+  {
+    "text": "reliance digital payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "drugstore",
+    "label": "Healthcare"
+  },
+  {
+    "text": "security deposit",
+    "label": "General"
+  },
+  {
+    "text": "blinkit",
+    "label": "Groceries"
+  },
+  {
+    "text": "bought from adidas",
+    "label": "Shopping"
+  },
+  {
+    "text": "phone recharge",
+    "label": "Utilities"
+  },
+  {
+    "text": "laser tag",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paid uber",
+    "label": "Transport"
+  },
+  {
+    "text": "clothes",
+    "label": "Shopping"
+  },
+  {
+    "text": "sleeper ticket",
+    "label": "Travel"
+  },
+  {
+    "text": "college fee",
+    "label": "Education"
+  },
+  {
+    "text": "chicken burger",
+    "label": "Food"
+  },
+  {
+    "text": "pav bhaji",
+    "label": "Food"
+  },
+  {
+    "text": "mi store payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "washing machine",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid cream stone",
+    "label": "Food"
+  },
+  {
+    "text": "sweet",
+    "label": "Food"
+  },
+  {
+    "text": "clinic",
+    "label": "Healthcare"
+  },
+  {
+    "text": "makemytrip bill",
+    "label": "Travel"
+  },
+  {
+    "text": "swiggy delivery",
+    "label": "Food"
+  },
+  {
+    "text": "water board purchase",
+    "label": "Utilities"
+  },
+  {
+    "text": "oil",
+    "label": "Groceries"
+  },
+  {
+    "text": "oyo rooms",
+    "label": "Travel"
+  },
+  {
+    "text": "home decor",
+    "label": "Shopping"
+  },
+  {
+    "text": "chicken biryani",
+    "label": "Food"
+  },
+  {
+    "text": "bought from sony center",
+    "label": "Shopping"
+  },
+  {
+    "text": "zee5 payment",
+    "label": "Entertainment"
+  },
+  {
+    "text": "treatment",
+    "label": "Healthcare"
+  },
+  {
+    "text": "woodland order",
+    "label": "Shopping"
+  },
+  {
+    "text": "mobile bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "dosa",
+    "label": "Food"
+  },
+  {
+    "text": "meru cabs order",
+    "label": "Transport"
+  },
+  {
+    "text": "tata power",
+    "label": "Utilities"
+  },
+  {
+    "text": "cloudnine payment",
+    "label": "Healthcare"
+  },
+  {
+    "text": "doctor visit",
+    "label": "Healthcare"
+  },
+  {
+    "text": "vi",
+    "label": "Utilities"
+  },
+  {
+    "text": "monthly ration",
+    "label": "Groceries"
+  },
+  {
+    "text": "bms booking",
+    "label": "Entertainment"
+  },
+  {
+    "text": "ola ride",
+    "label": "Transport"
+  },
+  {
+    "text": "bonus",
+    "label": "General"
+  },
+  {
+    "text": "paid metro rail",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from asus store",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid rapido",
+    "label": "Transport"
+  },
+  {
+    "text": "apartment maintenance",
+    "label": "Utilities"
+  },
+  {
+    "text": "tatacliq",
+    "label": "Shopping"
+  },
+  {
+    "text": "wrogn bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "zomato order",
+    "label": "Food"
+  },
+  {
+    "text": "star bazaar purchase",
+    "label": "Groceries"
+  },
+  {
+    "text": "pepperfry order",
+    "label": "Shopping"
+  },
+  {
+    "text": "nykaa payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "electronics",
+    "label": "Shopping"
+  },
+  {
+    "text": "notebooks",
+    "label": "Education"
+  },
+  {
+    "text": "headphones",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from us polo",
+    "label": "Shopping"
+  },
+  {
+    "text": "a2b bill",
+    "label": "Food"
+  },
+  {
+    "text": "prescription",
+    "label": "Healthcare"
+  },
+  {
+    "text": "max fashion purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "coaching",
+    "label": "Education"
+  },
+  {
+    "text": "bought from tata cliq",
+    "label": "Shopping"
+  },
+  {
+    "text": "atm withdrawal",
+    "label": "General"
+  },
+  {
+    "text": "pub",
+    "label": "Entertainment"
+  },
+  {
+    "text": "blood test",
+    "label": "Healthcare"
+  },
+  {
+    "text": "sony center order",
+    "label": "Shopping"
+  },
+  {
+    "text": "pizza hut",
+    "label": "Food"
+  },
+  {
+    "text": "nike bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "nature's basket order",
+    "label": "Groceries"
+  },
+  {
+    "text": "bought from max fashion",
+    "label": "Shopping"
+  },
+  {
+    "text": "mmt booking",
+    "label": "Travel"
+  },
+  {
+    "text": "exam fee",
+    "label": "Education"
+  },
+  {
+    "text": "parking charges",
+    "label": "Transport"
+  },
+  {
+    "text": "footwear",
+    "label": "Shopping"
+  },
+  {
+    "text": "bedsheet",
+    "label": "Shopping"
+  },
+  {
+    "text": "redbus purchase",
+    "label": "Transport"
+  },
+  {
+    "text": "laptop purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid 1mg",
+    "label": "Healthcare"
+  },
+  {
+    "text": "rapido",
+    "label": "Transport"
+  },
+  {
+    "text": "bowling",
+    "label": "Entertainment"
+  },
+  {
+    "text": "reliance fresh bill",
+    "label": "Groceries"
+  },
+  {
+    "text": "hotel stay",
+    "label": "Travel"
+  },
+  {
+    "text": "wrist watch",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from gaana",
+    "label": "Entertainment"
+  },
+  {
+    "text": "yatra bill",
+    "label": "Travel"
+  },
+  {
+    "text": "burger king payment",
+    "label": "Food"
+  },
+  {
+    "text": "bought from reliance fresh",
+    "label": "Groceries"
+  },
+  {
+    "text": "coursera",
+    "label": "Education"
+  },
+  {
+    "text": "udemy course",
+    "label": "Education"
+  },
+  {
+    "text": "zepto delivery",
+    "label": "Groceries"
+  },
+  {
+    "text": "amazon purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "hakka noodles",
+    "label": "Food"
+  },
+  {
+    "text": "noodles",
+    "label": "Food"
+  },
+  {
+    "text": "certification course",
+    "label": "Education"
+  },
+  {
+    "text": "nature's basket",
+    "label": "Groceries"
+  },
+  {
+    "text": "metro rail order",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from metro rail",
+    "label": "Transport"
+  },
+  {
+    "text": "root canal",
+    "label": "Healthcare"
+  },
+  {
+    "text": "apple music order",
+    "label": "Entertainment"
+  },
+  {
+    "text": "tea",
+    "label": "Food"
+  },
+  {
+    "text": "delivery fee",
+    "label": "General"
+  },
+  {
+    "text": "aha purchase",
+    "label": "Entertainment"
+  },
+  {
+    "text": "paytm",
+    "label": "General"
+  },
+  {
+    "text": "bought from noise",
+    "label": "Shopping"
+  },
+  {
+    "text": "refrigerator",
+    "label": "Shopping"
+  },
+  {
+    "text": "flipkart payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "medplus payment",
+    "label": "Healthcare"
+  },
+  {
+    "text": "pizza hut order",
+    "label": "Food"
+  },
+  {
+    "text": "irctc payment",
+    "label": "Travel"
+  },
+  {
+    "text": "bigbazaar bill",
+    "label": "Groceries"
+  },
+  {
+    "text": "kirana store",
+    "label": "Groceries"
+  },
+  {
+    "text": "badminton racket",
+    "label": "Shopping"
+  },
+  {
+    "text": "certificate",
+    "label": "Education"
+  },
+  {
+    "text": "croma",
+    "label": "Shopping"
+  },
+  {
+    "text": "pharmacy",
+    "label": "Healthcare"
+  },
+  {
+    "text": "wynk",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "paid amazon prime",
+    "label": "Entertainment"
+  },
+  {
+    "text": "health insurance",
+    "label": "Healthcare"
+  },
+  {
+    "text": "kauvery bill",
+    "label": "Healthcare"
+  },
+  {
+    "text": "rice",
+    "label": "Groceries"
+  },
+  {
+    "text": "instamart",
+    "label": "Groceries"
+  },
+  {
+    "text": "netflix annual",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "tsrtc purchase",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from h&m",
+    "label": "Shopping"
+  },
+  {
+    "text": "neft",
+    "label": "General"
+  },
+  {
+    "text": "goibibo",
+    "label": "Travel"
+  },
+  {
+    "text": "paid a2b",
+    "label": "Food"
+  },
+  {
+    "text": "bar",
+    "label": "Entertainment"
+  },
+  {
+    "text": "spencers",
+    "label": "Groceries"
+  },
+  {
+    "text": "bag",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from ccd",
+    "label": "Food"
+  },
+  {
+    "text": "tablet",
+    "label": "Shopping"
+  },
+  {
+    "text": "trip",
+    "label": "Travel"
+  },
+  {
+    "text": "supermarket shopping",
+    "label": "Groceries"
+  },
+  {
+    "text": "daily milk",
+    "label": "Groceries"
+  },
+  {
+    "text": "tneb bill",
+    "label": "Utilities"
+  },
+  {
+    "text": "ac",
+    "label": "Shopping"
+  },
+  {
+    "text": "stationery",
+    "label": "Education"
+  },
+  {
+    "text": "pantaloons bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "reward",
+    "label": "General"
+  },
+  {
+    "text": "emi",
+    "label": "General"
+  },
+  {
+    "text": "meru cabs",
+    "label": "Transport"
+  },
+  {
+    "text": "vodafone",
+    "label": "Utilities"
+  },
+  {
+    "text": "paid bsnl",
+    "label": "Utilities"
+  },
+  {
+    "text": "opd",
+    "label": "Healthcare"
+  },
+  {
+    "text": "bluetooth speaker",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid max fashion",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from zee5",
+    "label": "Entertainment"
+  },
+  {
+    "text": "toll",
+    "label": "Transport"
+  },
+  {
+    "text": "paid flipkart",
+    "label": "Shopping"
+  },
+  {
+    "text": "roll",
+    "label": "Food"
+  },
+  {
+    "text": "zomato delivery",
+    "label": "Food"
+  },
+  {
+    "text": "phonepe",
+    "label": "General"
+  },
+  {
+    "text": "adani",
+    "label": "Utilities"
+  },
+  {
+    "text": "aster order",
+    "label": "Healthcare"
+  },
+  {
+    "text": "paid yatra",
+    "label": "Travel"
+  },
+  {
+    "text": "jio",
+    "label": "Utilities"
+  },
+  {
+    "text": "paid woodland",
+    "label": "Shopping"
+  },
+  {
+    "text": "gas cylinder",
+    "label": "Utilities"
+  },
+  {
+    "text": "aloo paratha",
+    "label": "Food"
+  },
+  {
+    "text": "meru cabs bill",
+    "label": "Transport"
+  },
+  {
+    "text": "watch",
+    "label": "Shopping"
+  },
+  {
+    "text": "apollo pharmacy payment",
+    "label": "Healthcare"
+  },
+  {
+    "text": "parcel",
+    "label": "Food"
+  },
+  {
+    "text": "advance payment",
+    "label": "General"
+  },
+  {
+    "text": "jio fiber purchase",
+    "label": "Utilities"
+  },
+  {
+    "text": "zee5",
+    "label": "Entertainment"
+  },
+  {
+    "text": "h&m payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "bought from rapido",
+    "label": "Transport"
+  },
+  {
+    "text": "pantaloons payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "paid hp world",
+    "label": "Shopping"
+  },
+  {
+    "text": "reliance digital order",
+    "label": "Shopping"
+  },
+  {
+    "text": "pharmeasy bill",
+    "label": "Healthcare"
+  },
+  {
+    "text": "personal loan",
+    "label": "General"
+  },
+  {
+    "text": "vivo store payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "metro rail bill",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from woodland",
+    "label": "Shopping"
+  },
+  {
+    "text": "local train",
+    "label": "Transport"
+  },
+  {
+    "text": "library",
+    "label": "Education"
+  },
+  {
+    "text": "university fees",
+    "label": "Education"
+  },
+  {
+    "text": "puma purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "milkshake",
+    "label": "Food"
+  },
+  {
+    "text": "butter chicken",
+    "label": "Food"
+  },
+  {
+    "text": "sonyliv",
+    "label": "Entertainment"
+  },
+  {
+    "text": "dmart shopping",
+    "label": "Groceries"
+  },
+  {
+    "text": "sunflower oil",
+    "label": "Groceries"
+  },
+  {
+    "text": "bought from air india",
+    "label": "Travel"
+  },
+  {
+    "text": "a2b purchase",
+    "label": "Food"
+  },
+  {
+    "text": "upgrad",
+    "label": "Education"
+  },
+  {
+    "text": "bmtc payment",
+    "label": "Transport"
+  },
+  {
+    "text": "bought from vistara",
+    "label": "Travel"
+  },
+  {
+    "text": "car wash",
+    "label": "Transport"
+  },
+  {
+    "text": "city bus",
+    "label": "Transport"
+  },
+  {
+    "text": "ultrasound",
+    "label": "Healthcare"
+  },
+  {
+    "text": "dunzo order",
+    "label": "Groceries"
+  },
+  {
+    "text": "paid dmart",
+    "label": "Groceries"
+  },
+  {
+    "text": "tuition",
+    "label": "Education"
+  },
+  {
+    "text": "lunch meeting",
+    "label": "Food"
+  },
+  {
+    "text": "pizza hut bill",
+    "label": "Food"
+  },
+  {
+    "text": "earbuds",
+    "label": "Shopping"
+  },
+  {
+    "text": "uber",
+    "label": "Transport"
+  },
+  {
+    "text": "kfc bill",
+    "label": "Food"
+  },
+  {
+    "text": "pepperfry bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "live show",
+    "label": "Entertainment"
+  },
+  {
+    "text": "airasia purchase",
+    "label": "Travel"
+  },
+  {
+    "text": "punjabi thali",
+    "label": "Food"
+  },
+  {
+    "text": "reliance fresh",
+    "label": "Groceries"
+  },
+  {
+    "text": "lenskart",
+    "label": "Shopping"
+  },
+  {
+    "text": "train pass",
+    "label": "Transport"
+  },
+  {
+    "text": "paid tsrtc",
+    "label": "Transport"
+  },
+  {
+    "text": "parking fee",
+    "label": "Transport"
+  },
+  {
+    "text": "atta",
+    "label": "Groceries"
+  },
+  {
+    "text": "flipkart",
+    "label": "Shopping"
+  },
+  {
+    "text": "act fibernet",
+    "label": "Utilities"
+  },
+  {
+    "text": "paid water board",
+    "label": "Utilities"
+  },
+  {
+    "text": "mart",
+    "label": "Groceries"
+  },
+  {
+    "text": "allen solly payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "ajio bill",
+    "label": "Shopping"
+  },
+  {
+    "text": "gas agency payment",
+    "label": "Utilities"
+  },
+  {
+    "text": "fortis purchase",
+    "label": "Healthcare"
+  },
+  {
+    "text": "dmart purchase",
+    "label": "Groceries"
+  },
+  {
+    "text": "ola payment",
+    "label": "Transport"
+  },
+  {
+    "text": "bread butter",
+    "label": "Groceries"
+  },
+  {
+    "text": "cloudnine purchase",
+    "label": "Healthcare"
+  },
+  {
+    "text": "gujarati thali",
+    "label": "Food"
+  },
+  {
+    "text": "sony center payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "arcade",
+    "label": "Entertainment"
+  },
+  {
+    "text": "cloudnine order",
+    "label": "Healthcare"
+  },
+  {
+    "text": "boat lifestyle payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "apple store purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "more supermarket order",
+    "label": "Groceries"
+  },
+  {
+    "text": "ajio payment",
+    "label": "Shopping"
+  },
+  {
+    "text": "netflix subscription",
+    "label": "Subscriptions"
+  },
+  {
+    "text": "bought from booking.com",
+    "label": "Travel"
+  },
+  {
+    "text": "levis purchase",
+    "label": "Shopping"
+  },
+  {
+    "text": "star bazaar payment",
+    "label": "Groceries"
+  },
+  {
+    "text": "paid jiomart",
+    "label": "Groceries"
+  },
+  {
+    "text": "masala dosa",
+    "label": "Food"
+  },
+  {
+    "text": "domestic flight",
+    "label": "Travel"
+  },
+  {
+    "text": "mystery room",
+    "label": "Entertainment"
+  },
+  {
+    "text": "south indian",
+    "label": "Food"
+  },
+  {
+    "text": "taco bell purchase",
+    "label": "Food"
+  },
+  {
+    "text": "bought from aster",
+    "label": "Healthcare"
+  },
+  {
+    "text": "metro rail payment",
+    "label": "Transport"
+  },
+  {
+    "text": "swiggy",
+    "label": "Food"
+  },
+  {
+    "text": "concert ticket",
+    "label": "Entertainment"
+  },
+  {
+    "text": "hotel breakfast",
+    "label": "Food"
+  },
+  {
+    "text": "tata sky",
+    "label": "Utilities"
+  },
+  {
+    "text": "fine dining",
+    "label": "Food"
+  },
+  {
+    "text": "vegetables",
+    "label": "Groceries"
+  }
+]

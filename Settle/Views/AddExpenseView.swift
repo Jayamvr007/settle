@@ -12,6 +12,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AddExpenseView: View {
     @Environment(\.dismiss) private var dismiss
@@ -27,6 +28,11 @@ struct AddExpenseView: View {
     @State private var selectedMembers: Set<UUID> = []
     @State private var customSplits: [UUID: String] = [:]
     @State private var amountError: String?
+    
+    // ML Prediction State
+    @State private var suggestedCategory: ExpenseCategory?
+    @State private var showSuggestion = false
+    @State private var debounceTask: Task<Void, Never>?
     
     var isValid: Bool {
         guard !title.trimmingCharacters(in: .whitespaces).isEmpty,
@@ -50,6 +56,36 @@ struct AddExpenseView: View {
             Form {
                 Section("Expense Details") {
                     TextField("Description (e.g., Dinner)", text: $title)
+                        .onChange(of: title) { newValue in
+                            debouncePrediction(for: newValue)
+                        }
+                    
+                    // ML Suggestion Chip
+                    if showSuggestion, let suggested = suggestedCategory, suggested != selectedCategory {
+                        Button {
+                            withAnimation(.spring(response: 0.3)) {
+                                selectedCategory = suggested
+                                showSuggestion = false
+                            }
+                            HapticManager.selection()
+                        } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: "wand.and.stars")
+                                    .font(.caption)
+                                Text("Suggested: \(suggested.rawValue)")
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                                Image(systemName: suggested.icon)
+                                    .font(.caption)
+                            }
+                            .foregroundColor(AppTheme.primary)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(AppTheme.primary.opacity(0.1))
+                            .cornerRadius(20)
+                        }
+                        .transition(.scale.combined(with: .opacity))
+                    }
                     
                     HStack {
                         Text("₹")
@@ -61,7 +97,7 @@ struct AddExpenseView: View {
                     if let amountError {
                         Text(amountError)
                             .font(.caption)
-                            .foregroundColor(.red)
+                            .foregroundColor(AppTheme.owes)
                     }
                     
                     Picker("Category", selection: $selectedCategory) {
@@ -79,7 +115,7 @@ struct AddExpenseView: View {
                             Spacer()
                             if selectedPayer?.id == member.id {
                                 Image(systemName: "checkmark")
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(AppTheme.primary)
                             }
                         }
                         .contentShape(Rectangle())
@@ -283,6 +319,71 @@ struct AddExpenseView: View {
             amountError = "Amount must be greater than ₹0"
         } else {
             amountError = nil
+        }
+    }
+    
+    /// ML-powered category prediction with confidence threshold
+    private func predictCategory(from description: String) {
+        // Only predict after 3+ characters
+        guard description.count >= 3 else {
+            withAnimation {
+                showSuggestion = false
+            }
+            return
+        }
+        
+        // Get prediction with confidence
+        let predictions = ExpenseCategoryPredictor.shared.predictWithConfidence(description: description)
+        
+        // Only suggest if confidence is > 60%
+        guard let topPrediction = predictions.first,
+              topPrediction.confidence > 0.6 else {
+            withAnimation {
+                showSuggestion = false
+            }
+            return
+        }
+        
+        let predicted = topPrediction.category
+        
+        // Only show suggestion if it's different from current selection
+        if predicted != selectedCategory && predicted != .general {
+            withAnimation(.spring(response: 0.3)) {
+                suggestedCategory = predicted
+                showSuggestion = true
+            }
+            HapticManager.light()
+        } else if predicted == selectedCategory {
+            withAnimation {
+                showSuggestion = false
+            }
+        }
+    }
+    
+    /// Debounce prediction - waits 0.5s after user stops typing
+    private func debouncePrediction(for description: String) {
+        // Cancel any existing pending prediction
+        debounceTask?.cancel()
+        
+        // Hide suggestion immediately while typing
+        if description.count < 3 {
+            withAnimation {
+                showSuggestion = false
+            }
+            return
+        }
+        
+        // Schedule new prediction after 0.5s delay
+        debounceTask = Task {
+            try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds
+            
+            // Check if task was cancelled
+            guard !Task.isCancelled else { return }
+            
+            // Perform prediction on main thread
+            await MainActor.run {
+                predictCategory(from: description)
+            }
         }
     }
 }

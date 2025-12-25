@@ -61,7 +61,7 @@ struct SettlementsView: View {
 
                                 .font(.title3)
                                 .fontWeight(.bold)
-                                .foregroundColor(.blue)
+                                .foregroundColor(AppTheme.primary)
                         }
                     }
                 }
@@ -106,63 +106,64 @@ struct SettlementRowView: View {
     let settlement: SimplifiedSettlement
     
     var body: some View {
-        HStack(spacing: 12) {
-            // From avatar
-            ZStack {
-                Circle()
-                    .fill(Color.red.opacity(0.2))
-                    .frame(width: 40, height: 40)
-                Image(systemName: "person.fill")
-                    .foregroundColor(.red)
-            }
-            
-            VStack(alignment: .leading, spacing: 4) {
+        HStack(alignment: .top, spacing: 10) {
+            // Left side: From person
+            VStack(spacing: 4) {
+                ZStack {
+                    Circle()
+                        .fill(AppTheme.dangerGradient)
+                        .frame(width: 44, height: 44)
+                    Image(systemName: "person.fill")
+                        .foregroundColor(.white)
+                }
                 Text(settlement.from.name)
-                    .font(.body)
-                    .fontWeight(.medium)
-                
-                Text("pays")
                     .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-            
-            Image(systemName: "arrow.right")
-                .foregroundColor(.secondary)
-            
-            // To avatar
-            ZStack {
-                Circle()
-                    .fill(Color.green.opacity(0.2))
-                    .frame(width: 40, height: 40)
-                Image(systemName: "person.fill")
-                    .foregroundColor(.green)
-            }
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(settlement.to.name)
-                    .font(.body)
                     .fontWeight(.medium)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(width: 70)
+            
+            // Arrow with amount in center
+            VStack(spacing: 4) {
+                Image(systemName: "arrow.right.circle.fill")
+                    .font(.title2)
+                    .foregroundColor(AppTheme.primary)
+                
+                Text("₹\(settlement.amount.formattedAmount)")
+                    .font(.subheadline)
+                    .fontWeight(.bold)
+                    .foregroundColor(AppTheme.primary)
+                
+                Text(settlement.status.rawValue)
+                    .font(.caption2)
+                    .foregroundColor(settlement.status == .completed ? AppTheme.getsBack : .orange)
+            }
+            .frame(maxWidth: .infinity)
+            
+            // Right side: To person
+            VStack(spacing: 4) {
+                ZStack {
+                    Circle()
+                        .fill(AppTheme.successGradient)
+                        .frame(width: 44, height: 44)
+                    Image(systemName: "person.fill")
+                        .foregroundColor(.white)
+                }
+                Text(settlement.to.name)
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .multilineTextAlignment(.center)
                 
                 if let upi = settlement.to.upiId {
                     Text(upi)
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundColor(.secondary)
+                        .lineLimit(1)
                 }
             }
-            
-            Spacer()
-            
-            VStack(alignment: .trailing, spacing: 4) {
-                Text("₹\(settlement.amount.formattedAmount)")
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                
-                Text(settlement.status.rawValue)
-                    .font(.caption)
-                    .foregroundColor(settlement.status == .completed ? .green : .orange)
-            }
+            .frame(width: 70)
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 8)
     }
 }
 

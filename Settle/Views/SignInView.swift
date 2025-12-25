@@ -25,22 +25,15 @@ struct SignInView: View {
             // App Logo/Icon
             Image(systemName: "person.2.circle.fill")
                 .font(.system(size: 100))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [.blue, .green],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
+                .foregroundStyle(AppTheme.primaryGradient)
             
             // Title
             VStack(spacing: 8) {
                 Text("Welcome to Settle")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                    .font(.settleTitle)
                 
                 Text("Split expenses with friends")
-                    .font(.subheadline)
+                    .font(.settleBody)
                     .foregroundColor(.secondary)
             }
             
@@ -55,7 +48,7 @@ struct SignInView: View {
                 
                 if isSigningIn {
                     ProgressView("Signing in...")
-                        .tint(.blue)
+                        .tint(AppTheme.primary)
                 }
                 
                 if !authManager.errorMessage.isEmpty {

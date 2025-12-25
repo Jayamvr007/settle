@@ -51,7 +51,7 @@ struct PaymentHistoryRow: View {
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: "checkmark.circle.fill")
-                .foregroundColor(.green)
+                .foregroundColor(AppTheme.getsBack)
                 .font(.title2)
             
             VStack(alignment: .leading, spacing: 4) {
@@ -61,18 +61,18 @@ struct PaymentHistoryRow: View {
                 
                 Text("₹\(settlement.amount.formattedAmount)")
                     .font(.headline)
-                    .foregroundColor(.blue)
+                    .foregroundColor(AppTheme.primary)
             }
             
             Spacer()
             
             VStack(alignment: .trailing, spacing: 4) {
-                Text("Paid")
+                Text("Completed")
                     .font(.caption)
-                    .foregroundColor(.green)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Color.green.opacity(0.1))
+                    .foregroundColor(AppTheme.getsBack)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(AppTheme.getsBack.opacity(0.1))
                     .cornerRadius(8)
                 
                 // Add date here if you store it

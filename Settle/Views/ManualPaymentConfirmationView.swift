@@ -29,7 +29,7 @@ struct ManualPaymentConfirmationView: View {
                 // Icon
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 80))
-                    .foregroundColor(.green)
+                    .foregroundColor(AppTheme.getsBack)
                 
                 // Title
                 Text("Payment Completed?")
@@ -43,7 +43,7 @@ struct ManualPaymentConfirmationView: View {
                     
                     Text("₹\(settlement.amount.formattedAmount)")
                         .font(.system(size: 36, weight: .bold))
-                        .foregroundColor(.blue)
+                        .foregroundColor(AppTheme.primary)
                     
                     Text("to \(settlement.to.name)?")
                         .foregroundColor(.secondary)
@@ -74,7 +74,7 @@ struct ManualPaymentConfirmationView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.green)
+                        .background(AppTheme.secondary)
                         .foregroundColor(.white)
                         .cornerRadius(12)
                         .fontWeight(.semibold)
@@ -89,8 +89,8 @@ struct ManualPaymentConfirmationView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.red.opacity(0.1))
-                        .foregroundColor(.red)
+                        .background(AppTheme.owes.opacity(0.1))
+                        .foregroundColor(AppTheme.owes)
                         .cornerRadius(12)
                         .fontWeight(.semibold)
                     }

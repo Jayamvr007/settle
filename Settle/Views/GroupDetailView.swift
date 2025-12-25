@@ -27,8 +27,8 @@ struct GroupDetailView: View {
             // Quick Stats Section
             Section {
                 HStack {
-                    StatCard(title: "Total Spent", value: "₹\(viewModel.totalExpenses.formattedAmount)", color: .blue)
-                    StatCard(title: "Expenses", value: "\(currentGroup.expenses.count)", color: .green)
+                    StatCard(title: "Total Spent", value: "₹\(viewModel.totalExpenses.formattedAmount)", color: AppTheme.primary, icon: "indianrupeesign.circle.fill")
+                    StatCard(title: "Expenses", value: "\(currentGroup.expenses.count)", color: AppTheme.secondary, icon: "list.bullet.rectangle")
                 }
             }
             .listRowInsets(EdgeInsets())
@@ -61,7 +61,7 @@ struct GroupDetailView: View {
                             selectedMemberForEdit = member
                         } label: {
                             Image(systemName: "pencil.circle.fill")
-                                .foregroundColor(.blue)
+                                .foregroundColor(AppTheme.primary)
                                 .font(.title3)
                         }
                     }
@@ -106,7 +106,7 @@ struct GroupDetailView: View {
                 } label: {
                     HStack {
                         Image(systemName: "arrow.left.arrow.right.circle.fill")
-                            .foregroundColor(.green)
+                            .foregroundColor(AppTheme.secondary)
                             .font(.title2)
                         
                         VStack(alignment: .leading, spacing: 4) {
@@ -187,22 +187,34 @@ struct StatCard: View {
     let title: String
     let value: String
     let color: Color
+    var icon: String = "chart.bar.fill"
+    
+    @State private var isAnimated = false
     
     var body: some View {
-        VStack(spacing: 8) {
-            Text(title)
-                .font(.caption)
-                .foregroundColor(.secondary)
+        VStack(spacing: 10) {
+            Image(systemName: icon)
+                .font(.title2)
+                .foregroundColor(color)
+                .scaleEffect(isAnimated ? 1.0 : 0.5)
             
             Text(value)
-                .font(.title2)
-                .fontWeight(.bold)
+                .font(.settleAmount)
                 .foregroundColor(color)
+            
+            Text(title)
+                .font(.settleCaption)
+                .foregroundColor(.secondary)
         }
         .frame(maxWidth: .infinity)
-        .padding()
+        .padding(.vertical, 20)
         .background(color.opacity(0.1))
-        .cornerRadius(12)
+        .cornerRadius(AppTheme.cardCornerRadius)
+        .onAppear {
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
+                isAnimated = true
+            }
+        }
     }
 }
 
@@ -214,7 +226,7 @@ struct MemberBalanceRow: View {
         HStack {
             Image(systemName: "person.circle.fill")
                 .font(.title2)
-                .foregroundColor(.blue)
+                .foregroundColor(AppTheme.primary)
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(member.name)
@@ -232,7 +244,7 @@ struct MemberBalanceRow: View {
             VStack(alignment: .trailing, spacing: 4) {
                 Text("₹\(balance.formattedAmount)")
                     .font(.headline)
-                    .foregroundColor(balance >= 0 ? .green : .red)
+                    .foregroundColor(balance >= 0 ? AppTheme.getsBack : AppTheme.owes)
                 
                 Text(balance >= 0 ? "gets back" : "owes")
                     .font(.caption)
@@ -250,11 +262,11 @@ struct ExpenseRowView: View {
             // Category Icon
             ZStack {
                 Circle()
-                    .fill(Color.blue.opacity(0.2))
+                    .fill(AppTheme.primary.opacity(0.15))
                     .frame(width: 40, height: 40)
                 
                 Image(systemName: expense.category.icon)
-                    .foregroundColor(.blue)
+                    .foregroundColor(AppTheme.primary)
             }
             
             VStack(alignment: .leading, spacing: 4) {

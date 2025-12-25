@@ -71,7 +71,7 @@ struct SettlePaymentView: View {
                         } label: {
                             HStack {
                                 Image(systemName: "indianrupeesign.circle.fill")
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(AppTheme.primary)
                                     .font(.title2)
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text("Pay via UPI App")
@@ -110,7 +110,7 @@ struct SettlePaymentView: View {
                                     .fontWeight(.medium)
                                 Text(viewModel.isRazorpayAvailable ? "Test Mode" : "SDK Missing")
                                     .font(.caption)
-                                    .foregroundColor(viewModel.isRazorpayAvailable ? .orange : .red)
+                                    .foregroundColor(viewModel.isRazorpayAvailable ? .orange : AppTheme.owes)
                             }
                             Spacer()
                             if viewModel.isRazorpayAvailable {
@@ -127,7 +127,7 @@ struct SettlePaymentView: View {
                     } label: {
                         HStack {
                             Image(systemName: "banknote.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(AppTheme.secondary)
                                 .font(.title2)
                             Text("Record Cash Payment")
                                 .foregroundColor(.primary)

@@ -86,7 +86,7 @@ struct ContentView: View {
 
                 Image(systemName: "person.crop.circle.badge.checkmark")
                     .font(.system(size: 72))
-                    .foregroundColor(.blue)
+                    .foregroundStyle(AppTheme.primaryGradient)
 
                 Text("Sign in to Settle")
                     .font(.title2)
@@ -101,7 +101,7 @@ struct ContentView: View {
                 if let signInError {
                     Text(signInError)
                         .font(.caption)
-                        .foregroundColor(.red)
+                        .foregroundColor(AppTheme.owes)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                 }
@@ -117,7 +117,7 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(isSigningIn ? Color.gray : Color.blue)
+                    .background(isSigningIn ? Color.gray : AppTheme.primary)
                     .cornerRadius(12)
                 }
                 .disabled(isSigningIn)

@@ -38,10 +38,10 @@ struct SettingsView: View {
                             HStack(spacing: 12) {
                                 ZStack {
                                     Circle()
-                                        .fill(Color.blue.opacity(0.1))
-                                        .frame(width: 44, height: 44)
-                                    Image(systemName: "person.circle.fill")
-                                        .foregroundColor(.blue)
+                                        .fill(AppTheme.primary.opacity(0.1))
+                                        .frame(width: 50, height: 50)
+                                    Image(systemName: "person.fill")
+                                        .foregroundColor(AppTheme.primary)
                                         .font(.title2)
                                 }
 
@@ -71,7 +71,7 @@ struct SettingsView: View {
                     if let upiError {
                         Text(upiError)
                             .font(.caption)
-                            .foregroundColor(.red)
+                            .foregroundColor(AppTheme.owes)
                     }
                 }
                 

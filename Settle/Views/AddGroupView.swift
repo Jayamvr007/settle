@@ -38,7 +38,7 @@ struct AddGroupView: View {
                     ForEach(members) { member in
                         HStack {
                             Image(systemName: "person.circle.fill")
-                                .foregroundColor(.blue)
+                                .foregroundColor(AppTheme.primary)
                             VStack(alignment: .leading) {
                                 Text(member.name)
                                     .font(.body)

@@ -29,19 +29,28 @@ struct GroupsListView: View {
                             GroupRowView(group: group)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
+                                    HapticManager.selection()
                                     selectedGroup = group
                                 }
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
                         }
                         
                     }
-                    .listStyle(.insetGrouped)
+                    .listStyle(.plain)
+                    .padding(.horizontal)
                 }
             }
             .navigationTitle("Groups")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showingAddGroup = true }) {
-                        Image(systemName: "plus")
+                    Button(action: {
+                        HapticManager.light()
+                        showingAddGroup = true
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title2)
+                            .foregroundStyle(AppTheme.primaryGradient)
                     }
                 }
             }
@@ -63,31 +72,38 @@ struct GroupsListView: View {
 
 struct EmptyGroupsView: View {
     @Binding var showingAddGroup: Bool
+    @State private var isAnimated = false
     
     var body: some View {
         VStack(spacing: 24) {
+            // Animated icon
             Image(systemName: "person.3.fill")
                 .font(.system(size: 80))
-                .foregroundColor(.blue)
+                .foregroundStyle(AppTheme.primaryGradient)
+                .scaleEffect(isAnimated ? 1.0 : 0.8)
+                .opacity(isAnimated ? 1.0 : 0.5)
             
             Text("No Groups Yet")
-                .font(.title2)
-                .fontWeight(.semibold)
+                .font(.settleTitle)
             
             Text("Create a group to start splitting expenses with friends")
-                .font(.body)
+                .font(.settleBody)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal)
+                .padding(.horizontal, 32)
             
-            Button(action: { showingAddGroup = true }) {
+            Button(action: {
+                HapticManager.light()
+                showingAddGroup = true
+            }) {
                 Label("Create Group", systemImage: "plus.circle.fill")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: 200)
-                    .background(Color.blue)
-                    .cornerRadius(12)
+            }
+            .buttonStyle(PrimaryButtonStyle())
+            .padding(.horizontal, 48)
+        }
+        .onAppear {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
+                isAnimated = true
             }
         }
     }
@@ -100,48 +116,57 @@ struct GroupRowView: View {
         group.expenses.reduce(0) { $0 + $1.amount }
     }
     
+    /// Get initials from group name (up to 2 characters)
+    private var initials: String {
+        let words = group.name.split(separator: " ")
+        if words.count >= 2 {
+            return String(words[0].prefix(1) + words[1].prefix(1)).uppercased()
+        }
+        return String(group.name.prefix(2)).uppercased()
+    }
+    
     var body: some View {
         HStack(spacing: 16) {
-            // Group Icon
+            // Avatar with Gradient
             ZStack {
                 Circle()
-                    .fill(Color.blue.opacity(0.2))
-                    .frame(width: 50, height: 50)
+                    .fill(AppTheme.primaryGradient)
+                    .frame(width: 54, height: 54)
                 
-                Image(systemName: "person.3.fill")
-                    .foregroundColor(.blue)
+                Text(initials)
+                    .font(.settleHeadline)
+                    .foregroundColor(.white)
             }
+            .shadow(color: AppTheme.primary.opacity(0.3), radius: 6, y: 3)
             
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(group.name)
-                    .font(.headline)
+                    .font(.settleHeadline)
+                    .foregroundColor(.primary)
                 
-                HStack(spacing: 4) {
-                    Text("\(group.members.count) members")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    
-                    Text("•")
-                        .foregroundColor(.secondary)
-                    
-                    Text("\(group.expenses.count) expenses")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                HStack(spacing: 8) {
+                    Label("\(group.members.count)", systemImage: "person.2.fill")
+                    Label("\(group.expenses.count)", systemImage: "receipt.fill")
                 }
+                .font(.settleCaption)
+                .foregroundColor(.secondary)
             }
             
             Spacer()
             
             VStack(alignment: .trailing, spacing: 4) {
                 Text("₹\(totalExpenses.formattedAmount)")
-                    .font(.headline)
-                    .foregroundColor(.primary)
+                    .font(.settleAmount)
+                    .foregroundColor(AppTheme.primary)
                 
                 Text("total")
-                    .font(.caption)
+                    .font(.settleCaption)
                     .foregroundColor(.secondary)
             }
         }
-        .padding(.vertical, 8)
+        .padding()
+        .background(AppTheme.cardBackground)
+        .cornerRadius(AppTheme.cardCornerRadius)
+        .shadow(color: AppTheme.cardShadow, radius: 8, y: 4)
     }
 }

@@ -104,7 +104,7 @@ struct BalanceRow: View {
             VStack(alignment: .trailing, spacing: 4) {
                 Text("₹\(balance.formattedAmount)")
                     .font(.headline)
-                    .foregroundColor(balance >= 0 ? .green : .red)
+                    .foregroundColor(balance >= 0 ? AppTheme.getsBack : AppTheme.owes)
                 
                 Text(balance >= 0 ? "gets back" : "owes")
                     .font(.caption)

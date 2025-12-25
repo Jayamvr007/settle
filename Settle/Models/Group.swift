@@ -83,19 +83,29 @@ struct ExpenseShare: Identifiable, Hashable {
 
 enum ExpenseCategory: String, CaseIterable {
     case food = "Food"
+    case groceries = "Groceries"
     case transport = "Transport"
+    case travel = "Travel"
     case entertainment = "Entertainment"
+    case subscriptions = "Subscriptions"
     case utilities = "Utilities"
     case shopping = "Shopping"
+    case healthcare = "Healthcare"
+    case education = "Education"
     case general = "General"
     
     var icon: String {
         switch self {
         case .food: return "fork.knife"
+        case .groceries: return "basket.fill"
         case .transport: return "car.fill"
+        case .travel: return "airplane"
         case .entertainment: return "ticket.fill"
+        case .subscriptions: return "repeat.circle.fill"
         case .utilities: return "bolt.fill"
         case .shopping: return "cart.fill"
+        case .healthcare: return "cross.case.fill"
+        case .education: return "book.fill"
         case .general: return "square.grid.2x2"
         }
     }
