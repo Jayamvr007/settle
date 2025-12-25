@@ -301,7 +301,7 @@ struct AddExpenseView: View {
         }
         
         dataManager.save()
-        repository.fetchGroups() // Refresh
+        repository.fetchGroups() // Refresh - this triggers onChange in SettlementsView
     }
     
     private func validateAmount() {

@@ -88,7 +88,7 @@ struct EditMemberView: View {
            }
            
            // Refresh the repository to update the groups
-           GroupRepository().fetchGroups()
+           GroupRepository.shared.fetchGroups()
            
            dismiss()
        }

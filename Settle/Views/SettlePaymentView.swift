@@ -201,36 +201,113 @@ struct UPIAppSelectionView: View {
     let group: Group
     let onComplete: () -> Void
     
+    @State private var showingManualFlow = false
+    
     var body: some View {
         NavigationStack {
             List {
-                Section("Amount: ₹\(settlement.amount.formattedAmount)") {
+                // Amount Header
+                Section {
+                    HStack {
+                        Text("Amount to Pay")
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("₹\(settlement.amount.formattedAmount)")
+                            .font(.title2.bold())
+                            .foregroundColor(AppTheme.primary)
+                    }
+                }
+                
+                // UPI Apps
+                Section("Choose UPI App") {
                     ForEach(viewModel.installedApps, id: \.self) { app in
                         Button {
                             viewModel.initiateUPIPayment(using: app)
                         } label: {
                             HStack {
                                 Image(systemName: app.iconName)
-                                    .foregroundColor(.blue)
+                                    .font(.title2)
+                                    .foregroundColor(AppTheme.primary)
+                                    .frame(width: 32)
                                 Text(app.displayName)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                Image(systemName: "arrow.up.forward.app")
+                                    .foregroundColor(.secondary)
                             }
                         }
                     }
                     
                     if viewModel.installedApps.isEmpty {
-                        Text("No UPI apps found")
+                        HStack {
+                            Image(systemName: "exclamationmark.triangle")
+                                .foregroundColor(.orange)
+                            Text("No UPI apps found on this device")
+                                .foregroundColor(.secondary)
+                        }
                     }
                 }
                 
-                Section("Manual Link") {
-                     ShareLink(item: viewModel.getGenericUPIString(settlement: settlement, group: group)) {
-                         Label("Share Payment Link", systemImage: "square.and.arrow.up")
-                     }
+                // Manual Payment Option
+                Section {
+                    Button {
+                        showingManualFlow = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "hand.tap")
+                                .font(.title2)
+                                .foregroundColor(.orange)
+                                .frame(width: 32)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Pay Manually")
+                                    .foregroundColor(.primary)
+                                    .fontWeight(.medium)
+                                Text("Copy UPI ID and pay from any app")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                } header: {
+                    Text("Other Options")
+                } footer: {
+                    Text("Note: Some UPI apps may block payments from third-party apps for security. Use 'Pay Manually' if you face issues.")
+                        .font(.caption)
+                }
+                
+                // Share Link
+                Section {
+                    ShareLink(item: viewModel.getGenericUPIString(settlement: settlement, group: group)) {
+                        HStack {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(AppTheme.primary)
+                                .frame(width: 32)
+                            Text("Share Payment Link")
+                                .foregroundColor(.primary)
+                        }
+                    }
                 }
             }
-            .navigationTitle("Choose App")
+            .navigationTitle("Pay via UPI")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                 Button("Close") { dismiss() }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Close") { dismiss() }
+                }
+            }
+            .sheet(isPresented: $showingManualFlow) {
+                ManualConfirmationView(
+                    viewModel: viewModel,
+                    settlement: settlement,
+                    group: group,
+                    onComplete: {
+                        dismiss()
+                        onComplete()
+                    }
+                )
             }
         }
     }
@@ -267,35 +344,201 @@ struct ManualConfirmationView: View {
     let settlement: SimplifiedSettlement
     let group: Group
     let onComplete: () -> Void
+    
     @State private var txnId = ""
+    @State private var copiedUPI = false
+    @State private var currentStep = 1
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
-                 Image(systemName: "questionmark.circle.fill")
-                    .font(.system(size: 60))
-                    .foregroundColor(.orange)
-                 Text("Did you complete the payment?")
-                    .font(.title2)
-                
-                 TextField("Enter Transaction ID (Optional)", text: $txnId)
-                    .textFieldStyle(.roundedBorder)
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Header Icon
+                    ZStack {
+                        Circle()
+                            .fill(Color.orange.opacity(0.15))
+                            .frame(width: 80, height: 80)
+                        
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                            .font(.system(size: 36))
+                            .foregroundColor(.orange)
+                    }
+                    .padding(.top, 20)
+                    
+                    Text("Complete Payment Manually")
+                        .font(.settleTitle)
+                        .multilineTextAlignment(.center)
+                    
+                    // Payment Details Card
+                    VStack(spacing: 16) {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Pay to")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                Text(settlement.to.name)
+                                    .font(.headline)
+                            }
+                            Spacer()
+                            Text("₹\(settlement.amount.formattedAmount)")
+                                .font(.settleLargeAmount)
+                                .foregroundColor(AppTheme.primary)
+                        }
+                        
+                        Divider()
+                        
+                        // UPI ID with Copy
+                        if let upiId = settlement.to.upiId {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("UPI ID")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                    Text(upiId)
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                }
+                                Spacer()
+                                Button {
+                                    UIPasteboard.general.string = upiId
+                                    copiedUPI = true
+                                    HapticManager.success()
+                                    
+                                    // Reset after 2 seconds
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                        copiedUPI = false
+                                    }
+                                } label: {
+                                    HStack(spacing: 4) {
+                                        Image(systemName: copiedUPI ? "checkmark" : "doc.on.doc")
+                                        Text(copiedUPI ? "Copied!" : "Copy")
+                                    }
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 6)
+                                    .background(copiedUPI ? Color.green : AppTheme.primary)
+                                    .cornerRadius(8)
+                                }
+                            }
+                        }
+                    }
                     .padding()
-                
-                 HStack {
-                     Button("No") { dismiss() }
-                        .padding()
-                     Button("Yes, Confirmed") {
-                         viewModel.recordCashPayment(settlement: settlement, group: group, notes: "UPI Manual Confirm", transactionId: txnId)
-                         onComplete()
-                         dismiss()
-                     }
-                     .buttonStyle(.borderedProminent)
-                 }
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(16)
+                    .padding(.horizontal)
+                    
+                    // Steps
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Steps to complete:")
+                            .font(.headline)
+                        
+                        StepRow(number: 1, text: "Copy the UPI ID above", isCompleted: copiedUPI)
+                        StepRow(number: 2, text: "Open your UPI app (GPay, PhonePe, etc.)", isCompleted: false)
+                        StepRow(number: 3, text: "Send ₹\(settlement.amount.formattedAmount) to the UPI ID", isCompleted: false)
+                        StepRow(number: 4, text: "Come back and confirm below", isCompleted: false)
+                    }
+                    .padding()
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(16)
+                    .padding(.horizontal)
+                    
+                    // Transaction ID Input
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Transaction ID (Optional)")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        TextField("Enter UPI transaction ID", text: $txnId)
+                            .textFieldStyle(.roundedBorder)
+                            .keyboardType(.asciiCapable)
+                    }
+                    .padding(.horizontal)
+                    
+                    Spacer(minLength: 20)
+                    
+                    // Action Buttons
+                    VStack(spacing: 12) {
+                        Button {
+                            HapticManager.success()
+                            viewModel.recordCashPayment(
+                                settlement: settlement,
+                                group: group,
+                                notes: "Manual UPI Payment",
+                                transactionId: txnId.isEmpty ? nil : txnId
+                            )
+                            onComplete()
+                            dismiss()
+                        } label: {
+                            HStack {
+                                Image(systemName: "checkmark.circle.fill")
+                                Text("I've Completed the Payment")
+                            }
+                            .font(.settleHeadline)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(AppTheme.successGradient)
+                            .cornerRadius(AppTheme.cardCornerRadius)
+                        }
+                        
+                        Button {
+                            dismiss()
+                        } label: {
+                            Text("Cancel")
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.bottom, 32)
+                }
             }
-            .padding()
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
         }
         .interactiveDismissDisabled()
+    }
+}
+
+// Step Row Component
+private struct StepRow: View {
+    let number: Int
+    let text: String
+    let isCompleted: Bool
+    
+    var body: some View {
+        HStack(spacing: 12) {
+            ZStack {
+                Circle()
+                    .fill(isCompleted ? Color.green : Color.gray.opacity(0.2))
+                    .frame(width: 28, height: 28)
+                
+                if isCompleted {
+                    Image(systemName: "checkmark")
+                        .font(.caption.bold())
+                        .foregroundColor(.white)
+                } else {
+                    Text("\(number)")
+                        .font(.caption.bold())
+                        .foregroundColor(.secondary)
+                }
+            }
+            
+            Text(text)
+                .font(.subheadline)
+                .foregroundColor(isCompleted ? .secondary : .primary)
+                .strikethrough(isCompleted)
+        }
     }
 }
 

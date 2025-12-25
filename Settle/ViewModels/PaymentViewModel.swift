@@ -109,6 +109,7 @@ class PaymentViewModel: ObservableObject {
     func recordCashPayment(settlement: SimplifiedSettlement, group: Group, notes: String? = nil, transactionId: String? = nil) {
         let context = dataManager.context
         
+        // 1. Record the settlement
         let cdSettlement = CDSettlement(context: context)
         cdSettlement.id = settlement.id
         cdSettlement.amount = settlement.amount as NSDecimalNumber
@@ -122,24 +123,55 @@ class PaymentViewModel: ObservableObject {
         // Find group
         let groupFetch = CDGroup.fetchRequest()
         groupFetch.predicate = NSPredicate(format: "id == %@", group.id as CVarArg)
-        if let cdGroup = try? context.fetch(groupFetch).first {
-            cdSettlement.group = cdGroup
-            
-            // Find members
-            let fromFetch = CDMember.fetchRequest()
-            fromFetch.predicate = NSPredicate(format: "id == %@ AND group == %@", settlement.from.id as CVarArg, cdGroup)
-            if let cdFrom = try? context.fetch(fromFetch).first {
-                cdSettlement.from = cdFrom
-            }
-            
-            let toFetch = CDMember.fetchRequest()
-            toFetch.predicate = NSPredicate(format: "id == %@ AND group == %@", settlement.to.id as CVarArg, cdGroup)
-            if let cdTo = try? context.fetch(toFetch).first {
-                cdSettlement.to = cdTo
-            }
+        guard let cdGroup = try? context.fetch(groupFetch).first else {
+            dataManager.save()
+            return
+        }
+        
+        cdSettlement.group = cdGroup
+        
+        // Find members
+        let fromFetch = CDMember.fetchRequest()
+        fromFetch.predicate = NSPredicate(format: "id == %@ AND group == %@", settlement.from.id as CVarArg, cdGroup)
+        let cdFrom = try? context.fetch(fromFetch).first
+        
+        let toFetch = CDMember.fetchRequest()
+        toFetch.predicate = NSPredicate(format: "id == %@ AND group == %@", settlement.to.id as CVarArg, cdGroup)
+        let cdTo = try? context.fetch(toFetch).first
+        
+        cdSettlement.from = cdFrom
+        cdSettlement.to = cdTo
+        
+        // 2. Create a "settlement expense" to offset the balance
+        // When "from" pays "to", we record an expense where:
+        // - "from" paid the amount
+        // - Only "from" is in the split (pays their own debt)
+        // This effectively cancels out the debt
+        let cdExpense = CDExpense(context: context)
+        cdExpense.id = UUID()
+        cdExpense.title = "💰 Settlement: \(settlement.from.name) → \(settlement.to.name)"
+        cdExpense.amount = settlement.amount as NSDecimalNumber
+        cdExpense.date = Date()
+        cdExpense.category = "General"
+        cdExpense.notes = notes ?? "Settlement payment"
+        cdExpense.createdAt = Date()
+        cdExpense.group = cdGroup
+        cdExpense.paidBy = cdFrom  // The person who owed (and is now paying)
+        
+        // The split: Only the payer owes this (to themselves essentially)
+        // This means the "to" person effectively "paid" via receiving this settlement
+        if let cdTo = cdTo {
+            let cdShare = CDExpenseShare(context: context)
+            cdShare.id = UUID()
+            cdShare.amount = settlement.amount as NSDecimalNumber
+            cdShare.expense = cdExpense
+            cdShare.member = cdTo  // The person who was owed gets the "share"
         }
         
         dataManager.save()
+        
+        // 3. Refresh the repository to update all views
+        GroupRepository.shared.fetchGroups()
     }
     
     func getGenericUPIString(settlement: SimplifiedSettlement, group: Group) -> String {

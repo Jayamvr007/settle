@@ -15,6 +15,8 @@ import Foundation
 import CoreData
 
 class GroupRepository: ObservableObject {
+    static let shared = GroupRepository()
+    
     private let dataManager = DataManager.shared
     
     @Published var groups: [Group] = []

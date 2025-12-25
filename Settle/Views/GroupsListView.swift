@@ -38,7 +38,7 @@ struct GroupsListView: View {
                         
                     }
                     .listStyle(.plain)
-                    .padding(.horizontal)
+                    
                 }
             }
             .navigationTitle("Groups")

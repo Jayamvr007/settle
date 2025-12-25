@@ -11,7 +11,7 @@ import GoogleSignIn
 @main
 struct SettleApp: App {
     @StateObject private var dataManager = DataManager.shared
-    @StateObject private var groupRepository = GroupRepository()
+    @StateObject private var groupRepository = GroupRepository.shared
     @StateObject private var authManager = AuthenticationManager()
     @State private var showingUPIPrompt = false
     

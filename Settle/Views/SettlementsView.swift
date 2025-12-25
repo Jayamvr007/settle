@@ -14,15 +14,18 @@
 import SwiftUI
 
 struct SettlementsView: View {
-    let group: Group
+    let groupId: UUID  // Store ID instead of full group
+    @EnvironmentObject private var repository: GroupRepository
     @StateObject private var viewModel: SettlementsViewModel
     @State private var selectedSettlement: SimplifiedSettlement?
     @State private var refreshID = UUID()
     @State private var isCalculating = false
+    @State private var currentGroup: Group?
     
     init(group: Group) {
-        self.group = group
+        self.groupId = group.id
         _viewModel = StateObject(wrappedValue: SettlementsViewModel())
+        _currentGroup = State(initialValue: group)
     }
     
     var body: some View {
@@ -66,6 +69,7 @@ struct SettlementsView: View {
                     }
                 }
             }
+            .id(refreshID)  // Force list refresh
             
             if isCalculating {
                 VStack {
@@ -79,26 +83,87 @@ struct SettlementsView: View {
         .navigationTitle("Settlements")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $selectedSettlement) { settlement in
-            SettlePaymentView(settlement: settlement, group: group) {
-                // Refresh callback
-                recalculateSettlements()
+            if let group = currentGroup {
+                SettlePaymentView(settlement: settlement, group: group) {
+                    // Refresh callback after payment
+                    refreshData()
+                }
             }
         }
         .onAppear {
-            recalculateSettlements()
+            refreshData()
         }
-        .onChange(of: group) { newGroup in
-             // React to updates from AddExpenseView
-             recalculateSettlements()
+        // Observe GroupRepository changes - triggers when expenses are added/deleted
+        .onChange(of: repository.groups) {
+            refreshData()
         }
     }
     
-    private func recalculateSettlements() {
+    private func refreshData() {
         isCalculating = true
-        // Calculation is quick and runs on main thread
-        viewModel.calculateSettlements(for: group)
+        
+        // Get fresh group from repository (same source as GroupDetailView)
+        if let freshGroup = repository.groups.first(where: { $0.id == groupId }) {
+            currentGroup = freshGroup
+            viewModel.calculateSettlements(for: freshGroup)
+        }
+        
         refreshID = UUID()
         isCalculating = false
+    }
+    
+    private func fetchLatestGroup() -> Group? {
+        let context = DataManager.shared.context
+        let fetchRequest = CDGroup.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", groupId as CVarArg)
+        
+        guard let cdGroup = try? context.fetch(fetchRequest).first else {
+            return nil
+        }
+        
+        // Convert CDGroup to Group model
+        let members = (cdGroup.members?.allObjects as? [CDMember])?.compactMap { cdMember -> Member? in
+            guard let id = cdMember.id, let name = cdMember.name else { return nil }
+            return Member(id: id, name: name, phoneNumber: cdMember.phoneNumber, upiId: cdMember.upiId)
+        } ?? []
+        
+        let expenses = (cdGroup.expenses?.allObjects as? [CDExpense])?.compactMap { cdExpense -> Expense? in
+            guard let id = cdExpense.id,
+                  let title = cdExpense.title,
+                  let amount = cdExpense.amount as? Decimal,
+                  let date = cdExpense.date,
+                  let paidById = cdExpense.paidBy?.id,
+                  let paidByName = cdExpense.paidBy?.name else { return nil }
+            
+            let paidBy = Member(id: paidById, name: paidByName, 
+                               phoneNumber: cdExpense.paidBy?.phoneNumber,
+                               upiId: cdExpense.paidBy?.upiId)
+            
+            let shares = (cdExpense.shares?.allObjects as? [CDExpenseShare])?.compactMap { cdShare -> ExpenseShare? in
+                guard let shareId = cdShare.id,
+                      let memberId = cdShare.member?.id, 
+                      let memberName = cdShare.member?.name,
+                      let shareAmount = cdShare.amount as? Decimal else { return nil }
+                let member = Member(id: memberId, name: memberName,
+                                   phoneNumber: cdShare.member?.phoneNumber,
+                                   upiId: cdShare.member?.upiId)
+                return ExpenseShare(id: shareId, member: member, amount: shareAmount)
+            } ?? []
+            
+            let categoryRaw = cdExpense.category ?? "General"
+            let category = ExpenseCategory(rawValue: categoryRaw) ?? .general
+            
+            return Expense(id: id, title: title, amount: amount, date: date, 
+                          category: category, notes: cdExpense.notes,
+                          paidBy: paidBy, shares: shares)
+        } ?? []
+        
+        return Group(
+            id: cdGroup.id ?? groupId,
+            name: cdGroup.name ?? "",
+            members: members,
+            expenses: expenses
+        )
     }
 }
 
@@ -177,17 +242,13 @@ class SettlementsViewModel: ObservableObject {
     }
     
     func calculateSettlements(for group: Group) {
-        // Filter out completed settlements
-        let completedSettlements = fetchCompletedSettlements(for: group)
+        // Calculate fresh settlements from all expenses
         let allSettlements = simplifier.calculateOptimalSettlements(for: group)
         
-        // Remove settlements that are already completed
-        settlements = allSettlements.filter { settlement in
-            !completedSettlements.contains(where: { completed in
-                completed.from.id == settlement.from.id &&
-                completed.to.id == settlement.to.id
-            })
-        }
+        // For now, show all calculated settlements
+        // The "completed" status should be tracked separately
+        // and the settlement amounts should reflect the current balance
+        settlements = allSettlements
     }
     
     private func fetchCompletedSettlements(for group: Group) -> [SimplifiedSettlement] {

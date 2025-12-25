@@ -116,5 +116,5 @@ struct BalanceRow: View {
 
 #Preview {
     BalancesView()
-        .environmentObject(GroupRepository())
+        .environmentObject(GroupRepository.shared)
 }

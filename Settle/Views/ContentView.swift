@@ -272,5 +272,5 @@ private extension UIApplication {
 
 
 #Preview {
-    ContentView().environmentObject(GroupRepository())
+    ContentView().environmentObject(GroupRepository.shared)
 }
