@@ -1,0 +1,62 @@
+# Xcode
+*.xcuserstate
+*.xccheckout
+*.moved-aside
+*.xcuserdatad
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+.build/
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Swift Package Manager
+.swiftpm/
+Package.resolved
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
+fastlane/README.md
+
+# Build output
+build/
+*.ipa
+
+# Code coverage
+*.gcda
+*.gcno
+*.gcov
+TestResults/
+
+# Ruby/Bundler
+vendor/bundle
+.bundle/
+Gemfile.lock
+
+# Environment
+.env
+.env.*
+
+# OS files
+.DS_Store
+*.swp
+*~
+
+# IDE
+.idea/
+*.xcworkspace/xcuserdata/
+
+# Secrets - NEVER commit these
+*.p12
+*.cer
+*.mobileprovision
+AuthKey_*.p8

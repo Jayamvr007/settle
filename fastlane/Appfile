@@ -1,0 +1,7 @@
+app_identifier("com.jayam.settle")  # Your app's bundle identifier
+apple_id("jayamverma@gmail.com") # Your Apple Developer email
+
+itc_team_id("V76XWK6797") # App Store Connect Team ID (find in App Store Connect)
+team_id("V76XWK6797")    # Developer Portal Team ID (find in developer.apple.com)
+
+# For more info: https://docs.fastlane.tools/actions/appstore_connect_api_key/

@@ -1,0 +1,171 @@
+# Fastlane Configuration for Settle App
+# https://docs.fastlane.tools
+
+default_platform(:ios)
+
+platform :ios do
+  
+  # ═══════════════════════════════════════════════════════════════
+  # BEFORE RUNNING: Set up environment variables or use .env file
+  # ═══════════════════════════════════════════════════════════════
+  
+  before_all do
+    # Ensure we're on the right branch for releases
+    # ensure_git_status_clean
+  end
+
+  # ─────────────────────────────────────────────────────────────────
+  # TEST LANE - Run unit tests
+  # Usage: fastlane test
+  # ─────────────────────────────────────────────────────────────────
+  desc "Run all unit tests"
+  lane :test do
+    scan(
+      workspace: "Settle.xcworkspace",
+      scheme: "Settle",
+      devices: ["iPhone 15"],
+      clean: true,
+      code_coverage: true,
+      output_directory: "./fastlane/test_output",
+      output_types: "html,junit"
+    )
+  end
+
+  # ─────────────────────────────────────────────────────────────────
+  # BUILD LANE - Build the app
+  # Usage: fastlane build
+  # ─────────────────────────────────────────────────────────────────
+  desc "Build the app"
+  lane :build do
+    gym(
+      workspace: "Settle.xcworkspace",
+      scheme: "Settle",
+      clean: true,
+      export_method: "development",
+      output_directory: "./build",
+      output_name: "Settle.ipa"
+    )
+  end
+
+  # ─────────────────────────────────────────────────────────────────
+  # BETA LANE - Build and upload to TestFlight
+  # Usage: fastlane beta
+  # ─────────────────────────────────────────────────────────────────
+  desc "Build and upload to TestFlight"
+  lane :beta do
+    # Increment build number
+    increment_build_number(
+      xcodeproj: "Settle.xcodeproj"
+    )
+    
+    # Build the app
+    gym(
+      workspace: "Settle.xcworkspace",
+      scheme: "Settle",
+      clean: true,
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "Settle.ipa"
+    )
+    
+    # Upload to TestFlight
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+      apple_id: ENV["APPLE_ID"],
+      app_identifier: "com.jayam.settle" # Update with your bundle ID
+    )
+    
+    # Notify on success
+    # slack(message: "🚀 New Settle beta uploaded to TestFlight!")
+  end
+
+  # ─────────────────────────────────────────────────────────────────
+  # RELEASE LANE - Build and submit to App Store
+  # Usage: fastlane release
+  # ─────────────────────────────────────────────────────────────────
+  desc "Build and submit to App Store"
+  lane :release do
+    # Ensure we're on main branch
+    ensure_git_branch(branch: "main")
+    
+    # Increment version number (patch)
+    increment_version_number(
+      xcodeproj: "Settle.xcodeproj",
+      bump_type: "patch"
+    )
+    
+    # Increment build number
+    increment_build_number(
+      xcodeproj: "Settle.xcodeproj"
+    )
+    
+    # Build the app
+    gym(
+      workspace: "Settle.xcworkspace",
+      scheme: "Settle",
+      clean: true,
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "Settle.ipa"
+    )
+    
+    # Upload to App Store
+    upload_to_app_store(
+      skip_screenshots: true,
+      skip_metadata: false,
+      submit_for_review: false, # Set to true for auto-submit
+      automatic_release: false,
+      app_identifier: "com.jayam.settle" # Update with your bundle ID
+    )
+    
+    # Commit version bump
+    commit_version_bump(
+      xcodeproj: "Settle.xcodeproj",
+      message: "Version bump to #{get_version_number}"
+    )
+    
+    # Tag the release
+    add_git_tag(
+      tag: "v#{get_version_number}"
+    )
+    
+    # Push to remote
+    push_to_git_remote
+  end
+
+  # ─────────────────────────────────────────────────────────────────
+  # SCREENSHOTS LANE - Capture App Store screenshots
+  # Usage: fastlane screenshots
+  # ─────────────────────────────────────────────────────────────────
+  desc "Capture screenshots for App Store"
+  lane :screenshots do
+    capture_screenshots(
+      workspace: "Settle.xcworkspace",
+      scheme: "Settle"
+    )
+    frame_screenshots(white: true)
+  end
+
+  # ─────────────────────────────────────────────────────────────────
+  # CERTIFICATES LANE - Sync certificates and profiles
+  # Usage: fastlane certs
+  # ─────────────────────────────────────────────────────────────────
+  desc "Sync signing certificates and provisioning profiles"
+  lane :certs do
+    match(
+      type: "appstore",
+      readonly: true
+    )
+  end
+
+  # ─────────────────────────────────────────────────────────────────
+  # ERROR HANDLING
+  # ─────────────────────────────────────────────────────────────────
+  error do |lane, exception|
+    # slack(
+    #   message: "❌ Fastlane failed: #{exception.message}",
+    #   success: false
+    # )
+  end
+
+end
