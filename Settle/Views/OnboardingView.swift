@@ -32,9 +32,9 @@ struct OnboardingView: View {
                 )
                 
                 OnboardingPageView(
-                    systemImage: "lock.fill",
-                    title: "Your data stays on device",
-                    message: "All groups, expenses, and balances are stored locally on your iPhone. No analytics, no tracking."
+                    systemImage: "lock.shield.fill",
+                    title: "Your data is secure",
+                    message: "Your data syncs securely via Firebase. We never sell your data or track you for ads."
                 )
             }
             .tabViewStyle(.page(indexDisplayMode: .always))

@@ -1,10 +1,10 @@
-# Privacy Policy for Settle
+# Privacy Policy for SettleKaro
 
-**Last updated:** December 25, 2025
+**Last updated:** March 26, 2026
 
 ## Overview
 
-Settle ("we", "our", or "the app") is a personal expense splitting application. We are committed to protecting your privacy.
+SettleKaro ("we", "our", or "the app") is a personal expense splitting application. We are committed to protecting your privacy.
 
 ## Information We Collect
 
@@ -79,4 +79,4 @@ For privacy questions, contact:
 
 ---
 
-*This privacy policy is effective as of December 25, 2025.*
+*This privacy policy is effective as of March 26, 2026. Settle Karo is developed by Jayam Verma.*
