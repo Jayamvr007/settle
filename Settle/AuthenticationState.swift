@@ -244,6 +244,43 @@ class AuthenticationManager: ObservableObject {
         }
     }
     
+    // MARK: - Delete Account
+    
+    /// Permanently deletes the user's account and all associated data.
+    /// Required by Apple Guideline 5.1.1(v).
+    func deleteAccount() async -> Bool {
+        guard let currentUser = Auth.auth().currentUser else {
+            errorMessage = "No user signed in"
+            return false
+        }
+        
+        do {
+            // 1. Delete all Firestore data first
+            try await FirestoreService.shared.deleteAllUserData()
+            
+            // 2. Clear local data
+            GroupRepository.shared.groups = []
+            UserDefaults.standard.removeObject(forKey: "userName")
+            UserDefaults.standard.removeObject(forKey: "userPhone")
+            UserDefaults.standard.removeObject(forKey: "userUPI")
+            UserDefaults.standard.removeObject(forKey: "hasSeenOnboarding")
+            
+            // 3. Delete Firebase Auth account
+            try await currentUser.delete()
+            
+            // 4. Sign out
+            GIDSignIn.sharedInstance.signOut()
+            authenticationState = .unauthenticated
+            user = nil
+            
+            return true
+        } catch {
+            print("❌ Account deletion error: \(error.localizedDescription)")
+            errorMessage = error.localizedDescription
+            return false
+        }
+    }
+    
     // MARK: - User Info
     
     var userName: String {

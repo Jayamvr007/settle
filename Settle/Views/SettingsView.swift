@@ -5,26 +5,24 @@
 //  Created by Jayam Verma on 14/12/25.
 //
 
-
-//
-//  SettingsView.swift
-//  Settle
-//
-
 import SwiftUI
 import FirebaseAuth
 import GoogleSignIn
 
 struct SettingsView: View {
+    @EnvironmentObject var authManager: AuthenticationManager
     @AppStorage("userName") private var userName: String = ""
     @AppStorage("userPhone") private var userPhone: String = ""
     @AppStorage("userUPI") private var userUPI: String = ""
     @State private var upiError: String?
+    @State private var showDeleteConfirmation = false
+    @State private var isDeletingAccount = false
+    
     private var googleUser: User? {
         Auth.auth().currentUser
     }
     
-    private var isGoogleSignedIn: Bool {
+    private var isSignedIn: Bool {
         googleUser != nil
     }
     
@@ -33,32 +31,32 @@ struct SettingsView: View {
             Form {
                 Section("Your Profile") {
                     if let user = googleUser {
-                            HStack(spacing: 12) {
-                                ZStack {
-                                    Circle()
-                                        .fill(AppTheme.primary.opacity(0.1))
-                                        .frame(width: 50, height: 50)
-                                    Image(systemName: "person.fill")
-                                        .foregroundColor(AppTheme.primary)
-                                        .font(.title2)
-                                }
+                        HStack(spacing: 12) {
+                            ZStack {
+                                Circle()
+                                    .fill(AppTheme.primary.opacity(0.1))
+                                    .frame(width: 50, height: 50)
+                                Image(systemName: "person.fill")
+                                    .foregroundColor(AppTheme.primary)
+                                    .font(.title2)
+                            }
 
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(user.displayName ?? "Google user")
-                                        .font(.headline)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(user.displayName ?? "User")
+                                    .font(.headline)
 
-                                    if let email = user.email {
-                                        Text(email)
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
-                                    }
-
-                                    Text("Signed in")
-                                        .font(.caption2)
+                                if let email = user.email {
+                                    Text(email)
+                                        .font(.caption)
                                         .foregroundColor(.secondary)
                                 }
+
+                                Text("Signed in")
+                                    .font(.caption2)
+                                    .foregroundColor(.secondary)
                             }
                         }
+                    }
                     TextField("Your Name", text: $userName)
                         .autocorrectionDisabled()
                     
@@ -102,13 +100,34 @@ struct SettingsView: View {
                     }
                 }
                 
-                if isGoogleSignedIn {
-                    Section("Account") {
+                if isSignedIn {
+                    Section {
                         Button(role: .destructive) {
-                            signOutFromGoogle()
+                            authManager.signOut()
                         } label: {
                             Text("Sign Out")
                         }
+                        
+                        Button(role: .destructive) {
+                            showDeleteConfirmation = true
+                        } label: {
+                            HStack {
+                                if isDeletingAccount {
+                                    ProgressView()
+                                        .tint(.red)
+                                    Text("Deleting Account...")
+                                        .foregroundColor(.red)
+                                } else {
+                                    Image(systemName: "trash.fill")
+                                    Text("Delete Account")
+                                }
+                            }
+                        }
+                        .disabled(isDeletingAccount)
+                    } header: {
+                        Text("Account")
+                    } footer: {
+                        Text("Deleting your account will permanently remove all your groups, expenses, and personal data. This action cannot be undone.")
                     }
                 }
                 
@@ -122,19 +141,24 @@ struct SettingsView: View {
                     if userName.isEmpty {
                         userName = user.displayName ?? userName
                     }
-                    // If you want, you can also prefill phone from Firebase if present:
-                    // if userPhone.isEmpty, and user.phoneNumber != nil { userPhone = user.phoneNumber! }
-                    // UPI ID should stay manual, since Google doesn't know it.
                 }
             }
+            .alert("Delete Account", isPresented: $showDeleteConfirmation) {
+                Button("Cancel", role: .cancel) { }
+                Button("Delete Permanently", role: .destructive) {
+                    isDeletingAccount = true
+                    Task {
+                        let success = await authManager.deleteAccount()
+                        isDeletingAccount = false
+                        if !success {
+                            // Error is shown via authManager.errorMessage
+                        }
+                    }
+                }
+            } message: {
+                Text("This will permanently delete your account, all groups, expenses, and personal data. This cannot be undone.")
+            }
         }
-    }
-    
-    private func clearAllData() {
-        // Clear Firestore data is handled by deleting groups through repository
-        // For now, just sign out which effectively clears visible data
-        // User data remains in Firestore but becomes inaccessible after sign out
-        GroupRepository.shared.groups = []
     }
     
     private func validateUPI() {
@@ -150,12 +174,4 @@ struct SettingsView: View {
             upiError = nil
         }
     }
-    private func signOutFromGoogle() {
-            do {
-                try Auth.auth().signOut()
-                GIDSignIn.sharedInstance.signOut()
-            } catch {
-                print("Failed to sign out: \(error.localizedDescription)")
-            }
-        }
 }

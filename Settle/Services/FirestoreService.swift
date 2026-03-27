@@ -297,6 +297,33 @@ class FirestoreService: ObservableObject {
         
         try await doc.setData(["profile": profileData], merge: true)
     }
+    
+    // MARK: - Delete All User Data
+    
+    /// Deletes all Firestore data associated with the current user (groups, expenses, profile).
+    /// Used for account deletion per Apple Guideline 5.1.1(v).
+    func deleteAllUserData() async throws {
+        guard let collection = groupsCollection() else {
+            throw FirestoreError.notAuthenticated
+        }
+        
+        // 1. Delete all groups and their sub-collections (expenses)
+        let groupsSnapshot = try await collection.getDocuments()
+        for groupDoc in groupsSnapshot.documents {
+            // Delete expenses sub-collection
+            let expenses = try await groupDoc.reference.collection("expenses").getDocuments()
+            for expense in expenses.documents {
+                try await expense.reference.delete()
+            }
+            // Delete group document
+            try await groupDoc.reference.delete()
+        }
+        
+        // 2. Delete user profile document
+        if let userDoc = userDocument() {
+            try await userDoc.delete()
+        }
+    }
 }
 
 // MARK: - Errors
