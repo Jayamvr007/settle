@@ -22,7 +22,7 @@ struct OnboardingView: View {
                 OnboardingPageView(
                     systemImage: "list.bullet.rectangle.portrait",
                     title: "Track who owes what",
-                    message: "Add expenses and let Settle keep track of balances automatically for each member."
+                    message: "Add expenses and let Settle Karo keep track of balances automatically for each member."
                 )
                 
                 OnboardingPageView(

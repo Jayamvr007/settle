@@ -15,6 +15,8 @@ import Foundation
 import FirebaseAuth
 import GoogleSignIn
 import FirebaseCore
+import AuthenticationServices
+import CryptoKit
 
 enum AuthenticationState {
     case unauthenticated
@@ -29,6 +31,9 @@ class AuthenticationManager: ObservableObject {
     @Published var errorMessage = ""
     @Published var verificationID: String? = nil
     
+    // Apple Sign-In nonce
+    private var currentNonce: String?
+    
     init() {
         registerAuthStateHandler()
     }
@@ -37,6 +42,107 @@ class AuthenticationManager: ObservableObject {
         Auth.auth().addStateDidChangeListener { [weak self] _, user in
             self?.user = user
             self?.authenticationState = user != nil ? .authenticated : .unauthenticated
+        }
+    }
+    
+    // MARK: - Apple Sign-In
+    
+    /// Generate a random nonce for Apple Sign-In security
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        var randomBytes = [UInt8](repeating: 0, count: length)
+        let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
+        if errorCode != errSecSuccess {
+            fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+        }
+        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        let nonce = randomBytes.map { byte in
+            charset[Int(byte) % charset.count]
+        }
+        return String(nonce)
+    }
+    
+    /// SHA256 hash of the nonce
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        return hashedData.compactMap { String(format: "%02x", $0) }.joined()
+    }
+    
+    /// Start Apple Sign-In flow — returns the request for ASAuthorizationController
+    func createAppleSignInRequest() -> ASAuthorizationAppleIDRequest {
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
+        return request
+    }
+    
+    /// Handle the Apple Sign-In result
+    func handleAppleSignIn(result: Result<ASAuthorization, Error>) async -> Bool {
+        switch result {
+        case .success(let authorization):
+            guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
+                errorMessage = "Unable to get Apple ID credential"
+                return false
+            }
+            
+            guard let nonce = currentNonce else {
+                errorMessage = "Invalid state: nonce was not set"
+                return false
+            }
+            
+            guard let appleIDToken = appleIDCredential.identityToken,
+                  let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                errorMessage = "Unable to get identity token"
+                return false
+            }
+            
+            authenticationState = .authenticating
+            
+            let credential = OAuthProvider.credential(
+                withProviderID: "apple.com",
+                idToken: idTokenString,
+                rawNonce: nonce
+            )
+            
+            do {
+                let result = try await Auth.auth().signIn(with: credential)
+                
+                // Apple only sends name on first sign-in, so update profile if available
+                if let fullName = appleIDCredential.fullName {
+                    let displayName = [fullName.givenName, fullName.familyName]
+                        .compactMap { $0 }
+                        .joined(separator: " ")
+                    
+                    if !displayName.isEmpty {
+                        let changeRequest = result.user.createProfileChangeRequest()
+                        changeRequest.displayName = displayName
+                        try? await changeRequest.commitChanges()
+                    }
+                }
+                
+                self.user = result.user
+                authenticationState = .authenticated
+                return true
+                
+            } catch {
+                print("❌ Apple Sign-In Firebase Error: \(error.localizedDescription)")
+                errorMessage = error.localizedDescription
+                authenticationState = .unauthenticated
+                return false
+            }
+            
+        case .failure(let error):
+            // User cancelled is not a real error
+            if (error as NSError).code == ASAuthorizationError.canceled.rawValue {
+                return false
+            }
+            print("❌ Apple Sign-In Error: \(error.localizedDescription)")
+            errorMessage = error.localizedDescription
+            return false
         }
     }
     
@@ -141,7 +247,7 @@ class AuthenticationManager: ObservableObject {
     // MARK: - User Info
     
     var userName: String {
-        // Try displayName first (Google Sign-In)
+        // Try displayName first (Google Sign-In or Apple Sign-In)
         if let displayName = user?.displayName, !displayName.isEmpty {
             return displayName
         }

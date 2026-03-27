@@ -7,6 +7,7 @@
 
 import SwiftUI
 import GoogleSignIn
+import AuthenticationServices
 
 struct SignInView: View {
     @EnvironmentObject var authManager: AuthenticationManager
@@ -23,7 +24,7 @@ struct SignInView: View {
             
             // Title
             VStack(spacing: 8) {
-                Text("Welcome to Settle")
+                Text("Welcome to Settle Karo")
                     .font(.settleTitle)
                 
                 Text("Split expenses with friends")
@@ -31,19 +32,47 @@ struct SignInView: View {
                     .foregroundColor(.secondary)
             }
             
-            // Google Sign-In (Google's official button)
+            // Sign-In Buttons
             VStack(spacing: 16) {
+                
+                // Sign in with Apple
+                SignInWithAppleButton(.signIn) { request in
+                    let appleRequest = authManager.createAppleSignInRequest()
+                    request.requestedScopes = appleRequest.requestedScopes
+                    request.nonce = appleRequest.nonce
+                } onCompletion: { result in
+                    isSigningIn = true
+                    Task {
+                        let success = await authManager.handleAppleSignIn(result: result)
+                        isSigningIn = false
+                        if !success && !authManager.errorMessage.isEmpty {
+                            print("Apple Sign-In failed")
+                        }
+                    }
+                }
+                .signInWithAppleButtonStyle(.black)
+                .frame(height: 50)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .padding(.horizontal, 32)
+                
+                // Divider
+                HStack {
+                    Rectangle()
+                        .fill(Color.secondary.opacity(0.3))
+                        .frame(height: 1)
+                    Text("or")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Rectangle()
+                        .fill(Color.secondary.opacity(0.3))
+                        .frame(height: 1)
+                }
+                .padding(.horizontal, 40)
+                
+                // Google Sign-In
                 GoogleSignInButton(action: handleGoogleSignIn)
                     .frame(height: 50)
                     .padding(.horizontal, 32)
-                    .opacity(isSigningIn ? 0.5 : 1.0)
-                    .disabled(isSigningIn)
-                    .overlay {
-                        if isSigningIn {
-                            ProgressView()
-                                .tint(AppTheme.primary)
-                        }
-                    }
                 
                 if !authManager.errorMessage.isEmpty {
                     Text(authManager.errorMessage)
@@ -51,6 +80,14 @@ struct SignInView: View {
                         .foregroundColor(.red)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
+                }
+            }
+            .opacity(isSigningIn ? 0.5 : 1.0)
+            .disabled(isSigningIn)
+            .overlay {
+                if isSigningIn {
+                    ProgressView()
+                        .tint(AppTheme.primary)
                 }
             }
             .padding(.top, 40)

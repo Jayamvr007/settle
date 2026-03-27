@@ -11,8 +11,6 @@
 //  Settle
 //
 
-// ... existing imports ...
-import SwiftUI
 import SwiftUI
 import FirebaseAuth
 import GoogleSignIn
@@ -55,7 +53,7 @@ struct SettingsView: View {
                                             .foregroundColor(.secondary)
                                     }
 
-                                    Text("Signed in with Google")
+                                    Text("Signed in")
                                         .font(.caption2)
                                         .foregroundColor(.secondary)
                                 }
@@ -89,7 +87,7 @@ struct SettingsView: View {
                         Text("Privacy Policy")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                        Text("All data is stored locally on your device. There is no analytics, tracking, or third‑party data sharing. UPI payments are handled by your installed UPI apps.")
+                        Text("Your data syncs securely via Firebase. We do not sell your data, track you for ads, or share data with third parties. UPI links open your installed UPI apps.")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
@@ -109,7 +107,7 @@ struct SettingsView: View {
                         Button(role: .destructive) {
                             signOutFromGoogle()
                         } label: {
-                            Text("Sign out of Google")
+                            Text("Sign Out")
                         }
                     }
                 }
